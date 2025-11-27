@@ -1,48 +1,9 @@
-<!DOCTYPE html>
-<html class="dark" lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>ForestSoul - Find Your Inner Peace, Naturally</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
-<style>
-      .material-symbols-outlined {
-        font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
-      }
-    </style>
-<script id="tailwind-config">
-      tailwind.config = {
-        darkMode: "class",
-        theme: {
-          extend: {
-            colors: {
-              primary: "#13ec5b",
-              "background-light": "#f6f8f6",
-              "background-dark": "#102216",
-              "surface-dark": "#193322",
-              "border-dark": "#326744",
-              "text-main-dark": "#ffffff",
-              "text-secondary-dark": "#92c9a4",
-              "text-main-light": "#102216",
-              "text-secondary-light": "#5a7864",
-              "surface-light": "#e8ede9",
-              "border-light": "#d1d9d3",
-            },
-            fontFamily: {
-              display: ["Manrope", "sans-serif"],
-            },
-            borderRadius: {
-              DEFAULT: "0.5rem",
-              lg: "1rem",
-              xl: "1.5rem",
-              full: "9999px",
-            },
-          },
-        },
-      };
-    </script>
-</head>
+<?php
+$title = "gd ForestSoul - Find Your Inner Peace, Naturally";
+include_once 'head.php';
+?>
+
+
 <body class="bg-background-light dark:bg-background-dark font-display">
 <div class="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden">
 <div class="layout-container flex h-full grow flex-col">
@@ -72,10 +33,10 @@
 <a class="text-text-main-light dark:text-text-main-dark text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">About Us</a>
 </nav>
 <div class="flex gap-2">
-<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-4 bg-surface-light dark:bg-surface-dark text-text-main-light dark:text-text-main-dark text-sm font-bold leading-normal tracking-[0.015em] hover:bg-opacity-80 transition-colors">
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-4 bg-surface-light dark:bg-surface-dark text-text-main-light dark:text-text-main-dark text-sm font-bold leading-normal tracking-[0.015em] hover:bg-opacity-80 transition-colors" onclick="location.href='login.php'">
 <span class="truncate">Log In</span>
 </button>
-<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-4 bg-primary text-background-dark text-sm font-bold leading-normal tracking-[0.015em] hover:bg-opacity-80 transition-colors">
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-4 bg-primary text-background-dark text-sm font-bold leading-normal tracking-[0.015em] hover:bg-opacity-80 transition-colors" onclick="location.href='signup.php'">
 <span class="truncate">Sign Up</span>
 </button>
 </div>
