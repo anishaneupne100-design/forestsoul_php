@@ -1,6 +1,6 @@
 <?php
 $title = "Games - ForestSoul";
-include 'head.php';
+include '../head.php';
 ?>
 
 
@@ -119,7 +119,7 @@ include 'head.php';
 </main>
 
 <!-- Footer -->
-<?php include_once './components/footer.php';  ?>
+<?php include_once '.././components/footer.php';  ?>
 
 </div>
 </div>
