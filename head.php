@@ -15,6 +15,7 @@ echo <<<HTML
 
 <link href="assets/output.css" rel="stylesheet"/>
 
+<script src="../script.php" defer=""></script>
 
 
 <style>
