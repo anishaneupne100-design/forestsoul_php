@@ -176,3 +176,5 @@ include_once 'head.php';
 </div>
 
 </body></html>
+
+<script src="script.php"></script>
