@@ -8,6 +8,14 @@ $phpFiles = Get-ChildItem -Path $CWD -File -Include '*.php' -Depth 0
 
 
 foreach ($file in $phpFiles) {
+
+    $filename = $file.Name
+    if ($filename -ieq 'index.php') {
+        # Skip index.php files
+        Write-Host "Skipping 'index.php'"
+        continue
+    }
+
     # 1. Get the name of the new directory (e.g., 'staff.php' becomes 'staff')
     $folderName = $file.BaseName
     
