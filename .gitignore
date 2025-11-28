@@ -1,0 +1,11 @@
+package.json
+pnpm-lock.yaml
+node_modules/
+.DS_Store
+.env
+.vscode/
+.idea/
+uploads/
+*.log
+*.sqlite
+.prettierrc.json

@@ -1,49 +1,10 @@
-<!DOCTYPE html>
-<html class="dark" lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>ForestSoul User Profile</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
-<style>
-        .material-symbols-outlined {
-            font-variation-settings:
-            'FILL' 0,
-            'wght' 400,
-            'GRAD' 0,
-            'opsz' 24;
-        }
-    </style>
-<script id="tailwind-config">
-      tailwind.config = {
-        darkMode: "class",
-        theme: {
-          extend: {
-            colors: {
-              "primary": "#3A5A40",
-              "background-light": "#F4F6F3",
-              "background-dark": "#101a14",
-              "card-light": "#FFFFFF",
-              "card-dark": "#192d1f",
-              "secondary-light": "#A3B18A",
-              "secondary-dark": "#60744d",
-              "accent-light": "#D4A373",
-              "accent-dark": "#b5875a",
-              "text-primary-light": "#3A5A40",
-              "text-primary-dark": "#F4F6F3",
-              "text-secondary-light": "#5a785e",
-              "text-secondary-dark": "#A3B18A",
-            },
-            fontFamily: {
-              "display": ["Manrope", "sans-serif"]
-            },
-            borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
-          },
-        },
-      }
-    </script>
-</head>
+<?php
+$title= "My information - ForestSoul";
+include 'head.php';
+?>
+
+
+
 <body class="bg-background-light dark:bg-background-dark font-display">
 <div class="relative flex min-h-screen w-full flex-col">
 <div class="flex h-full w-full flex-1">
