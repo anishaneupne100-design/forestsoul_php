@@ -1,6 +1,6 @@
-<nav class="flex items-center gap-9">
-<a class="text-text-main-light dark:text-text-main-dark text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Features</a>
-<a class="text-text-main-light dark:text-text-main-dark text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Donate</a>
-<a class="text-text-main-light dark:text-text-main-dark text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Community</a>
-<a class="text-text-main-light dark:text-text-main-dark text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">About Us</a>
+<nav class="row gap-xl">
+<a class="nav-link" href="#">Features</a>
+<a class="nav-link" href="#">Donate</a>
+<a class="nav-link" href="#">Community</a>
+<a class="nav-link" href="#">About Us</a>
 </nav>
