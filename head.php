@@ -11,8 +11,9 @@ echo <<<HTML
 
 
 
-<link href="assets/output.css" rel="stylesheet"/>
+<link href="../assets/output.css" rel="stylesheet"/>
 
+<link href="assets/output.css" rel="stylesheet"/>
 
 
 

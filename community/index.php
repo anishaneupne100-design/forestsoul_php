@@ -1,6 +1,6 @@
 <?php
 $title = "Our Community - ForestSoul";
-include 'head.php';
+include '../head.php';
 ?>
 
 
@@ -156,7 +156,7 @@ include 'head.php';
 </div>
 </main>
 <!-- Footer -->
-<?php include_once './components/footer.php';  ?>
+<?php include_once '.././components/footer.php';  ?>
 
 </div>
 </div>

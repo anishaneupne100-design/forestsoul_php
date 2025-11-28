@@ -1,6 +1,6 @@
 <?php
 $title = "Sign Up - ForestSoul";
-include 'head.php';
+include '../head.php';
 ?>
 
 <body class="font-display">

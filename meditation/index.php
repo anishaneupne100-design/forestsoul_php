@@ -1,6 +1,6 @@
 <?php
 $title = "Meditation - ForestSoul";
-include 'head.php';
+include '../head.php';
 ?>
 
 
@@ -144,7 +144,7 @@ include 'head.php';
 </div>
 </div>
 <!-- Footer -->
-<?php include_once './components/footer.php';  ?>
+<?php include_once '.././components/footer.php';  ?>
 
 </div>
 </div>
