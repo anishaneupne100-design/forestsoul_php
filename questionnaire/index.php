@@ -1,6 +1,11 @@
 <?php
+// Protect this route - require authentication
+require_once __DIR__ . '/../backend/middleware/auth.php';
+
 $title = "Pre-Therapy Self-Questionnaire";
 include '../head.php';
+
+$user = Auth::user();
 ?>
 <body class="body">
 <div class="page">

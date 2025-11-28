@@ -9,40 +9,9 @@ include '../head.php';
 <div class="layout-container layout">
 <div class="container-main">
 <div class="content">
-<!-- TopNavBar -->
-<header class="header">
-<div class="row gap-md txt">
-<div class="icon-md">
-<svg fill="currentColor" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-<g clip-path="url(#clip0_6_319)">
-<path d="M8.57829 8.57829C5.52816 11.6284 3.451 15.5145 2.60947 19.7452C1.76794 23.9758 2.19984 28.361 3.85056 32.3462C5.50128 36.3314 8.29667 39.7376 11.8832 42.134C15.4698 44.5305 19.6865 45.8096 24 45.8096C28.3135 45.8096 32.5302 44.5305 36.1168 42.134C39.7033 39.7375 42.4987 36.3314 44.1494 32.3462C45.8002 28.361 46.2321 23.9758 45.3905 19.7452C44.549 15.5145 42.4718 11.6284 39.4217 8.57829L24 24L8.57829 8.57829Z"></path>
-</g>
-<defs>
-<clippath id="clip0_6_319">
-<rect fill="white" height="48" width="48"></rect>
-</clippath>
-</defs>
-</svg>
-</div>
-<h2 class="txt txt-lg">ForestSoul</h2>
-</div>
-<div class="hidden-mobile flex-1 justify-end center gap-xl">
-<div class="nav">
-<a class="nav-link" href="#">Home</a>
-<a class="nav-link" href="#">Meditation</a>
-<a class="nav-link" href="#">Yoga</a>
-<a class="nav-link" href="#">Therapy</a>
-<a class="txt-sm font-bold text-primary" href="#">Mind Games</a>
-</div>
-<button class="btn-secondary">
-<span class="material-symbols-outlined txt" data-icon="MagnifyingGlass" data-size="20px" data-weight="regular">search</span>
-</button>
-<div class="img-cover aspect-square rounded-full size-10" data-alt="User profile avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCD4edzstEeOn_f8EsOOooadtt9A__9EViuWVORW2_c5BXi3bkV2tDKXC8K1qaFBFztLPhTgohPKY0EsODKul3unyzG3A6ll0XFo4umpuVaUQwF9XEv0H9qASSUxC5DEwyOFYLnst4kynBrOHZkYkliJlgYpfZPjXF1o_M9s9kU_I-3sUpAz_0eWAFwKoV7OpjhXsKftju_e4mGTgEWfxjdAguyrW5sy88ekYFPpMJ8QJ07tjJluakoteoNLN-XSV3DhQQvLf8Fe_Q");'></div>
-</div>
-<button class="show-mobile center rounded-lg h-10 w-10 surface">
-<span class="material-symbols-outlined txt">menu</span>
-</button>
-</header>
+
+<?php include '../navbar/index.php'; ?>
+
 <main class="col gap-lg pt-6">
 <!-- HeroSection -->
 <div class="@container">

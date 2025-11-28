@@ -1,4 +1,7 @@
 <?php
+// Redirect if already logged in
+require_once __DIR__ . '/../backend/middleware/guest.php';
+
 $title = "Login - ForestSoul";
 include '../head.php';
 ?>
@@ -10,18 +13,27 @@ include '../head.php';
 <div class="relative z-10 col center w-full max-w-md p-4 sm:p-6">
 <div class="w-full rounded-xl bg-card-light/80 p-6 shadow-2xl backdrop-blur-lg dark:bg-card-dark/80 sm:p-8">
 <div class="col center gap-2 pb-6">
+<a href="<?php echo url('home'); ?>" class="col center gap-2">
 <svg class="h-10 w-10 text-primary" fill="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
 <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-12h2v4h-2zm0 6h2v2h-2z"></path>
 <path d="M12.75 12.34l3.91-3.91c.39-.39.39-1.02 0-1.41a.996.996 0 00-1.41 0L11.34 11.25a3.987 3.987 0 000 5.5l3.91 3.91c.39.39 1.02.39 1.41 0 .39-.39.39-1.02 0-1.41L12.75 13.75c-.97-.97-.97-2.55 0-3.53zM8.25 10.93L4.34 7.02c-.39-.39-1.02-.39-1.41 0a.996.996 0 000 1.41l3.91 3.91c.98.98.98 2.56 0 3.54l-3.91 3.91c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0l3.91-3.91c1.95-1.95 1.95-5.12 0-7.07z" opacity=".3"></path>
 </svg>
 <h1 class="txt txt-hero">ForestSoul</h1>
+</a>
 </div>
 <h2 class="text-center heading">Log In to Your Sanctuary</h2>
 <p class="mt-2 text-center txt-sm txt-2">Welcome back! Please enter your details.</p>
-<div class="mt-8 col gap-md">
+
+<!-- Error Message -->
+<div id="error-message" class="hidden mt-4 p-3 rounded-lg bg-red-500/10 border border-red-500/30 text-red-500 text-sm text-center"></div>
+
+<!-- Success Message -->
+<div id="success-message" class="hidden mt-4 p-3 rounded-lg bg-green-500/10 border border-green-500/30 text-green-500 text-sm text-center"></div>
+
+<form id="login-form" class="mt-8 col gap-md">
 <label class="col gap-2">
 <p class="txt txt-sm font-medium">Email Address</p>
-<input class="input" placeholder="you@example.com" type="email"/>
+<input class="input" name="email" placeholder="you@example.com" type="email" required/>
 </label>
 <div class="col gap-2">
 <div class="between">
@@ -29,14 +41,17 @@ include '../head.php';
 <a class="txt-sm font-medium text-primary hover:underline" href="#">Forgot Password?</a>
 </div>
 <div class="relative row items-stretch w-full">
-<input class="input pr-10" placeholder="Enter your password" type="password"/>
+<input class="input pr-10" name="password" placeholder="Enter your password" type="password" id="password-input" required/>
 <div class="absolute inset-y-0 right-0 center pr-3 txt-2">
-<span class="material-symbols-outlined cursor-pointer" style="font-size: 20px;">visibility_off</span>
+<span class="material-symbols-outlined cursor-pointer" id="toggle-password" style="font-size: 20px;">visibility_off</span>
 </div>
 </div>
 </div>
-<button class="btn-primary btn-lg w-full">Log In</button>
-</div>
+<button type="submit" class="btn-primary btn-lg w-full" id="submit-btn">
+<span id="btn-text">Log In</span>
+<span id="btn-loading" class="hidden">Logging in...</span>
+</button>
+</form>
 <div class="relative my-6">
 <div class="absolute inset-0 center">
 <span class="w-full border-t border-border-light dark:border-border-dark"></span>
@@ -56,9 +71,75 @@ include '../head.php';
 </button>
 </div>
 <p class="mt-8 text-center txt-sm txt-2">
-Don't have an account? <a class="font-semibold text-primary hover:underline" href="#">Sign Up</a>
+Don't have an account? <a class="font-semibold text-primary hover:underline" href="<?php echo url('signup'); ?>">Sign Up</a>
 </p>
 </div>
 </div>
 </div>
+
+<script>
+// Toggle password visibility
+document.getElementById('toggle-password').addEventListener('click', function() {
+    const passwordInput = document.getElementById('password-input');
+    const isPassword = passwordInput.type === 'password';
+    passwordInput.type = isPassword ? 'text' : 'password';
+    this.textContent = isPassword ? 'visibility' : 'visibility_off';
+});
+
+// Handle form submission
+document.getElementById('login-form').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    const errorDiv = document.getElementById('error-message');
+    const successDiv = document.getElementById('success-message');
+    const submitBtn = document.getElementById('submit-btn');
+    const btnText = document.getElementById('btn-text');
+    const btnLoading = document.getElementById('btn-loading');
+    
+    // Hide messages
+    errorDiv.classList.add('hidden');
+    successDiv.classList.add('hidden');
+    
+    // Show loading state
+    submitBtn.disabled = true;
+    btnText.classList.add('hidden');
+    btnLoading.classList.remove('hidden');
+    
+    try {
+        const response = await submitForm(this, 'login.php');
+        
+        if (response.success) {
+            successDiv.textContent = response.message || 'Login successful! Redirecting...';
+            successDiv.classList.remove('hidden');
+            
+            // Redirect after success
+            setTimeout(() => {
+                const intended = sessionStorage.getItem('intended_url');
+                if (intended) {
+                    sessionStorage.removeItem('intended_url');
+                    window.location.href = intended;
+                } else {
+                    window.location.href = response.redirect || ROUTES.HOME;
+                }
+            }, 1000);
+        } else {
+            errorDiv.textContent = response.message || 'Login failed. Please try again.';
+            errorDiv.classList.remove('hidden');
+            
+            // Reset button
+            submitBtn.disabled = false;
+            btnText.classList.remove('hidden');
+            btnLoading.classList.add('hidden');
+        }
+    } catch (error) {
+        errorDiv.textContent = 'Network error. Please try again.';
+        errorDiv.classList.remove('hidden');
+        
+        // Reset button
+        submitBtn.disabled = false;
+        btnText.classList.remove('hidden');
+        btnLoading.classList.add('hidden');
+    }
+});
+</script>
 </body></html>
