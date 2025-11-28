@@ -1,6 +1,6 @@
 <?php
 $title= "My information - ForestSoul";
-include 'head.php';
+include '../head.php';
 ?>
 
 

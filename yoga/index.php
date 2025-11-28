@@ -1,6 +1,6 @@
 <?php
 $title = "Yoga Classes - ForestSoul";
-include 'head.php';
+include '../head.php';
 ?>
 
 
