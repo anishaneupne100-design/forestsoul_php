@@ -1,6 +1,11 @@
 <?php
+// Protect this route - require staff or admin role
+require_once __DIR__ . '/../backend/middleware/staff.php';
+
 $title = "ForestSoul - Staff & Expert Management";
 include '../head.php';
+
+$user = Auth::user();
 ?>
 <body class="body">
 <div class="relative flex min-h-screen w-full">

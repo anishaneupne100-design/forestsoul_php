@@ -2,23 +2,27 @@
 <div class="grid grid-cols-2 md:grid-cols-4 gap-xl px-4 text-sm">
 <div class="col gap-md">
 <h4 class="footer-title">Services</h4>
-<a class="footer-link" href="#">Meditation</a>
-<a class="footer-link" href="#">Yoga</a>
-<a class="footer-link" href="#">Therapy</a>
-<a class="footer-link" href="#">Mind Games</a>
-<a class="footer-link" href="#">Questionnaires</a>
+<a class="footer-link" href="<?php echo url('meditation'); ?>">Meditation</a>
+<a class="footer-link" href="<?php echo url('yoga'); ?>">Yoga</a>
+<a class="footer-link" href="<?php echo url('games'); ?>">Mind Games</a>
+<a class="footer-link" href="<?php echo url('questionnaire'); ?>">Questionnaires</a>
 </div>
 <div class="col gap-md">
 <h4 class="footer-title">About</h4>
-<a class="footer-link" href="#">Our Mission</a>
-<a class="footer-link" href="#">Donate</a>
-<a class="footer-link" href="#">Contact Us</a>
+<a class="footer-link" href="<?php echo url('home'); ?>">Our Mission</a>
+<a class="footer-link" href="<?php echo url('donation'); ?>">Donate</a>
+<a class="footer-link" href="<?php echo url('community'); ?>">Community</a>
 </div>
 <div class="col gap-md">
-<h4 class="footer-title">Community</h4>
-<a class="footer-link" href="#">Feedback</a>
-<a class="footer-link" href="#">Blog</a>
-<a class="footer-link" href="#">FAQ</a>
+<h4 class="footer-title">Account</h4>
+<?php if (Auth::check()): ?>
+<a class="footer-link" href="<?php echo url('profile'); ?>">My Profile</a>
+<a class="footer-link" href="<?php echo url('user_progress'); ?>">My Progress</a>
+<a class="footer-link" href="<?php echo url('logout'); ?>">Logout</a>
+<?php else: ?>
+<a class="footer-link" href="<?php echo url('login'); ?>">Login</a>
+<a class="footer-link" href="<?php echo url('signup'); ?>">Sign Up</a>
+<?php endif; ?>
 </div>
 <div class="col gap-md">
 <h4 class="footer-title">Legal</h4>
@@ -27,7 +31,7 @@
 </div>
 </div>
 <div class="mt-8 col sm:flex-row between gap-md border-t border-border-light dark:border-border-dark pt-4 px-4">
-<p class="text-xs txt-2">© 2024 ForestSoul. All rights reserved.</p>
+<p class="text-xs txt-2">© <?php echo date('Y'); ?> ForestSoul. All rights reserved.</p>
 <div class="row gap-md txt-2">
 <a class="footer-link" href="#">
 <svg aria-hidden="true" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">

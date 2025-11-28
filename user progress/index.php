@@ -1,83 +1,47 @@
-<!DOCTYPE html>
-<html class="dark" lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>ForestSoul User Profile</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
-<style>
-        .material-symbols-outlined {
-            font-variation-settings:
-            'FILL' 0,
-            'wght' 400,
-            'GRAD' 0,
-            'opsz' 24;
-        }
-    </style>
-<script id="tailwind-config">
-      tailwind.config = {
-        darkMode: "class",
-        theme: {
-          extend: {
-            colors: {
-              "primary": "#3A5A40",
-              "background-light": "#F4F6F3",
-              "background-dark": "#101a14",
-              "card-light": "#FFFFFF",
-              "card-dark": "#192d1f",
-              "secondary-light": "#A3B18A",
-              "secondary-dark": "#60744d",
-              "accent-light": "#D4A373",
-              "accent-dark": "#b5875a",
-              "text-primary-light": "#3A5A40",
-              "text-primary-dark": "#F4F6F3",
-              "text-secondary-light": "#5a785e",
-              "text-secondary-dark": "#A3B18A",
-            },
-            fontFamily: {
-              "display": ["Manrope", "sans-serif"]
-            },
-            borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
-          },
-        },
-      }
-    </script>
-</head>
-<body class="bg-background-light dark:bg-background-dark font-display">
+<?php
+// Protect this route - require authentication
+require_once __DIR__ . '/../backend/middleware/auth.php';
+
+$title = "My Progress - ForestSoul";
+include '../head.php';
+
+$user = Auth::user();
+$memberSince = date('M Y', strtotime($user['created_at'] ?? 'now'));
+?>
+<body class="body">
 <div class="relative flex min-h-screen w-full flex-col">
 <div class="flex h-full w-full flex-1">
-<aside class="flex w-64 flex-col bg-card-light dark:bg-card-dark p-4 border-r border-gray-200 dark:border-gray-800">
+<aside class="flex w-64 flex-col surface p-4 border-r border-border-light dark:border-border-dark">
 <div class="flex flex-col gap-4">
 <div class="flex items-center gap-3 p-2">
-<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" data-alt="User avatar of Amelia" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCprAjm-9yXEW23a48kw53CUYIXWDLOOaMT70TpJJ96zDgQOflc838-kUwnmd-xbQCJPvz9ryvH4rnQ1i6iScStc7uhEzLuJ6lnYN3MuI82IZcXsD_R-PzU_hBZsNp4zT2k4TeHzfDQNRzAq_7la4Rgm46HzxIoaPUDf6l8J291bSZiIvbyOD-zN41lAHv5jv2g6y_8JYawFvhhGyUSJ53Cga8QHJ0e9_1CZ57ceioABoyo0U6fakH7a4woFrrtVO7HIDBY5CQ4oLg");'></div>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" style='background-image: url("<?php echo htmlspecialchars($user['avatar'] ?? 'https://ui-avatars.com/api/?name=' . urlencode($user['name']) . '&background=0D8045&color=fff'); ?>");'></div>
 <div class="flex flex-col">
-<h1 class="text-text-primary-light dark:text-text-primary-dark text-base font-bold leading-normal">Amelia</h1>
-<p class="text-text-secondary-light dark:text-text-secondary-dark text-sm font-normal leading-normal">Member since Jan 2023</p>
+<h1 class="txt text-base font-bold leading-normal"><?php echo htmlspecialchars($user['name']); ?></h1>
+<p class="txt-2 text-sm font-normal leading-normal">Member since <?php echo $memberSince; ?></p>
 </div>
 </div>
 <nav class="flex flex-col gap-2 mt-4">
-<a class="flex items-center gap-3 px-3 py-2 rounded-lg bg-primary/10 text-primary dark:text-primary-dark dark:bg-primary/20" href="#">
+<a class="flex items-center gap-3 px-3 py-2 txt-2 hover:bg-gray-100 dark:hover:bg-white/5 rounded-lg" href="<?php echo url('profile'); ?>">
 <span class="material-symbols-outlined">dashboard</span>
 <p class="text-sm font-medium leading-normal">Dashboard</p>
 </a>
-<a class="flex items-center gap-3 px-3 py-2 text-text-secondary-light dark:text-text-secondary-dark hover:bg-gray-100 dark:hover:bg-white/5 rounded-lg" href="#">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg bg-primary/10 text-primary dark:text-primary-dark dark:bg-primary/20" href="<?php echo url('user_progress'); ?>">
 <span class="material-symbols-outlined">trending_up</span>
 <p class="text-sm font-medium leading-normal">My Progress</p>
 </a>
-<a class="flex items-center gap-3 px-3 py-2 text-text-secondary-light dark:text-text-secondary-dark hover:bg-gray-100 dark:hover:bg-white/5 rounded-lg" href="#">
+<a class="flex items-center gap-3 px-3 py-2 txt-2 hover:bg-gray-100 dark:hover:bg-white/5 rounded-lg" href="<?php echo url('donation'); ?>">
 <span class="material-symbols-outlined">volunteer_activism</span>
 <p class="text-sm font-medium leading-normal">Donations</p>
 </a>
-<a class="flex items-center gap-3 px-3 py-2 text-text-secondary-light dark:text-text-secondary-dark hover:bg-gray-100 dark:hover:bg-white/5 rounded-lg" href="#">
-<span class="material-symbols-outlined">calendar_month</span>
-<p class="text-sm font-medium leading-normal">Therapy Sessions</p>
+<a class="flex items-center gap-3 px-3 py-2 txt-2 hover:bg-gray-100 dark:hover:bg-white/5 rounded-lg" href="<?php echo url('meditation'); ?>">
+<span class="material-symbols-outlined">self_improvement</span>
+<p class="text-sm font-medium leading-normal">Meditation</p>
 </a>
-<a class="flex items-center gap-3 px-3 py-2 text-text-secondary-light dark:text-text-secondary-dark hover:bg-gray-100 dark:hover:bg-white/5 rounded-lg" href="#">
-<span class="material-symbols-outlined">book_2</span>
-<p class="text-sm font-medium leading-normal">My Journal</p>
+<a class="flex items-center gap-3 px-3 py-2 txt-2 hover:bg-gray-100 dark:hover:bg-white/5 rounded-lg" href="<?php echo url('yoga'); ?>">
+<span class="material-symbols-outlined">fitbit_yoga</span>
+<p class="text-sm font-medium leading-normal">Yoga</p>
 </a>
-<a class="flex items-center gap-3 px-3 py-2 text-text-secondary-light dark:text-text-secondary-dark hover:bg-gray-100 dark:hover:bg-white/5 rounded-lg" href="#">
+<a class="flex items-center gap-3 px-3 py-2 txt-2 hover:bg-gray-100 dark:hover:bg-white/5 rounded-lg" href="<?php echo url('questionnaire'); ?>">
 <span class="material-symbols-outlined">groups</span>
 <p class="text-sm font-medium leading-normal">Community Stories</p>
 </a>

@@ -1,85 +1,51 @@
-<!DOCTYPE html>
-<html class="dark" lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>ForestSoul - Admin Donations Dashboard</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
-<script>
-    tailwind.config = {
-      darkMode: "class",
-      theme: {
-        extend: {
-          colors: {
-            "primary": "#2D572C", // Deep forest green
-            "accent": "#A3B18A", // Sage/mint green
-            "background-light": "#F8F9FA",
-            "background-dark": "#111827", // Darker background for contrast
-            "success": "#588157",
-            "warning": "#E8C547",
-            "error": "#C05555",
-          },
-          fontFamily: {
-            "display": ["Manrope", "sans-serif"]
-          },
-          borderRadius: {
-            "DEFAULT": "0.25rem",
-            "lg": "0.5rem",
-            "xl": "0.75rem",
-            "full": "9999px"
-          },
-        },
-      },
-    }
-  </script>
-<style>
-    .material-symbols-outlined {
-      font-variation-settings:
-        'FILL' 0,
-        'wght' 400,
-        'GRAD' 0,
-        'opsz' 24
-    }
-  </style>
-</head>
-<body class="font-display bg-background-light dark:bg-background-dark">
+<?php
+// Protect this route - require admin role
+require_once __DIR__ . '/../backend/middleware/admin.php';
+
+$title = "ForestSoul - Admin Donations Dashboard";
+include '../head.php';
+
+$user = Auth::user();
+?>
+<body class="body">
 <div class="relative flex min-h-screen w-full">
-<aside class="sticky top-0 h-screen w-64 flex-shrink-0 bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-800 flex flex-col">
+<aside class="sticky top-0 h-screen w-64 flex-shrink-0 surface border-r border-border-light dark:border-border-dark flex flex-col">
 <div class="flex h-full flex-col justify-between p-4">
 <div class="flex flex-col gap-4">
-<div class="flex items-center gap-3 px-3 py-2">
-<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" data-alt="ForestSoul logo" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBol7NOh7fFjiagLcCbvrYWaY6K9NeXxNFtsO2k_8yoboSa4ySKNkbCCHbComqqRRKAm2R5yMdYf_fqjMVByz5g4ee-QZtkY1DgvShD_bv9FKaW7QP9UrEdn3_ELjId-A5jeXd5jxcDLk-T8qI6dzAIQz2FjuRW92z7cVdElZ69gM54UWuLChpFFQvcfUPdtQTKvKm3PeQ0E8Xc6eXiFmRS1fGZWp-ImRI5MRdkA_y71KGMOlmq_0xWOjL3WwIaw-SjsnvgEQqtnZQ");'></div>
+<a href="<?php echo url('home'); ?>" class="flex items-center gap-3 px-3 py-2">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 bg-primary/20 center">
+<span class="material-symbols-outlined text-primary">eco</span>
+</div>
 <div class="flex flex-col">
-<h1 class="text-gray-900 dark:text-white text-base font-medium leading-normal">ForestSoul</h1>
-<p class="text-gray-500 dark:text-gray-400 text-sm font-normal leading-normal">Admin Panel</p>
+<h1 class="txt text-base font-medium leading-normal">ForestSoul</h1>
+<p class="txt-2 text-sm font-normal leading-normal">Admin Panel</p>
 </div>
-</div>
-<nav class="flex flex-col gap-2 mt-4">
-<a class="flex items-center gap-3 px-3 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg" href="#">
-<span class="material-symbols-outlined">dashboard</span>
-<p class="text-sm font-medium leading-normal">Dashboard</p>
 </a>
-<a class="flex items-center gap-3 px-3 py-2 rounded-lg bg-primary/20 text-primary dark:text-green-300" href="#">
+<nav class="flex flex-col gap-2 mt-4">
+<a class="flex items-center gap-3 px-3 py-2 txt-2 hover:bg-gray-100 dark:hover:bg-white/5 rounded-lg" href="<?php echo url('staff'); ?>">
+<span class="material-symbols-outlined">dashboard</span>
+<p class="text-sm font-medium leading-normal">Staff Panel</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg bg-primary/20 text-primary" href="<?php echo url('admin_donation'); ?>">
 <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">volunteer_activism</span>
 <p class="text-sm font-medium leading-normal">Donations</p>
 </a>
-<a class="flex items-center gap-3 px-3 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg" href="#">
+<a class="flex items-center gap-3 px-3 py-2 txt-2 hover:bg-gray-100 dark:hover:bg-white/5 rounded-lg" href="<?php echo url('community'); ?>">
 <span class="material-symbols-outlined">group</span>
-<p class="text-sm font-medium leading-normal">Users</p>
-</a>
-<a class="flex items-center gap-3 px-3 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg" href="#">
-<span class="material-symbols-outlined">article</span>
-<p class="text-sm font-medium leading-normal">Content</p>
+<p class="text-sm font-medium leading-normal">Community</p>
 </a>
 </nav>
 </div>
 <div class="flex flex-col gap-1">
-<a class="flex items-center gap-3 px-3 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg" href="#">
-<span class="material-symbols-outlined">settings</span>
-<p class="text-sm font-medium leading-normal">Settings</p>
+<a class="flex items-center gap-3 px-3 py-2 txt-2 hover:bg-gray-100 dark:hover:bg-white/5 rounded-lg" href="<?php echo url('profile'); ?>">
+<span class="material-symbols-outlined">person</span>
+<p class="text-sm font-medium leading-normal"><?php echo htmlspecialchars($user['name']); ?></p>
 </a>
-<a class="flex items-center gap-3 px-3 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg" href="#">
+<a class="flex items-center gap-3 px-3 py-2 txt-2 hover:bg-gray-100 dark:hover:bg-white/5 rounded-lg" href="<?php echo url('home'); ?>">
+<span class="material-symbols-outlined">home</span>
+<p class="text-sm font-medium leading-normal">Back to Site</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-red-500 hover:bg-red-500/10 rounded-lg" href="<?php echo url('logout'); ?>">
 <span class="material-symbols-outlined">logout</span>
 <p class="text-sm font-medium leading-normal">Logout</p>
 </a>

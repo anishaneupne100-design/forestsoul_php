@@ -1,6 +1,12 @@
 <?php
-$title= "My information - ForestSoul";
+// Protect this route - require authentication
+require_once __DIR__ . '/../backend/middleware/auth.php';
+
+$title = "My Profile - ForestSoul";
 include '../head.php';
+
+$user = Auth::user();
+$memberSince = date('M Y', strtotime($user['created_at'] ?? 'now'));
 ?>
 
 
@@ -12,32 +18,32 @@ include '../head.php';
 <aside class="col w-64 surface p-4 border-r border-border-light dark:border-border-dark">
 <div class="col gap-md">
 <div class="row gap-sm p-2">
-<div class="img-cover aspect-square rounded-full size-10" data-alt="User avatar of Amelia" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCprAjm-9yXEW23a48kw53CUYIXWDLOOaMT70TpJJ96zDgQOflc838-kUwnmd-xbQCJPvz9ryvH4rnQ1i6iScStc7uhEzLuJ6lnYN3MuI82IZcXsD_R-PzU_hBZsNp4zT2k4TeHzfDQNRzAq_7la4Rgm46HzxIoaPUDf6l8J291bSZiIvbyOD-zN41lAHv5jv2g6y_8JYawFvhhGyUSJ53Cga8QHJ0e9_1CZ57ceioABoyo0U6fakH7a4woFrrtVO7HIDBY5CQ4oLg");'></div>
+<div class="img-cover aspect-square rounded-full size-10" data-alt="User avatar" style='background-image: url("<?php echo htmlspecialchars($user['avatar'] ?? 'https://ui-avatars.com/api/?name=' . urlencode($user['name']) . '&background=0D8045&color=fff'); ?>");'></div>
 <div class="col">
-<h1 class="title">Amelia</h1>
-<p class="subtitle">Member since Jan 2023</p>
+<h1 class="title"><?php echo htmlspecialchars($user['name']); ?></h1>
+<p class="subtitle">Member since <?php echo $memberSince; ?></p>
 </div>
 </div>
 <nav class="col gap-sm mt-4">
-<a class="row gap-sm px-3 py-2 rounded-lg bg-primary/10 text-primary dark:text-primary-dark dark:bg-primary/20" href="#">
+<a class="row gap-sm px-3 py-2 rounded-lg bg-primary/10 text-primary dark:text-primary-dark dark:bg-primary/20" href="<?php echo url('profile'); ?>">
 <span class="material-symbols-outlined">dashboard</span>
 <p class="txt-sm font-medium">Dashboard</p>
 </a>
-<a class="row gap-sm px-3 py-2 txt-2 hover:bg-gray-100 dark:hover:bg-white/5 rounded-lg" href="#">
+<a class="row gap-sm px-3 py-2 txt-2 hover:bg-gray-100 dark:hover:bg-white/5 rounded-lg" href="<?php echo url('user_progress'); ?>">
 <span class="material-symbols-outlined">trending_up</span>
 <p class="txt-sm font-medium">My Progress</p>
 </a>
-<a class="row gap-sm px-3 py-2 txt-2 hover:bg-gray-100 dark:hover:bg-white/5 rounded-lg" href="#">
-<span class="material-symbols-outlined">calendar_month</span>
-<p class="txt-sm font-medium">Therapy Sessions</p>
+<a class="row gap-sm px-3 py-2 txt-2 hover:bg-gray-100 dark:hover:bg-white/5 rounded-lg" href="<?php echo url('questionnaire'); ?>">
+<span class="material-symbols-outlined">quiz</span>
+<p class="txt-sm font-medium">Questionnaire</p>
 </a>
-<a class="row gap-sm px-3 py-2 txt-2 hover:bg-gray-100 dark:hover:bg-white/5 rounded-lg" href="#">
-<span class="material-symbols-outlined">book_2</span>
-<p class="txt-sm font-medium">My Journal</p>
+<a class="row gap-sm px-3 py-2 txt-2 hover:bg-gray-100 dark:hover:bg-white/5 rounded-lg" href="<?php echo url('meditation'); ?>">
+<span class="material-symbols-outlined">self_improvement</span>
+<p class="txt-sm font-medium">Meditation</p>
 </a>
-<a class="row gap-sm px-3 py-2 txt-2 hover:bg-gray-100 dark:hover:bg-white/5 rounded-lg" href="#">
+<a class="row gap-sm px-3 py-2 txt-2 hover:bg-gray-100 dark:hover:bg-white/5 rounded-lg" href="<?php echo url('community'); ?>">
 <span class="material-symbols-outlined">groups</span>
-<p class="txt-sm font-medium">Community Stories</p>
+<p class="txt-sm font-medium">Community</p>
 </a>
 <a class="row gap-sm px-3 py-2 txt-2 hover:bg-gray-100 dark:hover:bg-white/5 rounded-lg" href="#">
 <span class="material-symbols-outlined">settings</span>
@@ -46,7 +52,11 @@ include '../head.php';
 </nav>
 </div>
 <div class="mt-auto col gap-sm">
-<a class="row gap-sm px-3 py-2 txt-2 hover:bg-gray-100 dark:hover:bg-white/5 rounded-lg" href="#">
+<a class="row gap-sm px-3 py-2 txt-2 hover:bg-gray-100 dark:hover:bg-white/5 rounded-lg" href="<?php echo url('home'); ?>">
+<span class="material-symbols-outlined">home</span>
+<p class="txt-sm font-medium">Home</p>
+</a>
+<a class="row gap-sm px-3 py-2 txt-2 hover:bg-gray-100 dark:hover:bg-white/5 rounded-lg text-red-500" href="<?php echo url('logout'); ?>">
 <span class="material-symbols-outlined">logout</span>
 <p class="txt-sm font-medium">Logout</p>
 </a>
@@ -58,12 +68,12 @@ include '../head.php';
 <!-- Page Heading -->
 <div class="between flex-wrap gap-md mb-8">
 <div class="col gap-sm">
-<p class="txt txt-hero">Welcome back, Amelia</p>
+<p class="txt txt-hero">Welcome back, <?php echo htmlspecialchars($user['name']); ?></p>
 <p class="txt-2 txt-md">You're doing great, keep up the practice.</p>
 </div>
-<button class="btn-primary btn-lg shadow-sm hover:opacity-90">
+<a href="<?php echo url('meditation'); ?>" class="btn-primary btn-lg shadow-sm hover:opacity-90">
 <span class="truncate">Start Today's Meditation</span>
-</button>
+</a>
 </div>
 <!-- My Progress Section -->
 <section class="mb-12">

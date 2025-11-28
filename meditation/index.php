@@ -9,40 +9,9 @@ include '../head.php';
 <div class="layout-container layout">
 <div class="container-main">
 <div class="content">
-<!-- TopNavBar -->
-<header class="header">
-<div class="row gap-md txt">
-<div class="icon-md">
-<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-<g clip-path="url(#clip0_6_319)">
-<path d="M8.57829 8.57829C5.52816 11.6284 3.451 15.5145 2.60947 19.7452C1.76794 23.9758 2.19984 28.361 3.85056 32.3462C5.50128 36.3314 8.29667 39.7376 11.8832 42.134C15.4698 44.5305 19.6865 45.8096 24 45.8096C28.3135 45.8096 32.5302 44.5305 36.1168 42.134C39.7033 39.7375 42.4987 36.3314 44.1494 32.3462C45.8002 28.361 46.2321 23.9758 45.3905 19.7452C44.549 15.5145 42.4718 11.6284 39.4217 8.57829L24 24L8.57829 8.57829Z" fill="currentColor"></path>
-</g>
-<defs>
-<clippath id="clip0_6_319">
-<rect fill="white" height="48" width="48"></rect>
-</clippath>
-</defs>
-</svg>
-</div>
-<h2 class="txt txt-lg">ForestSoul</h2>
-</div>
-<div class="hidden-mobile flex-1 justify-end gap-xl">
-<div class="nav">
-<a class="nav-link" href="#">Home</a>
-<a class="text-primary txt-sm font-bold" href="#">Meditation</a>
-<a class="nav-link" href="#">Yoga</a>
-<a class="nav-link" href="#">Therapy</a>
-<a class="nav-link" href="#">Donate</a>
-</div>
-<button class="btn-primary">
-<span class="truncate">Login</span>
-</button>
-<div class="img-cover aspect-square rounded-full size-10" data-alt="User profile picture placeholder" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBa3EIZGx1EkD1y0N8gRy30bRJxB1YyLRdIsRyuBPEVpPXxXsLQY7l3aGVFuAT2griAocs5sGEdad-uyTG9ZS5R38_Tw0kyJBCLQLMGuk9GaP-XYD3u45TVge29KTQP_PlQtBveS6roovBYmCFMAWda9LXFUJFeN3ZOiYt4NJy1pGI2bLfb835dt2ibUXVn2CybP8qxVpBkFn-H-weXGadDBIEUXqWktjhxs8Ivi4wHF94eSET_ZlvQR-Qa1otc8xCwTT3NPhbo4b8");'></div>
-</div>
-<button class="show-mobile txt">
-<span class="material-symbols-outlined">menu</span>
-</button>
-</header>
+
+<?php include '../navbar/index.php'; ?>
+
 <!-- HeroSection -->
 <div class="@container mt-5">
 <div class="@[480px]:p-4">

@@ -9,36 +9,9 @@ include '../head.php';
 <div class="layout-container layout">
 <div class="container-main">
 <div class="content">
-<!-- TopNavBar -->
-<header class="header">
-<div class="row gap-md txt">
-<div class="icon-md">
-<svg fill="currentColor" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-<g clip-path="url(#clip0_6_319)">
-<path d="M8.57829 8.57829C5.52816 11.6284 3.451 15.5145 2.60947 19.7452C1.76794 23.9758 2.19984 28.361 3.85056 32.3462C5.50128 36.3314 8.29667 39.7376 11.8832 42.134C15.4698 44.5305 19.6865 45.8096 24 45.8096C28.3135 45.8096 32.5302 44.5305 36.1168 42.134C39.7033 39.7375 42.4987 36.3314 44.1494 32.3462C45.8002 28.361 46.2321 23.9758 45.3905 19.7452C44.549 15.5145 42.4718 11.6284 39.4217 8.57829L24 24L8.57829 8.57829Z"></path>
-</g>
-<defs><clippath id="clip0_6_319"><rect fill="white" height="48" width="48"></rect></clippath></defs>
-</svg>
-</div>
-<h2 class="txt txt-lg">ForestSoul</h2>
-</div>
-<div class="hidden-mobile flex-1 justify-end gap-xl">
-<div class="nav">
-<a class="nav-link" href="#">Meditation</a>
-<a class="nav-link" href="#">Yoga</a>
-<a class="nav-link" href="#">Therapy</a>
-<a class="nav-link" href="#">Donate</a>
-<a class="txt txt-md font-bold" href="#">Community</a>
-</div>
-<button class="btn-primary">
-<span class="truncate">Sign In</span>
-</button>
-<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" data-alt="User's profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBYYb4CGFnekS0VnTJ865DGStVjt6mwGdiQPfdRFS9jWqpu3phRxoralmE-HS2dAP0_BujA-Px5x_i6SxpQsN0dwdVAaHLRYcgUxjQmZSTfZxLyay8Pwl9kRdT_ThnFgBa2EaLr7kpNn0QX-f0m7CnKk9wcmf0JVwAX4ptsXHNKoCINB8FjYOiWX74OQ9Mc1gm-svp5PII70_rviaFJWowDQcU5FMlmUie3RUIO9TSbOEqz7FDrYz2VBtM36ry1FCXcgVbjT5Toi5o");'></div>
-</div>
-<button class="md:hidden text-black dark:text-white">
-<span class="material-symbols-outlined">menu</span>
-</button>
-</header>
+
+<?php include '../navbar/index.php'; ?>
+
 <!-- HeroSection -->
 <main class="flex-1 mt-5">
 <div class="@container">
