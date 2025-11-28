@@ -1,0 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.body {
+    @apply bg-background-light dark:bg-background-dark font-display;
+}
+
+.nav-link {
+    @apply text-text-main-light dark:text-text-main-dark text-sm font-medium leading-normal hover:text-primary transition-colors;
+}
