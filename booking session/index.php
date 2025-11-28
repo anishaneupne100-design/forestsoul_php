@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html class="dark" lang="en"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
@@ -42,19 +41,18 @@
 <body class="font-display bg-background-light dark:bg-background-dark text-text-primary">
 <div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
 <div class="layout-container flex h-full grow flex-col">
-<!-- TopNavBar -->
 <header class="sticky top-0 z-50 w-full bg-background-dark/80 backdrop-blur-md">
 <div class="flex items-center justify-between whitespace-nowrap border-b border-solid border-surface px-4 sm:px-8 lg:px-10 py-3 max-w-7xl mx-auto">
 <div class="flex items-center gap-4 text-white">
 <div class="size-6 text-primary">
-<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
 <g clip-path="url(#clip0_6_319)">
 <path d="M8.57829 8.57829C5.52816 11.6284 3.451 15.5145 2.60947 19.7452C1.76794 23.9758 2.19984 28.361 3.85056 32.3462C5.50128 36.3314 8.29667 39.7376 11.8832 42.134C15.4698 44.5305 19.6865 45.8096 24 45.8096C28.3135 45.8096 32.5302 44.5305 36.1168 42.134C39.7033 39.7375 42.4987 36.3314 44.1494 32.3462C45.8002 28.361 46.2321 23.9758 45.3905 19.7452C44.549 15.5145 42.4718 11.6284 39.4217 8.57829L24 24L8.57829 8.57829Z" fill="currentColor"></path>
 </g>
 <defs>
-<clippath id="clip0_6_319">
+<clipPath id="clip0_6_319">
 <rect fill="white" height="48" width="48"></rect>
-</clippath>
+</clipPath>
 </defs>
 </svg>
 </div>
@@ -85,7 +83,6 @@
 </header>
 <main class="flex flex-1 justify-center py-5 sm:py-10">
 <div class="layout-content-container flex flex-col max-w-5xl flex-1 px-4 sm:px-6 lg:px-8">
-<!-- HeroSection -->
 <div class="@container mb-12">
 <div class="@[480px]:p-0">
 <div class="flex min-h-[480px] flex-col gap-6 bg-cover bg-center bg-no-repeat @[480px]:gap-8 @[480px]:rounded-xl items-center justify-center p-4" data-alt="A serene, sunlit path through a lush green forest, conveying tranquility and hope." style='background-image: linear-gradient(rgba(16, 34, 22, 0.5) 0%, rgba(16, 34, 22, 0.8) 100%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuB_s5tMi90t9HCzU2nEN68VWxOL7zEklusUKtwdqFCuhgUgyt-yOBIyaRid6-fFMOBOqzQZrOQWleF6UfrgSBEI8lgBUhUo7lOmttnOU2-z2HScr4mTHL2UKfuho7sGG7O4NHUsLanLOJAAmm_kzLpBYuqqDos05YHLi7APMe7C7xiRx0_P51NTWGot0KuPNqPnIyCUWgKL-E-VzHxcrsQaTCItVfni4mXlvheoGYEN5asY7PdsF-rzCUipzqR4_xiw1wpbDhL8XfA");'>
@@ -97,57 +94,140 @@
                                         Find peace and clarity with compassionate, professional support tailored to your unique needs. Start your path to healing with us today.
                                     </h2>
 </div>
-<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-5 bg-primary text-brand text-base font-bold leading-normal tracking-[0.015em] hover:bg-primary/90 transition-colors">
-<span class="truncate">Book a Free Consultation</span>
+<a class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-5 bg-primary text-brand text-base font-bold leading-normal tracking-[0.015em] hover:bg-primary/90 transition-colors" href="#booking-system">
+<span class="truncate">Book a Session</span>
+</a>
+</div>
+</div>
+</div>
+<div class="py-16 px-4 bg-surface/30 rounded-xl border border-surface" id="booking-system">
+<h2 class="text-white text-3xl font-bold leading-tight tracking-[-0.015em] pb-3 text-center">Book Your Therapy Session</h2>
+<p class="text-text-secondary text-center max-w-2xl mx-auto pb-10">Follow these simple steps to schedule your appointment.</p>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+<div class="flex flex-col gap-6 p-6 bg-surface/50 rounded-lg border border-surface">
+<div class="flex items-center gap-4">
+<div class="flex items-center justify-center size-10 rounded-full bg-primary text-brand font-bold text-lg">1</div>
+<h3 class="text-xl font-bold text-white">Choose Your Path</h3>
+</div>
+<div class="space-y-4">
+<label class="block text-sm font-medium text-text-secondary">Therapy Type</label>
+<select class="w-full bg-background-dark border border-surface rounded-md h-11 px-3 text-white focus:ring-primary focus:border-primary">
+<option>Individual</option>
+<option>Group</option>
+<option>Couples</option>
+</select>
+</div>
+<div class="space-y-4">
+<label class="block text-sm font-medium text-text-secondary">Select a Therapist</label>
+<div class="space-y-3">
+<label class="flex items-center gap-3 p-3 rounded-md border border-surface has-[:checked]:border-primary has-[:checked]:bg-primary/10 cursor-pointer transition-colors">
+<input checked="" class="h-4 w-4 text-primary bg-background-dark border-surface focus:ring-primary" name="therapist" type="radio"/>
+<span class="text-white font-medium">Anya S.</span>
+</label>
+<label class="flex items-center gap-3 p-3 rounded-md border border-surface has-[:checked]:border-primary has-[:checked]:bg-primary/10 cursor-pointer transition-colors">
+<input class="h-4 w-4 text-primary bg-background-dark border-surface focus:ring-primary" name="therapist" type="radio"/>
+<span class="text-white font-medium">David C.</span>
+</label>
+<label class="flex items-center gap-3 p-3 rounded-md border border-surface has-[:checked]:border-primary has-[:checked]:bg-primary/10 cursor-pointer transition-colors">
+<input class="h-4 w-4 text-primary bg-background-dark border-surface focus:ring-primary" name="therapist" type="radio"/>
+<span class="text-white font-medium">Maria G.</span>
+</label>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-6 p-6 bg-surface/50 rounded-lg border border-surface">
+<div class="flex items-center gap-4">
+<div class="flex items-center justify-center size-10 rounded-full bg-primary text-brand font-bold text-lg">2</div>
+<h3 class="text-xl font-bold text-white">Find a Time</h3>
+</div>
+<div class="bg-background-dark rounded-lg p-4 border border-surface">
+<div class="flex items-center justify-between mb-4">
+<button class="p-2 rounded-md hover:bg-surface/80 transition-colors"><span class="material-symbols-outlined text-text-secondary">chevron_left</span></button>
+<h4 class="text-white font-semibold">October 2024</h4>
+<button class="p-2 rounded-md hover:bg-surface/80 transition-colors"><span class="material-symbols-outlined text-text-secondary">chevron_right</span></button>
+</div>
+<div class="grid grid-cols-7 text-center text-xs text-text-secondary pb-2">
+<div>Sun</div>
+<div>Mon</div>
+<div>Tue</div>
+<div>Wed</div>
+<div>Thu</div>
+<div>Fri</div>
+<div>Sat</div>
+</div>
+<div class="grid grid-cols-7 text-center text-sm">
+<div class="text-text-secondary/50">30</div>
+<div class="text-text-secondary/50">31</div>
+<div class="py-1">1</div>
+<div class="py-1">2</div>
+<div class="py-1">3</div>
+<div class="py-1">4</div>
+<div class="py-1">5</div>
+<div class="py-1">6</div>
+<div class="py-1">7</div>
+<div class="py-1">8</div>
+<div class="py-1">9</div>
+<div class="py-1">10</div>
+<div class="py-1">11</div>
+<div class="py-1">12</div>
+<div class="py-1">13</div>
+<div class="py-1">14</div>
+<div class="py-1">15</div>
+<div class="py-1">16</div>
+<div class="py-1">17</div>
+<div class="py-1">18</div>
+<div class="py-1">19</div>
+<div class="py-1">20</div>
+<div class="py-1 cursor-pointer rounded-full hover:bg-surface">21</div>
+<div class="py-1 cursor-pointer rounded-full text-brand bg-primary ring-2 ring-primary">22</div>
+<div class="py-1 cursor-pointer rounded-full hover:bg-surface">23</div>
+<div class="py-1 cursor-pointer rounded-full hover:bg-surface">24</div>
+<div class="py-1 cursor-pointer rounded-full hover:bg-surface">25</div>
+<div class="py-1">26</div>
+<div class="py-1">27</div>
+<div class="py-1">28</div>
+<div class="py-1">29</div>
+<div class="py-1">30</div>
+<div class="py-1">31</div>
+</div>
+</div>
+<div class="space-y-2">
+<h4 class="text-sm font-medium text-text-secondary">Available Times for Tuesday, Oct 22</h4>
+<div class="grid grid-cols-2 gap-2">
+<button class="h-10 rounded-md border border-surface text-text-secondary hover:border-primary hover:text-white transition-colors">09:00 AM</button>
+<button class="h-10 rounded-md border border-surface text-text-secondary hover:border-primary hover:text-white transition-colors">11:00 AM</button>
+<button class="h-10 rounded-md border border-primary bg-primary/10 text-primary">02:00 PM</button>
+<button class="h-10 rounded-md border border-surface text-text-secondary hover:border-primary hover:text-white transition-colors">04:00 PM</button>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-6 p-6 bg-surface/50 rounded-lg border border-surface">
+<div class="flex items-center gap-4">
+<div class="flex items-center justify-center size-10 rounded-full bg-primary text-brand font-bold text-lg">3</div>
+<h3 class="text-xl font-bold text-white">Confirm &amp; Book</h3>
+</div>
+<div class="bg-background-dark rounded-lg p-4 border border-surface space-y-3">
+<h4 class="font-bold text-white">Your Appointment</h4>
+<div class="text-sm space-y-2 text-text-secondary">
+<p><strong class="text-white">Type:</strong> Individual Therapy</p>
+<p><strong class="text-white">Therapist:</strong> Anya S.</p>
+<p><strong class="text-white">Date:</strong> Tuesday, October 22, 2024</p>
+<p><strong class="text-white">Time:</strong> 2:00 PM - 2:50 PM</p>
+</div>
+</div>
+<div class="border-t border-surface pt-4">
+<p class="text-sm text-text-secondary mb-3">Before your first session, please complete our self-questionnaire. This helps us tailor our approach to your needs.</p>
+<a class="flex w-full items-center justify-center gap-2 rounded-lg h-11 px-4 bg-surface text-white text-sm font-bold leading-normal tracking-[0.015em] hover:bg-surface/80 transition-colors" href="#">
+<span class="material-symbols-outlined text-lg">assignment</span>
+<span>Pre-Therapy Self-Questionnaire</span>
+</a>
+</div>
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-5 bg-primary text-brand text-base font-bold leading-normal tracking-[0.015em] hover:bg-primary/90 transition-colors w-full mt-auto">
+<span class="truncate">Confirm Booking</span>
 </button>
 </div>
 </div>
 </div>
-<!-- BodyText -->
-<p class="text-text-secondary text-base font-normal leading-relaxed pb-8 pt-1 px-4 text-center max-w-3xl mx-auto">
-                        At ForestSoul, we believe in a holistic approach to mental well-being, integrating evidence-based therapeutic practices with the grounding presence of nature. Our goal is to provide a safe, supportive space where you can explore, heal, and grow.
-                    </p>
-<!-- SegmentedButtons -->
-<div class="flex px-4 py-3 justify-center mb-10">
-<div class="flex h-12 w-full max-w-md items-center justify-center rounded-lg bg-surface p-1.5">
-<label class="flex cursor-pointer h-full grow items-center justify-center overflow-hidden rounded-md px-2 has-[:checked]:bg-background-dark has-[:checked]:shadow-[0_0_4px_rgba(0,0,0,0.1)] has-[:checked]:text-white text-text-secondary text-sm font-medium leading-normal transition-colors">
-<span class="truncate">Individual Therapy</span>
-<input checked="" class="invisible w-0" name="therapy_type" type="radio" value="Individual Therapy"/>
-</label>
-<label class="flex cursor-pointer h-full grow items-center justify-center overflow-hidden rounded-md px-2 has-[:checked]:bg-background-dark has-[:checked]:shadow-[0_0_4px_rgba(0,0,0,0.1)] has-[:checked]:text-white text-text-secondary text-sm font-medium leading-normal transition-colors">
-<span class="truncate">Group Therapy</span>
-<input class="invisible w-0" name="therapy_type" type="radio" value="Group Therapy"/>
-</label>
-</div>
-</div>
-<!-- SectionHeader -->
-<h2 class="text-white text-3xl font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5 text-center">Meet Our Therapists</h2>
-<p class="text-text-secondary text-center px-4 pb-10">Our team of licensed professionals is dedicated to your mental health and well-being.</p>
-<!-- Therapist Profile Cards -->
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 px-4">
-<!-- Card 1 -->
-<div class="flex flex-col items-center text-center bg-surface/50 rounded-lg p-6 border border-surface">
-<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-32 mb-4 border-2 border-primary" data-alt="Headshot of Dr. Anya Sharma" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBshvFr3L-lfWwn-cboyd5Hoaze2PFsEoFIH0GXfDrkACvhKacqacixWvbB3hhnZJnjWqI9kkjgxXxbRN5cemo9N4AVEbUeN2VwdlRC51DCclQMNzu8UpdoRyxidjwtnAmSg24S2tO6FhjG9NQ5Y6CtSnW-HVe7sDu-whKYpWHAzcfxKRhA8LNZ1EzPqtsfDRn5DjeCILv_kOCkNvhImsprXvZQ8C-RDQ37GPOYPaTfKFx-gFrU5VGwXIjKoR0TDL9gH_yJkUcNZP8");'></div>
-<h3 class="text-lg font-bold text-white">Dr. Anya Sharma</h3>
-<p class="text-sm text-primary font-medium mb-2">PhD, LPC</p>
-<p class="text-sm text-text-secondary leading-relaxed">Specializes in mindfulness-based stress reduction and cognitive behavioral therapy (CBT).</p>
-</div>
-<!-- Card 2 -->
-<div class="flex flex-col items-center text-center bg-surface/50 rounded-lg p-6 border border-surface">
-<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-32 mb-4 border-2 border-primary" data-alt="Headshot of David Chen" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAnapUb-kdsEgevQ6IiRN-AWd6xbBfZDaqsy9u4yVYVHmyDnKDZjxifD28-Avgt63VdFQw2nPEoehzdhQ8BxHiNaJW8bji1hmyHBAcdpMetUOnQ8tsf-hmHvm1dazQxTs-Q25mn6SMitJkroZluZrlTGkH8GKsPbbE3jyiXzguRS5vWa6JdTDb9P55D9zg3mP0xAODBE-mpOQn7tNcR7tbT4aWjL_mV9VKKxmgk3MiNoL8PLohEPDhDnCS8u2K8qj9rFo93a4-G8Kw");'></div>
-<h3 class="text-lg font-bold text-white">David Chen</h3>
-<p class="text-sm text-primary font-medium mb-2">LCSW</p>
-<p class="text-sm text-text-secondary leading-relaxed">Focuses on trauma-informed care and relational therapy for individuals and couples.</p>
-</div>
-<!-- Card 3 -->
-<div class="flex flex-col items-center text-center bg-surface/50 rounded-lg p-6 border border-surface">
-<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-32 mb-4 border-2 border-primary" data-alt="Headshot of Maria Garcia" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCvfutLSzUWILzTGYZaHiAk2QA0MYqtJO3e0IFb2GMFZIzg-jXfLzp-B1s9mXT46vyRjBp2tVZ7XGrTA09XmaxMUtiMBrMym26YUAWS1gEojQwaVBC0liEBF69z-OcrAKsmaSkcTm4Q4bl5xbe3ePDcO7eNzVqeGdytWDgT4K3l4sDn35GWqI6sDD9T8DIUtTqCCaixGXq7qxpOnI_qcLvRLhgQyA2nC69R6lNoKt-aNDSLCrPWo74TvkHTZy6qfd-4H3YmrTvyFmA");'></div>
-<h3 class="text-lg font-bold text-white">Maria Garcia</h3>
-<p class="text-sm text-primary font-medium mb-2">LMFT</p>
-<p class="text-sm text-text-secondary leading-relaxed">Expert in family systems and provides support for anxiety and life transitions.</p>
-</div>
-</div>
-<!-- Our Approach Section -->
 <div class="py-16 mt-16 px-4">
 <h2 class="text-white text-3xl font-bold leading-tight tracking-[-0.015em] pb-3 text-center">Our Therapeutic Approaches</h2>
 <p class="text-text-secondary text-center max-w-2xl mx-auto pb-10">We utilize a range of evidence-based methods to create a personalized treatment plan that best suits your needs.</p>
@@ -170,7 +250,6 @@
 </div>
 </div>
 </div>
-<!-- FAQ Section -->
 <div class="py-16 px-4">
 <h2 class="text-white text-3xl font-bold leading-tight tracking-[-0.015em] pb-10 text-center">Frequently Asked Questions</h2>
 <div class="max-w-3xl mx-auto space-y-4">
@@ -201,4 +280,5 @@
 </main>
 </div>
 </div>
+
 </body></html>
