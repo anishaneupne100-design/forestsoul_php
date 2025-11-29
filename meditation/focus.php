@@ -1,4 +1,10 @@
+<?php
+$title="Focus & Productivity Boost Details - ForestSoul";
+include '../head.php';
+?>
+
 <!DOCTYPE html>
+
 
 <html class="dark" lang="en"><head>
 <meta charset="utf-8"/>
