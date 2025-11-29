@@ -25,7 +25,7 @@ $user = Auth::user();
         </a>
     </div>
     
-    <div class="hidden-mobile flex-1 justify-end gap-xl">
+    <div class="hidden-mobile flex-1 justify-end gap-x2">
         <nav class="nav">
             <a class="nav-link" href="<?php echo url('meditation'); ?>">Meditation</a>
             <a class="nav-link" href="<?php echo url('yoga'); ?>">Yoga</a>
