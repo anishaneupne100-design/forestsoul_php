@@ -5,89 +5,19 @@ include '../head.php';
 
 <!DOCTYPE html>
 
-<html class="dark" lang="en">
-<head>
+<html class="dark" lang="en"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Deep Sleep Journey Details</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
 <style>
         .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
         }
-
-        /* --- Tailwind Component Aliases --- */
-        @layer components {
-            /* --- Layout & Structure Modules --- */
-
-            /* Global page padding and max-width container for content */
-            .content-container {
-                @apply flex flex-col w-full max-w-5xl;
-            }
-
-            /* Common vertical padding for main sections */
-            .section-v-padding {
-                @apply py-10 sm:py-16;
-            }
-
-            /* Standard Header for all major sections */
-            .section-header {
-                @apply text-white text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5 text-center;
-            }
-
-            /* Component for dark mode surface elements (cards, containers) */
-            .dark-surface-box {
-                @apply bg-white/5 rounded-xl border border-white/10 p-5;
-            }
-
-            /* --- UI Elements --- */
-
-            /* Base style for all buttons */
-            .btn-base {
-                @apply flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 text-sm font-bold leading-normal tracking-[0.015em] transition-colors;
-            }
-
-            /* Primary CTA button (teal background, dark text) */
-            .btn-primary {
-                @apply btn-base bg-primary hover:bg-primary/90 text-background-dark;
-            }
-
-            /* Secondary button (subtle background, white text) */
-            .btn-secondary {
-                @apply btn-base bg-white/10 hover:bg-white/20 text-white;
-            }
-
-            /* Text link style for navigation */
-            .nav-link {
-                @apply text-white/80 hover:text-white transition-colors text-sm font-medium leading-normal;
-            }
-
-            /* Common Card/Benefit Box layout (used in TextGrid) */
-            .benefit-card {
-                @apply flex flex-1 gap-4 dark-surface-box flex-col items-start text-left;
-            }
-
-            /* Typography for card/benefit titles */
-            .card-title-text {
-                @apply text-white text-base font-bold leading-tight;
-            }
-
-            /* Typography for card/benefit descriptions */
-            .card-desc-text {
-                @apply text-white/60 text-sm font-normal leading-normal;
-            }
-
-            /* --- Timeline Specific --- */
-
-            /* Style for the timeline marker circle */
-            .timeline-marker {
-                @apply absolute h-10 w-10 bg-background-dark border-2 border-white/20 rounded-full flex items-center justify-center;
-            }
-        }
     </style>
 <script id="tailwind-config">
       tailwind.config = {
@@ -112,7 +42,8 @@ include '../head.php';
 <div class="relative flex h-auto min-h-screen w-full flex-col bg-background-light dark:bg-background-dark group/design-root overflow-x-hidden">
 <div class="layout-container flex h-full grow flex-col">
 <div class="flex flex-1 justify-center">
-<div class="content-container">
+<div class="layout-content-container flex flex-col w-full max-w-5xl">
+<!-- TopNavBar -->
 <header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-white/10 px-6 md:px-10 py-4">
 <div class="flex items-center gap-4 text-white">
 <div class="text-primary">
@@ -122,13 +53,13 @@ include '../head.php';
 </div>
 <div class="hidden md:flex flex-1 justify-end gap-8">
 <div class="flex items-center gap-9">
-<a class="nav-link" href="#">Meditation</a>
-<a class="nav-link" href="#">Yoga</a>
-<a class="nav-link" href="#">Therapy</a>
-<a class="nav-link" href="#">Donate</a>
+<a class="text-white/80 hover:text-white transition-colors text-sm font-medium leading-normal" href="#">Meditation</a>
+<a class="text-white/80 hover:text-white transition-colors text-sm font-medium leading-normal" href="#">Yoga</a>
+<a class="text-white/80 hover:text-white transition-colors text-sm font-medium leading-normal" href="#">Therapy</a>
+<a class="text-white/80 hover:text-white transition-colors text-sm font-medium leading-normal" href="#">Donate</a>
 </div>
 <div class="flex gap-2">
-<button class="btn-secondary">
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-white/10 hover:bg-white/20 transition-colors text-white text-sm font-bold leading-normal tracking-[0.015em]">
 <span class="truncate">Login</span>
 </button>
 </div>
@@ -137,7 +68,9 @@ include '../head.php';
 <span class="material-symbols-outlined text-2xl">menu</span>
 </button>
 </header>
-<main class="flex-1 px-4 sm:px-6 lg:px-8 section-v-padding">
+<!-- Main Content -->
+<main class="flex-1 px-4 sm:px-6 lg:px-8 py-10 sm:py-16">
+<!-- HeroSection -->
 <div class="@container">
 <div class="@[480px]:p-4">
 <div class="flex min-h-[480px] flex-col gap-6 bg-cover bg-center bg-no-repeat @[480px]:gap-8 @[480px]:rounded-xl items-center justify-center p-4" data-alt="A serene, dark, and abstract representation of a night sky with subtle star-like glimmers." style='background-image: linear-gradient(rgba(10, 25, 47, 0.5) 0%, rgba(10, 25, 47, 0.8) 100%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuBiK8QhMa82jliQOB1ZxbJ1TTkTjaluyZfW-5FDKQisksSE8D5DvBUlNpSBYAwZSG7TF1XynSoBvrNk9DXPmW8VJSDsm9Ip3N69eRztihlgd_hl-DvNS6CiLDg6eZHVFgk2S4fNpk3muCI4PT2ilEdBZQzrPG-YjUVqeJM0rshFnzm_qmgkCgLW3AMseiHBfWKb9WwOzIxQcq9FwLC1LehcmO-2BcB_tq-45i3-pMTYMcNz1qq1YEwo96lFSV-6QKsO9Z_BsVowQGI");'>
@@ -149,58 +82,62 @@ include '../head.php';
                                           Discover profound rest and wake up rejuvenated with our guided meditation program designed to calm your mind and body.
                                         </h2>
 </div>
-<button class="btn-primary @[480px]:h-12 @[480px]:px-5 @[480px]:text-base @[480px]:font-bold @[480px]:leading-normal @[480px]:tracking-[0.015em]">
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 @[480px]:h-12 @[480px]:px-5 bg-primary hover:bg-primary/90 transition-colors text-background-dark text-sm font-bold leading-normal tracking-[0.015em] @[480px]:text-base @[480px]:font-bold @[480px]:leading-normal @[480px]:tracking-[0.015em]">
 <span class="truncate">Start Journey</span>
 </button>
 </div>
 </div>
 </div>
+<!-- SectionHeader -->
 <div class="pt-16 pb-4">
-<h2 class="section-header">Unlock the Benefits of Restful Sleep</h2>
+<h2 class="text-white text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5 text-center">Unlock the Benefits of Restful Sleep</h2>
 </div>
+<!-- TextGrid -->
 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
-<div class="benefit-card">
+<div class="flex flex-1 gap-4 rounded-xl border border-white/10 bg-white/5 p-5 flex-col items-start text-left">
 <div class="text-primary"><span class="material-symbols-outlined text-3xl">nights_stay</span></div>
 <div class="flex flex-col gap-1">
-<h2 class="card-title-text">Fall Asleep Faster</h2>
-<p class="card-desc-text">Gentle guidance to quiet your mind and ease into slumber effortlessly.</p>
+<h2 class="text-white text-base font-bold leading-tight">Fall Asleep Faster</h2>
+<p class="text-white/60 text-sm font-normal leading-normal">Gentle guidance to quiet your mind and ease into slumber effortlessly.</p>
 </div>
 </div>
-<div class="benefit-card">
+<div class="flex flex-1 gap-4 rounded-xl border border-white/10 bg-white/5 p-5 flex-col items-start text-left">
 <div class="text-primary"><span class="material-symbols-outlined text-3xl">self_improvement</span></div>
 <div class="flex flex-col gap-1">
-<h2 class="card-title-text">Reduce Nighttime Anxiety</h2>
-<p class="card-desc-text">Calming techniques to soothe your nervous system for uninterrupted rest.</p>
+<h2 class="text-white text-base font-bold leading-tight">Reduce Nighttime Anxiety</h2>
+<p class="text-white/60 text-sm font-normal leading-normal">Calming techniques to soothe your nervous system for uninterrupted rest.</p>
 </div>
 </div>
-<div class="benefit-card">
+<div class="flex flex-1 gap-4 rounded-xl border border-white/10 bg-white/5 p-5 flex-col items-start text-left">
 <div class="text-primary"><span class="material-symbols-outlined text-3xl">spark</span></div>
 <div class="flex flex-col gap-1">
-<h2 class="card-title-text">Improve Sleep Quality</h2>
-<p class="card-desc-text">Wake up feeling refreshed, energized, and ready for the day ahead.</p>
+<h2 class="text-white text-base font-bold leading-tight">Improve Sleep Quality</h2>
+<p class="text-white/60 text-sm font-normal leading-normal">Wake up feeling refreshed, energized, and ready for the day ahead.</p>
 </div>
 </div>
 </div>
+<!-- SectionHeader -->
 <div class="pt-16 pb-4">
-<h2 class="section-header">How Your Journey Unfolds</h2>
+<h2 class="text-white text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5 text-center">How Your Journey Unfolds</h2>
 </div>
+<!-- Timeline Section -->
 <div class="p-4">
 <div class="relative pl-8 border-l-2 border-dashed border-white/20 space-y-12">
-<div class="timeline-marker -left-[1.35rem] top-1">
+<div class="absolute -left-[1.35rem] top-1 h-10 w-10 bg-background-dark border-2 border-white/20 rounded-full flex items-center justify-center">
 <span class="material-symbols-outlined text-primary text-2xl">looks_one</span>
 </div>
 <div>
 <h3 class="text-lg font-bold text-white">Day 1-3: Calming the Mind</h3>
 <p class="mt-1 text-white/60">Begin with foundational techniques to release daily stress and quiet racing thoughts before bedtime.</p>
 </div>
-<div class="timeline-marker -left-[1.35rem] top-[10.5rem]">
+<div class="absolute -left-[1.35rem] top-[10.5rem] h-10 w-10 bg-background-dark border-2 border-white/20 rounded-full flex items-center justify-center">
 <span class="material-symbols-outlined text-primary text-2xl">looks_two</span>
 </div>
 <div>
 <h3 class="text-lg font-bold text-white">Day 4-7: Body Scan for Sleep</h3>
 <p class="mt-1 text-white/60">Learn to progressively relax every part of your body, easing physical tension and preparing for deep rest.</p>
 </div>
-<div class="timeline-marker -left-[1.35rem] top-[20.5rem]">
+<div class="absolute -left-[1.35rem] top-[20.5rem] h-10 w-10 bg-background-dark border-2 border-white/20 rounded-full flex items-center justify-center">
 <span class="material-symbols-outlined text-primary text-2xl">looks_3</span>
 </div>
 <div>
@@ -209,8 +146,9 @@ include '../head.php';
 </div>
 </div>
 </div>
+<!-- Audio Player Section -->
 <div class="pt-16 pb-4">
-<h2 class="section-header">Listen to a Preview</h2>
+<h2 class="text-white text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5 text-center">Listen to a Preview</h2>
 </div>
 <div class="p-4">
 <div class="bg-white/5 rounded-xl p-6 flex flex-col sm:flex-row items-center gap-6 border border-white/10">
@@ -232,8 +170,9 @@ include '../head.php';
 </div>
 </div>
 </div>
+<!-- Testimonials Section -->
 <div class="pt-16 pb-4">
-<h2 class="section-header">What Our Users Say</h2>
+<h2 class="text-white text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5 text-center">What Our Users Say</h2>
 </div>
 <div class="p-4 grid grid-cols-1 md:grid-cols-2 gap-6">
 <div class="bg-white/5 rounded-xl p-6 border border-white/10">
@@ -257,8 +196,9 @@ include '../head.php';
 <p class="mt-4 text-white/80 italic">"The body scan meditations are my favorite. It's the first thing that's actually helped me turn my brain off at night. Highly recommend!"</p>
 </div>
 </div>
+<!-- FAQ Section -->
 <div class="pt-16 pb-4">
-<h2 class="section-header">Frequently Asked Questions</h2>
+<h2 class="text-white text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5 text-center">Frequently Asked Questions</h2>
 </div>
 <div class="p-4 space-y-4 max-w-3xl mx-auto">
 <details class="group bg-white/5 rounded-xl border border-white/10 p-4 cursor-pointer">
@@ -293,13 +233,14 @@ include '../head.php';
 </div>
 </div>
 </div>
+<!-- Sticky CTA Bar -->
 <div class="sticky bottom-0 w-full bg-background-dark/80 backdrop-blur-sm p-4 border-t border-white/10">
 <div class="max-w-5xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
 <div class="text-center sm:text-left">
 <h3 class="font-bold text-white">Ready for a Better Night's Sleep?</h3>
 <p class="text-sm text-white/60">Your journey to restful nights starts now.</p>
 </div>
-<button class="btn-primary w-full sm:w-auto h-12 px-5 text-base">
+<button class="flex w-full sm:w-auto min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-5 bg-primary hover:bg-primary/90 transition-colors text-background-dark text-base font-bold leading-normal tracking-[0.015em]">
 <span class="truncate">Start Your Journey Today</span>
 </button>
 </div>
