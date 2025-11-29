@@ -26,7 +26,7 @@ if (!$input) {
 $name = trim($input['name'] ?? '');
 $email = trim($input['email'] ?? '');
 $password = $input['password'] ?? '';
-$confirmPassword = $input['confirm_password'] ?? $input['confirmPassword'] ?? '';
+$confirmPassword = $input['confirm_password'] ?? $input['confirmPassword'] ?? $input['password_confirmation'] ?? '';
 
 // Validation
 $errors = [];
@@ -45,8 +45,8 @@ if (empty($email)) {
 
 if (empty($password)) {
     $errors['password'] = 'Password is required';
-} elseif (strlen($password) < 6) {
-    $errors['password'] = 'Password must be at least 6 characters';
+} elseif (strlen($password) < 8) {
+    $errors['password'] = 'Password must be at least 8 characters';
 }
 
 if ($password !== $confirmPassword) {
