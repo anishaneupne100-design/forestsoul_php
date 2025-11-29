@@ -2,13 +2,13 @@
 $title="couple therapy-Forestsoul";
 include '../head.php';
 ?>
-<!DOCTYPE html>
 
-$title = 'Couples Therapy - ForestSoul';
 
 require_once __DIR__ . '/../head.php';<html class="light" lang="en"><head>
 
-?><meta charset="utf-8"/>
+?>
+<!DOCTYPE html>
+<meta charset="utf-8"/>
 
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 
