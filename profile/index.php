@@ -140,8 +140,8 @@ $memberSince = date('M Y', strtotime($user['created_at'] ?? 'now'));
 <div class="row gap-md">
 <img alt="Dr. Marcus Thorne avatar" class="icon-lg rounded-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCdEr_nuFrPaj5SXTPU4DM61T84j5wTE2CRWtXwl0bg_JvbYrbKwc4Sm3G0zGhLWVmIfvfZSNkvUKF7hxa0F3klACtuNzeTashHVTM98znR_51UX_1nwCntTuvbaTgYSlHT8SpDOvM5xgRGdqN6qiC7wNuL_HEdjxF79WInHOIF9jsEiA0wBjwUz_ImpIk0Vafp8-fJFNa7Y6P1NVLSfIxf35hrcluuRlisG90Bpa9ZZN6gzNfhVb2_pv1VQY78c4widYM96IuED-E"/>
 <div>
-<p class="txt-sm font-medium txt">Dr. Marcus Thorne</p>
-<p class="txt-sm txt-2">July 5, 2024 at 11:00 AM</p>
+<p class="txt-sm font-medium txt">Dr shyam gurung</p>
+<p class="txt-sm txt-2">July 5, 2025 at 11:00 AM</p>
 </div>
 </div>
 <button class="btn-secondary btn-sm">Join Session</button>
