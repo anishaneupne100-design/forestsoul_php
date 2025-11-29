@@ -38,7 +38,7 @@ $memberSince = date('M Y', strtotime($user['created_at'] ?? 'now'));
 <p class="text-sm font-medium leading-normal">Meditation</p>
 </a>
 <a class="flex items-center gap-3 px-3 py-2 txt-2 hover:bg-gray-100 dark:hover:bg-white/5 rounded-lg" href="<?php echo url('yoga'); ?>">
-<span class="material-symbols-outlined">fitbit_yoga</span>
+<span class="material-symbols-outlined"></span>
 <p class="text-sm font-medium leading-normal">Yoga</p>
 </a>
 <a class="flex items-center gap-3 px-3 py-2 txt-2 hover:bg-gray-100 dark:hover:bg-white/5 rounded-lg" href="<?php echo url('questionnaire'); ?>">
@@ -108,7 +108,7 @@ $memberSince = date('M Y', strtotime($user['created_at'] ?? 'now'));
 </div>
 <div class="flex flex-col text-center md:text-left">
 <p class="text-text-secondary-light dark:text-text-secondary-dark text-base">Your contributions have helped us plant trees and restore ecosystems.</p>
-<p class="text-primary dark:text-primary-dark text-5xl font-bold my-2">$250</p>
+<p class="text-primary dark:text-primary-dark text-5xl font-bold my-2">Rs2500</p>
 <p class="text-text-secondary-light dark:text-text-secondary-dark text-sm mb-4">Total donated to nature</p>
 <button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-5 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em] shadow-sm hover:opacity-90 mx-auto md:mx-0">
 <span class="truncate">Make a New Donation</span>
