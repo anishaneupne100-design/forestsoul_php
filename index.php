@@ -57,7 +57,7 @@ $user = Auth::user();
 </div>
 </a>
 <a class="card-feature" href="<?php echo url('yoga'); ?>">
-<span class="material-symbols-outlined icon-lg">fitbit_yoga</span>
+<span class="material-symbols-outlined icon-lg"></span>
 <div class="col gap-1">
 <h3 class="title">Yoga</h3>
 <p class="subtitle">Flows for every level to connect body and soul.</p>
