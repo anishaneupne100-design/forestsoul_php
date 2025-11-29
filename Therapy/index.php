@@ -76,7 +76,6 @@ require_once __DIR__ . '/../head.php';
     <div class="grid-3 px-4">
         <!-- Therapist Card 1 -->
         <div class="card center-flex flex-col">
-            <div class="w-32 h-32 rounded-full bg-cover bg-center border-2 border-primary" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBshvFr3L-lfWwn-cboyd5Hoaze2PFsEoFIH0GXfDrkACvhKacqacixWvbB3hhnZJnjWqI9kkjgxXxbRN5cemo9N4AVEbUeN2VwdlRC51DCclQMNzu8UpdoRyxidjwtnAmSg24S2tO6FhjG9NQ5Y6CtSnW-HVe7sDu-whKYpWHAzcfxKRhA8LNZ1EzPqtsfDRn5DjeCILv_kOCkNvhImsprXvZQ8C-RDQ37GPOYPaTfKFx-gFrU5VGwXIjKoR0TDL9gH_yJkUcNZP8");'></div>
             <h3 class="title mt-4">Dr. Anya Sharma</h3>
             <p class="text-primary text-sm font-medium">PhD, LPC</p>
             <p class="subtitle text-center mt-2">Specializes in mindfulness-based stress reduction and cognitive behavioral therapy (CBT).</p>
@@ -84,7 +83,6 @@ require_once __DIR__ . '/../head.php';
         
         <!-- Therapist Card 2 -->
         <div class="card center-flex flex-col">
-            <div class="w-32 h-32 rounded-full bg-cover bg-center border-2 border-primary" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAnapUb-kdsEgevQ6IiRN-AWd6xbBfZDaqsy9u4yVYVHmyDnKDZjxifD28-Avgt63VdFQw2nPEoehzdhQ8BxHiNaJW8bji1hmyHBAcdpMetUOnQ8tsf-hmHvm1dazQxTs-Q25mn6SMitJkroZluZrlTGkH8GKsPbbE3jyiXzguRS5vWa6JdTDb9P55D9zg3mP0xAODBE-mpOQn7tNcR7tbT4aWjL_mV9VKKxmgk3MiNoL8PLohEPDhDnCS8u2K8qj9rFo93a4-G8Kw");'></div>
             <h3 class="title mt-4">David Chen</h3>
             <p class="text-primary text-sm font-medium">LCSW</p>
             <p class="subtitle text-center mt-2">Focuses on trauma-informed care and relational therapy for individuals and couples.</p>
@@ -92,7 +90,6 @@ require_once __DIR__ . '/../head.php';
         
         <!-- Therapist Card 3 -->
         <div class="card center-flex flex-col">
-            <div class="w-32 h-32 rounded-full bg-cover bg-center border-2 border-primary" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCvfutLSzUWILzTGYZaHiAk2QA0MYqtJO3e0IFb2GMFZIzg-jXfLzp-B1s9mXT46vyRjBp2tVZ7XGrTA09XmaxMUtiMBrMym26YUAWS1gEojQwaVBC0liEBF69z-OcrAKsmaSkcTm4Q4bl5xbe3ePDcO7eNzVqeGdytWDgT4K3l4sDn35GWqI6sDD9T8DIUtTqCCaixGXq7qxpOnI_qcLvRLhgQyA2nC69R6lNoKt-aNDSLCrPWo74TvkHTZy6qfd-4H3YmrTvyFmA");'></div>
             <h3 class="title mt-4">Maria Garcia</h3>
             <p class="text-primary text-sm font-medium">LMFT</p>
             <p class="subtitle text-center mt-2">Expert in family systems and provides support for anxiety and life transitions.</p>
