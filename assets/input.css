@@ -308,3 +308,94 @@
 .sidebar-link-active {
     @apply flex items-center gap-3 px-3 py-2 rounded-lg bg-primary/20 text-gray-900 dark:text-white;
 }
+
+/* ========== BREADCRUMB ========== */
+.breadcrumb {
+    @apply row gap-sm txt-sm;
+}
+
+.breadcrumb-link {
+    @apply txt-2 hover:text-primary transition-colors;
+}
+
+.breadcrumb-current {
+    @apply txt;
+}
+
+.breadcrumb-separator {
+    @apply txt-2;
+}
+
+/* ========== TESTIMONIAL ========== */
+.testimonial {
+    @apply card bg-primary/10 dark:bg-primary/5 border-primary/20 center-flex flex-col text-center py-8;
+}
+
+.testimonial-text {
+    @apply txt italic text-lg;
+}
+
+.testimonial-author {
+    @apply txt-2 mt-4 font-semibold;
+}
+
+/* ========== CTA SECTION ========== */
+.cta {
+    @apply card bg-primary/20 dark:bg-primary/10 border-primary/30 center-flex flex-col text-center py-12;
+}
+
+.cta-title {
+    @apply txt-2xl txt mb-4;
+}
+
+.cta-text {
+    @apply txt-2 max-w-xl mb-6;
+}
+
+/* ========== ACCORDION/DETAILS ========== */
+.accordion {
+    @apply card [&_summary::-webkit-details-marker]:hidden;
+}
+
+.accordion-header {
+    @apply between cursor-pointer;
+}
+
+.accordion-icon {
+    @apply txt-2 transition;
+}
+
+.accordion-content {
+    @apply subtitle mt-4;
+}
+
+/* ========== PROFILE CARD ========== */
+.profile-card {
+    @apply col center-flex gap-md;
+}
+
+.profile-avatar {
+    @apply w-32 h-32 rounded-full bg-cover bg-center border-2 border-primary;
+}
+
+.profile-avatar-sm {
+    @apply w-20 h-20 rounded-full bg-cover bg-center border-2 border-primary;
+}
+
+/* ========== STICKY PANEL ========== */
+.sticky-panel {
+    @apply sticky top-24 card;
+}
+
+/* ========== DETAIL ROW ========== */
+.detail-row {
+    @apply between txt;
+}
+
+.detail-label {
+    @apply row gap-sm txt-2;
+}
+
+.detail-value {
+    @apply font-medium;
+}

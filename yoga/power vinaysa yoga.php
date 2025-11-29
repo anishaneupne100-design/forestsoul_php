@@ -1,77 +1,26 @@
-<!DOCTYPE html>
+<?php
+$title = "Power Vinyasa Yoga - ForestSoul";
+include '../head.php';
+?>
 
-<html class="dark" lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Power Vinyasa Yoga Details</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
-<style>
-        .material-symbols-outlined {
-            font-variation-settings:
-            'FILL' 0,
-            'wght' 400,
-            'GRAD' 0,
-            'opsz' 24
-        }
-    </style>
-<script id="tailwind-config">
-      tailwind.config = {
-        darkMode: "class",
-        theme: {
-          extend: {
-            colors: {
-              "primary": "#13eca4",
-              "background-light": "#f6f8f7",
-              "background-dark": "#10221c",
-            },
-            fontFamily: {
-              "display": ["Lexend", "sans-serif"]
-            },
-            borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
-          },
-        },
-      }
-    </script>
-</head>
-<body class="bg-background-light dark:bg-background-dark font-display">
-<div class="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden">
-<div class="layout-container flex h-full grow flex-col">
-<div class="px-4 sm:px-10 md:px-20 lg:px-40 flex flex-1 justify-center py-5">
-<div class="layout-content-container flex flex-col max-w-[960px] flex-1">
-<!-- TopNavBar -->
-<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-white/10 dark:border-b-[#23483c] px-4 sm:px-6 md:px-10 py-3">
-<div class="flex items-center gap-4 text-black dark:text-white">
-<div class="size-6 text-primary">
-<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-<g clip-path="url(#clip0_6_319)">
-<path d="M8.57829 8.57829C5.52816 11.6284 3.451 15.5145 2.60947 19.7452C1.76794 23.9758 2.19984 28.361 3.85056 32.3462C5.50128 36.3314 8.29667 39.7376 11.8832 42.134C15.4698 44.5305 19.6865 45.8096 24 45.8096C28.3135 45.8096 32.5302 44.5305 36.1168 42.134C39.7033 39.7375 42.4987 36.3314 44.1494 32.3462C45.8002 28.361 46.2321 23.9758 45.3905 19.7452C44.549 15.5145 42.4718 11.6284 39.4217 8.57829L24 24L8.57829 8.57829Z" fill="currentColor"></path>
-</g>
-<defs>
-<clippath id="clip0_6_319"><rect fill="white" height="48" width="48"></rect></clippath>
-</defs>
-</svg>
+<body class="body">
+<div class="page">
+<div class="layout">
+<div class="container-main">
+<div class="content">
+
+<?php include '../navbar/index.php'; ?>
+
+<main class="col gap-xl mt-5">
+<!-- Breadcrumbs -->
+<div class="row gap-2 px-4">
+<a class="txt-sm txt-2 hover:text-primary" href="<?php echo url('home'); ?>">Home</a>
+<span class="txt-sm txt-2">/</span>
+<a class="txt-sm txt-2 hover:text-primary" href="<?php echo url('yoga'); ?>">Yoga</a>
+<span class="txt-sm txt-2">/</span>
+<span class="txt-sm txt">Power Vinyasa Yoga</span>
 </div>
-<h2 class="text-black dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]">ForestSoul</h2>
-</div>
-<div class="hidden md:flex flex-1 justify-end gap-8">
-<div class="flex items-center gap-9">
-<a class="text-black/80 dark:text-white/80 text-sm font-medium leading-normal hover:text-primary dark:hover:text-primary transition-colors" href="#">Meditation</a>
-<a class="text-primary dark:text-primary text-sm font-bold leading-normal" href="#">Yoga</a>
-<a class="text-black/80 dark:text-white/80 text-sm font-medium leading-normal hover:text-primary dark:hover:text-primary transition-colors" href="#">Therapy</a>
-<a class="text-black/80 dark:text-white/80 text-sm font-medium leading-normal hover:text-primary dark:hover:text-primary transition-colors" href="#">Donate</a>
-</div>
-<div class="flex gap-2">
-<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-4 bg-primary text-black dark:text-[#11221c] text-sm font-bold leading-normal tracking-[0.015em] hover:bg-opacity-90 transition-opacity">
-<span class="truncate">Sign Up</span>
-</button>
-<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-4 bg-white/10 dark:bg-[#23483c] text-black/80 dark:text-white text-sm font-bold leading-normal tracking-[0.015em] hover:bg-white/20 dark:hover:bg-[#2e5a4b] transition-colors">
-<span class="truncate">Log In</span>
-</button>
-</div>
-</div>
-</header>
+
 <!-- HeaderImage -->
 <div class="@container mt-8">
 <div class="@[480px]:px-4 @[480px]:py-3">
@@ -179,7 +128,13 @@
 </div>
 </div>
 </div>
+</main>
 </div>
 </div>
 </div>
-</body></html>
+</div>
+
+<?php include '../components/footer.php'; ?>
+
+</body>
+</html>
