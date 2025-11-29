@@ -29,6 +29,7 @@ $user = Auth::user();
         <nav class="nav">
             <a class="nav-link" href="<?php echo url('meditation'); ?>">Meditation</a>
             <a class="nav-link" href="<?php echo url('yoga'); ?>">Yoga</a>
+            <a class="nav-link" href="<?php echo url('therapy'); ?>">Therapy</a>
             <a class="nav-link" href="<?php echo url('games'); ?>">Games</a>
             <a class="nav-link" href="<?php echo url('donation'); ?>">Donate</a>
             <a class="nav-link" href="<?php echo url('community'); ?>">Community</a>
@@ -125,6 +126,10 @@ $user = Auth::user();
                 <a href="<?php echo url('yoga'); ?>" class="row gap-3 px-4 py-3 txt rounded-lg hover:bg-primary/10">
                     <span class="material-symbols-outlined">fitbit_yoga</span>
                     Yoga
+                </a>
+                <a href="<?php echo url('therapy'); ?>" class="row gap-3 px-4 py-3 txt rounded-lg hover:bg-primary/10">
+                    <span class="material-symbols-outlined">spa</span>
+                    Therapy
                 </a>
                 <a href="<?php echo url('games'); ?>" class="row gap-3 px-4 py-3 txt rounded-lg hover:bg-primary/10">
                     <span class="material-symbols-outlined">psychology</span>

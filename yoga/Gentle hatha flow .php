@@ -1,99 +1,26 @@
-<!DOCTYPE html>
+<?php
+$title = "Gentle Hatha Flow - ForestSoul";
+include '../head.php';
+?>
 
-<html class="dark" lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Gentle Hatha Flow Details</title>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<style>
-        .material-symbols-outlined {
-            font-variation-settings:
-            'FILL' 0,
-            'wght' 400,
-            'GRAD' 0,
-            'opsz' 24
-        }
-    </style>
-<script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        "primary": "#13eca4",
-                        "background-light": "#f6f8f7",
-                        "background-dark": "#10221c",
-                    },
-                    fontFamily: {
-                        "display": ["Manrope"]
-                    },
-                    borderRadius: {
-                        "DEFAULT": "0.5rem",
-                        "lg": "1rem",
-                        "xl": "1.5rem",
-                        "full": "9999px"
-                    },
-                },
-            },
-        }
-    </script>
-</head>
-<body class="font-display">
-<div class="relative flex h-auto min-h-screen w-full flex-col bg-background-light dark:bg-background-dark group/design-root overflow-x-hidden">
-<div class="layout-container flex h-full grow flex-col">
-<div class="px-4 md:px-10 lg:px-20 xl:px-40 flex flex-1 justify-center py-5">
-<div class="layout-content-container flex flex-col max-w-[960px] flex-1">
-<!-- TopNavBar Component -->
-<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-white/10 dark:border-b-[#23483c] px-4 sm:px-10 py-3">
-<div class="flex items-center gap-4 text-white">
-<div class="size-6 text-primary">
-<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-<g clip-path="url(#clip0_6_319)">
-<path d="M8.57829 8.57829C5.52816 11.6284 3.451 15.5145 2.60947 19.7452C1.76794 23.9758 2.19984 28.361 3.85056 32.3462C5.50128 36.3314 8.29667 39.7376 11.8832 42.134C15.4698 44.5305 19.6865 45.8096 24 45.8096C28.3135 45.8096 32.5302 44.5305 36.1168 42.134C39.7033 39.7375 42.4987 36.3314 44.1494 32.3462C45.8002 28.361 46.2321 23.9758 45.3905 19.7452C44.549 15.5145 42.4718 11.6284 39.4217 8.57829L24 24L8.57829 8.57829Z" fill="currentColor"></path>
-</g>
-<defs>
-<clippath id="clip0_6_319">
-<rect fill="white" height="48" width="48"></rect>
-</clippath>
-</defs>
-</svg>
+<body class="body">
+<div class="page">
+<div class="layout">
+<div class="container-main">
+<div class="content">
+
+<?php include '../navbar/index.php'; ?>
+
+<main class="col gap-xl mt-5">
+<!-- Breadcrumbs -->
+<div class="row gap-2 px-4">
+<a class="txt-sm txt-2 hover:text-primary" href="<?php echo url('home'); ?>">Home</a>
+<span class="txt-sm txt-2">/</span>
+<a class="txt-sm txt-2 hover:text-primary" href="<?php echo url('yoga'); ?>">Yoga</a>
+<span class="txt-sm txt-2">/</span>
+<span class="txt-sm txt">Gentle Hatha Flow</span>
 </div>
-<h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em]">ForestSoul</h2>
-</div>
-<div class="hidden md:flex flex-1 justify-end gap-8">
-<div class="flex items-center gap-9">
-<a class="text-white text-sm font-medium leading-normal" href="#">Home</a>
-<a class="text-white text-sm font-medium leading-normal" href="#">Meditation</a>
-<a class="text-white text-sm font-medium leading-normal" href="#">Yoga</a>
-<a class="text-white text-sm font-medium leading-normal" href="#">Therapy</a>
-<a class="text-white text-sm font-medium leading-normal" href="#">Donate</a>
-</div>
-<div class="flex gap-2">
-<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-4 bg-primary text-[#11221c] text-sm font-bold leading-normal tracking-[0.015em]">
-<span class="truncate">Sign Up</span>
-</button>
-<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-4 bg-[#23483c] text-white text-sm font-bold leading-normal tracking-[0.015em]">
-<span class="truncate">Log In</span>
-</button>
-</div>
-</div>
-<div class="md:hidden">
-<button class="text-white">
-<span class="material-symbols-outlined">menu</span>
-</button>
-</div>
-</header>
-<main class="flex flex-col gap-8 mt-6">
-<!-- Breadcrumbs Component -->
-<div class="flex flex-wrap gap-2 px-4">
-<a class="text-[#92c9b7] text-sm font-medium leading-normal" href="#">Home</a>
-<span class="text-[#92c9b7] text-sm font-medium leading-normal">/</span>
-<a class="text-[#92c9b7] text-sm font-medium leading-normal" href="#">Yoga</a>
-<span class="text-[#92c9b7] text-sm font-medium leading-normal">/</span>
-<span class="text-white text-sm font-medium leading-normal">Gentle Hatha Flow</span>
-</div>
+
 <!-- HeroSection Component -->
 <div class="@container">
 <div class="@[480px]:p-4">
@@ -231,4 +158,8 @@
 </div>
 </div>
 </div>
-</body></html>
+
+<?php include '../components/footer.php'; ?>
+
+</body>
+</html>
