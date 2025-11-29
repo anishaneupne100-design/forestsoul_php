@@ -3,10 +3,13 @@ $title="Focus & Productivity Boost Details - ForestSoul";
 include '../head.php';
 ?>
 
-<!DOCTYPE html>
+require_once_DIR_ . '/../head.php';
+
 
 
 <html class="dark" lang="en"><head>
+    ?>
+    <!DOCTYPE html>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Focus &amp; Productivity Boost Details</title>
