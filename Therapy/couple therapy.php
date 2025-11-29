@@ -1,4 +1,8 @@
-<?php<!DOCTYPE html>
+<?php
+$title="couple therapy-Forestsoul";
+include '../head.php';
+?>
+<!DOCTYPE html>
 
 $title = 'Couples Therapy - ForestSoul';
 

@@ -1,3 +1,7 @@
+<?php
+$title="Overcoming Anxiety Details - ForestSoul";
+include '../head.php';
+?>
 <!DOCTYPE html>
 
 <html class="dark" lang="en"><head>
