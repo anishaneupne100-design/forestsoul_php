@@ -70,7 +70,6 @@ include '../head.php';
 </div>
 </a>
 <a href="<?php echo url('yoga_restorative'); ?>" class="col gap-3 pb-3 hover:opacity-80 transition-opacity">
-<div class="img-portrait" data-alt="Woman in a relaxed yin yoga pose with props" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuARiL99noz_Y-BQgXHShJLvDxZsLy0O6sKYM24dtC76Wd9Y2T5P8eyaM6sVqlmpxH5WLaLg0LIiaSRSc8u5-MvLKnTLOd1qUzcp0UWgPkhxdzM4axgcjmRjDjOTculw_SFiTRYUP2pGaw-NQOPK5LlPn-Fc4suMfCAav3449IfsLohVKhV3GxGKDi7OxpjFP-1RlzDv7SRQG3igSYH1cyesa1BooKiCvz61QS1SSIzlq0Mgy5DE-EPFJj6i7FTi6buT-NCbNjbvfSU");'></div>
 <div>
 <p class="text-white txt-md">Restorative Yin Yoga</p>
 <p class="text-[#92c9a4] txt-sm">Instructor: Sofia Rossi</p>
@@ -78,7 +77,6 @@ include '../head.php';
 </div>
 </a>
 <a href="<?php echo url('yoga_power_vinyasa'); ?>" class="col gap-3 pb-3 hover:opacity-80 transition-opacity">
-<div class="img-portrait" data-alt="Man in a powerful yoga warrior pose" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBeMZu3LT1P2-VBaV47Gaq_3jhqEJJYMpMFCHIf11VD9jPffSha_9UUlj1vKn705rNDbEgjBoZQhDu4tScV2d2NNWzW6zouvKjGGqOQ_4ARIR-NxFwoiYCRbDlpj8SII6fExWS4Gl4Suo-VDAy62j7mcnG0578AvzvmplucqSsp7pst6YcAPDMoSuarxv6rf_eDg2Bf5XabgFWjBoPV7eX1JIvYJ0TLQkGi4Zoh61M7x6OZMfxZH394IdsngncXzN303R9di5U14F8");'></div>
 <div>
 <p class="text-white txt-md">Power Yoga Burn</p>
 <p class="text-[#92c9a4] txt-sm">Instructor: Marcus Cole</p>
@@ -86,7 +84,6 @@ include '../head.php';
 </div>
 </a>
 <a href="<?php echo url('yoga_gentle_hatha'); ?>" class="col gap-3 pb-3 hover:opacity-80 transition-opacity">
-<div class="img-portrait" data-alt="Woman stretching gently by a window" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBMVGjK_edzc8vLKEJ699P6BJGy9Jm_cJrFaytXWuFzZ7A3qVHQHx5LmNPne_YrmEpVep7h8vcfcZuvQn34tFFhYu8AMwUKFLfNokqdmFM-YGbnHjqJLZOa_jNVsCJT9D8oDIx316_brN3vmMb-NXrh73uTjiIB-U9-KSaPF3TpvrOe7H6H_ZKPiKOchc7KBCDSFwa4ddtoVUuekG_WM3rV3tDOp4HbkFZkqVfy4c6ZVgEgC7vB6uON5Ap_Egp-Uf7K_KDegyExqCM");'></div>
 <div>
 <p class="text-white txt-md">Mindful Afternoon Stretch</p>
 <p class="text-[#92c9a4] txt-sm">Instructor: Anya Sharma</p>
@@ -94,7 +91,6 @@ include '../head.php';
 </div>
 </a>
 <a href="<?php echo url('yoga_power_vinyasa'); ?>" class="col gap-3 pb-3 hover:opacity-80 transition-opacity">
-<div class="img-portrait" data-alt="A person demonstrating a core-strengthening yoga pose" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAtM3ZeIerIifKGmC_6rnJ8PoLeGMy239X7TZy6KsnjEq1Ja4BWZtSkyIfdLOB3MwPGt5sQBnOp_C4dtwT2Wqzuo8IonDUnXM-ofomfXkM6zWqfydJUHEtt4oIk2ldhyAxun1w1A5zmdyQGeN1uMybixy45gsXpawhU-r9LwAmSQpk8z1ZPCy7aUE4Y_cx6p6zjqyE4snAKA84vaKwTakTjJgQOYe0lq4LLYjgUiJx-__yhm1mieZ0kDnwalARa00vMJr3sV_zHxog");'></div>
 <div>
 <p class="text-white txt-md">Core Strength Fusion</p>
 <p class="text-[#92c9a4] txt-sm">Instructor: Leo Chen</p>
