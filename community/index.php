@@ -57,7 +57,6 @@ include '../head.php';
 </div>
 </div>
 <div class="col h-full w-72 flex-shrink-0 gap-md rounded-xl surface shadow-sm">
-<div class="img-square rounded-t-xl" data-alt="Portrait of a person named David in a yoga pose" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCSispp90Gwuv6liggsovf8d8T2u45MmGXLl84OM9bTVhn_lJGfHaUyCI_5YRZMHnPKTzBd5-O0HnxSHmLf1aLs5zJzJ1WSRSHz01SXNT6iQ5dTkXanmE25PJ24RO_f_GZrTMNniAGFG41aJC6yjpXnIaoJFBycAxGb_tUu70980YPlyzPGhL9h8DR2ReT_OLKUXti7cJ0RnDa5vwHayKUU-sXPpUyEYXxw4iFGRF-YcW8LAxZPZZbnrudPDEYwOLnwTTgSycKcS_c");'></div>
 <div class="col flex-1 justify-between p-4 pt-0 gap-md">
 <div>
 <p class="title">How Yoga Changed My Life</p>
@@ -89,7 +88,6 @@ include '../head.php';
 <div class="col gap-md">
 <!-- Post Summary Card 1 -->
 <div class="col sm:row gap-md p-4 rounded-xl surface shadow-sm w-full">
-<div class="img-cover aspect-square rounded-full size-10 flex-shrink-0" data-alt="Profile picture for Jamie_L" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDyGkw62MX8Qm0PQwNVPb5jnbq9Zy20MC3GOgy4cmMtWvXQwLb6uJaqWNYS0rI_K3Z0tvXWI6nInMYwc4-ueawZgpPIhRA6Wv5h1jwIPu--2DPby4FSyh3GJfRi7S_u2j3G2p40Jq4zjRli3yFrTg1KFqzO2D9n-cev8NshxT4mzUsAS94Xd8faSnAnwaak39DwAU3QI9yCqvQu_myuUxLi8EUDNrIEfCjcLFssYt1cL6lW-8Vi8nbfgTkz9yknJIYQPAzSlhH2cxY");'></div>
 <div class="flex-1">
 <p class="title">Struggling with consistency in my meditation practice. Any tips?</p>
 <p class="subtitle mt-1">by Jamie_L</p>
@@ -108,7 +106,6 @@ include '../head.php';
 </div>
 <!-- Post Summary Card 2 -->
 <div class="col sm:row gap-md p-4 rounded-xl surface shadow-sm w-full">
-<div class="img-cover aspect-square rounded-full size-10 flex-shrink-0" data-alt="Anonymous user icon" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBtiwlZ0Wg56CCUukE8EKqtoG6gSEY9-DSgO8xp0YZlLRmiaGR96AI99wAO9akR7AIgY-o7OMA2LRf6wS73IT7swKBxBgB2j7IrlPqlYIN6YRcLYgiXXGGmhNi0GzyIAiTnw2B8ghoX7oopbhPcf1s6ShJiY-A0EzdLMlgqo5akuKzEhc4IKvCnfAWcjQS_dx-SKT-XLhgGiSEcf9FPAd-3F-4joDG3WOMYmVRAQDIVv4Qd4pCsHVXtzJrYfTQtrOVHoqkAekEIXZM");'></div>
 <div class="flex-1">
 <p class="title">A small win I wanted to share</p>
 <p class="subtitle mt-1">by Anonymous</p>
