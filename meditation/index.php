@@ -56,7 +56,6 @@ include '../head.php';
 <!-- ImageGrid -->
 <div class="grid-auto gap-lg p-4">
 <div class="col gap-sm pb-3 group">
-<div class="img-portrait rounded-xl overflow-hidden">
 <div class="w-full h-full bg-cover bg-center transition-transform duration-300 group-hover:scale-105" data-alt="A serene sunrise over a calm lake, with mist rising from the water." style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBdJGI0wg2GRYqt4evRJQK4jPjz4JHFEgFIGr40JBhesbthLnz8uQSEtxtzj8EvG3ZDV5et7urYK95ds1Os0z5s5kvL0NqCobgF0MueU4Ctq5F-MN4i7w4hZGsRRcsGvh4Iv91WEsO5E_BctApi1fpO__-2pVWIehlnuO8e5beJI1MmHD8O_59ZZ4UBsRDfrZZXZZrGRuf5VdXZEwXIN9oKr9axqTCva1Y5fmiRD514QGkLYuO3B-dC8UCz9w-85nQHX6AwCRwtXBI");'></div>
 </div>
 <div>
@@ -66,7 +65,6 @@ include '../head.php';
 </div>
 </div>
 <div class="col gap-sm pb-3 group">
-<div class="img-portrait rounded-xl overflow-hidden">
 <div class="w-full h-full bg-cover bg-center transition-transform duration-300 group-hover:scale-105" data-alt="A peaceful night sky full of stars above a silhouette of a forest." style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCHfAKLcAccI5mrKbrDgmLbS0q9UueLv4lHiNTKAqJthcDsGUEfqIXnH5zJfzkjpfMd-eCVepEVBqd8fx0jRZ1fPAjqXX22atS7FMpR5IeOHbq2RdY6PcM4Jpcs_4nAKJDeR0vJ8KL3YZjrhQuzsWtwFu-xN_ctKdmO-VEeFMOMfOOhyX_qjCNT794-VSppqr3te-Vso_gI90zQZ8GxwAPe037LEz84x21WPHzEkDObA4-psFdFl_zGIwwUcxo-Jy4IZ_xabXadyyc");'></div>
 </div>
 <div>
@@ -76,7 +74,6 @@ include '../head.php';
 </div>
 </div>
 <div class="col gap-sm pb-3 group">
-<div class="img-portrait rounded-xl overflow-hidden">
 <div class="w-full h-full bg-cover bg-center transition-transform duration-300 group-hover:scale-105" data-alt="Lush green ferns covering a forest floor, with sunlight filtering through the trees." style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBoMzn3JLhccyzoR65tH14xS1GoxJodxT_o7-lgo5hqeTjQkBHFXty6cLKFSC9ZVcc7OddxtflZj4wq6EnE2dlU3GlGAHJLu-chq0jeXwd7rhSHFPX5M1V1VTtex-if4mduOy-tKDdYldXJ9gzU8EdeQfmbp3fchZf5mK_Qhh9g7w0xR7ugIj5X1mSWm1kOXGMn0bFeT1bqmLhr0qaN5m4rE7fi5i2iQuLxjjJeBhcOkAC-5XJ2QTsuawtBiYCWS1GwmJq_ZGNVEfg");'></div>
 </div>
 <div>
