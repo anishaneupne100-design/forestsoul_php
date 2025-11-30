@@ -33,7 +33,6 @@ include '../head.php';
 <div class="flex overflow-x-auto [-ms-scrollbar-style:none] [scrollbar-width:none] [&amp;::-webkit-scrollbar]:hidden">
 <div class="row gap-md p-4">
 <div class="col h-full w-72 flex-shrink-0 gap-md rounded-xl surface shadow-sm">
-<div class="img-square rounded-t-xl" data-alt="Portrait of a smiling person named Alex" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDbqmj1YHO9gPz7TfiaAdHJbwK2qMbbJrufrco7I6R8VwdcuKo0mKNrX4sNoCKEx1sbV9T1zsSmcAnX74VNorK9j-Ikk-P-JJbXP_hKH6c_45X96vKjXt_pA-c2FnpkeI1LFd5FdDQf0Aplfkq3gvzz81idtzToyLsRLZS_sN0wRoRffTAABHoJ4laNUNzIXPgX1uJIs1LcWiw-nHlC4SjIUqfTMwJmCht4bRT1HBcFAcAG73dzcuYH6QwqW9flrj9EMjkdq1R1JwE");'></div>
 <div class="col flex-1 justify-between p-4 pt-0 gap-md">
 <div>
 <p class="title">My Journey with Meditation</p>
@@ -45,7 +44,6 @@ include '../head.php';
 </div>
 </div>
 <div class="col h-full w-72 flex-shrink-0 gap-md rounded-xl surface shadow-sm">
-<div class="img-square rounded-t-xl" data-alt="Portrait of a person named Sarah outdoors" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBeUSm5zpiYZJvh6Aqu2fbWVp4Fa4HEDbFujIAfpLfVrcAIXjo92VHLex3-q6aSXG_3NXwFw-w3EXYxSeez1SfwvwiJtljlC8uwam4YWmPukS8pCI_ucGbSGXGY67ZMQvVofWMiifHzcC09x7x4nnNW75m_fOm-v6VkIk6462dQPxSnCxCIn1aHBBpyFSY-9GV-z3rKtxOudmxNmElBJEM9QTs1Y-iNA0X3JPmVrprUFrH6Y2rGeX5sJ-ZuMDAY952lJ3vd1oFQMv8");'></div>
 <div class="col flex-1 justify-between p-4 pt-0 gap-md">
 <div>
 <p class="title">Finding Peace in Nature</p>
