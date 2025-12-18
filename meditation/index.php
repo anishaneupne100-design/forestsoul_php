@@ -57,6 +57,7 @@ include '../head.php';
 <div class="grid-auto gap-lg p-4">
 <div class="col gap-sm pb-3 group">
 </div>
+
 <div>
 <p class="title">7 Days of Mindful Mornings</p>
 <p class="subtitle">Start your day with clarity</p>
