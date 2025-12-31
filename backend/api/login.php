@@ -52,7 +52,7 @@ if ($result['success']) {
     // Get redirect URL
     $redirectUrl = Auth::intendedUrl('profile');
     $result['redirect'] = $redirectUrl;
-    
+
     http_response_code(200);
 } else {
     http_response_code(401);
