@@ -62,33 +62,37 @@ include_once '../components/navbar.php';
             <h2 class="txt-3xl txt">Meet Our Experts</h2>
             <p class="txt-2 mt-3">Dedicated professionals helping you reconnect with your inner self.</p>
         </div>
-        <div class="grid-3 p-4">
-            <div class="card bg-surface-dark border-white/5 text-center">
-                <div class="w-20 h-20 rounded-full bg-primary/20 mx-auto mb-4 center overflow-hidden">
-                    <img src="https://i.pravatar.cc/150?u=anya2" alt="Anya" class="w-full h-full object-cover">
+        <div class="grid p-4 gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            <?php 
+            $expertsRes = get_active_experts();
+            if ($expertsRes['success'] && !empty($expertsRes['data'])):
+                foreach ($expertsRes['data'] as $expert):
+            ?>
+                <div class="card bg-surface-dark border-white/5 text-center flex flex-col h-full group hover:border-primary/30 transition-all duration-300">
+                    <div class="w-24 h-24 rounded-full bg-primary/10 mx-auto mb-4 center overflow-hidden border-2 border-transparent group-hover:border-primary transition-colors">
+                        <?php if (!empty($expert['profile_picture'])): ?>
+                            <img src="<?php echo url($expert['profile_picture']); ?>" alt="<?php echo htmlspecialchars($expert['name']); ?>" class="w-full h-full object-cover">
+                        <?php else: ?>
+                            <span class="material-symbols-outlined text-4xl text-primary font-bold">person</span>
+                        <?php endif; ?>
+                    </div>
+                    <h3 class="txt-lg font-bold"><?php echo htmlspecialchars($expert['name'] . ' ' . ($expert['lastname'] ?? '')); ?></h3>
+                    <p class="text-primary text-xs font-bold uppercase tracking-wider mb-2"><?php echo htmlspecialchars($expert['degree']); ?></p>
+                    <p class="text-secondary text-[10px] font-bold uppercase tracking-widest mb-3"><?php echo htmlspecialchars($expert['specialization']); ?></p>
+                    <p class="txt-2 txt-sm italic line-clamp-3 flex-grow mb-4 px-2">"<?php echo htmlspecialchars($expert['bio']); ?>"</p>
+                    <button class="btn-ghost btn-sm w-full mt-auto group-hover:bg-primary group-hover:text-background-dark transition-all" onclick="requireAuth(() => gotoPage('<?php echo url('booking session/'); ?>'))">
+                        Book Consultation
+                    </button>
                 </div>
-                <h3 class="txt-lg font-bold">Dr. Anya Sharma</h3>
-                <p class="text-primary text-xs font-bold uppercase tracking-wider mb-2">PhD, LPC</p>
-                <p class="txt-2 txt-sm italic">Specializes in mindfulness-based stress reduction and CBT.</p>
-            </div>
-            
-            <div class="card bg-surface-dark border-white/5 text-center">
-                <div class="w-20 h-20 rounded-full bg-primary/20 mx-auto mb-4 center overflow-hidden">
-                    <img src="https://i.pravatar.cc/150?u=david" alt="David" class="w-full h-full object-cover">
+            <?php 
+                endforeach;
+            else: 
+            ?>
+                <div class="col-span-full py-12 text-center">
+                    <span class="material-symbols-outlined text-5xl text-white/10 mb-4">clinical_notes</span>
+                    <p class="txt-2 italic">Our experts are currently onboarding. Please check back soon!</p>
                 </div>
-                <h3 class="txt-lg font-bold">David Chen</h3>
-                <p class="text-primary text-xs font-bold uppercase tracking-wider mb-2">LCSW</p>
-                <p class="txt-2 txt-sm italic">Focuses on trauma-informed care and relational therapy.</p>
-            </div>
-            
-            <div class="card bg-surface-dark border-white/5 text-center">
-                <div class="w-20 h-20 rounded-full bg-primary/20 mx-auto mb-4 center overflow-hidden">
-                    <img src="https://i.pravatar.cc/150?u=maria" alt="Maria" class="w-full h-full object-cover">
-                </div>
-                <h3 class="txt-lg font-bold">Maria Garcia</h3>
-                <p class="text-primary text-xs font-bold uppercase tracking-wider mb-2">LMFT</p>
-                <p class="txt-2 txt-sm italic">Expert in family systems and anxiety support.</p>
-            </div>
+            <?php endif; ?>
         </div>
     </section>
 

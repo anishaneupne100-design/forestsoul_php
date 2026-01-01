@@ -59,3 +59,18 @@ function get_pending_approvals($adminId) {
         return ['error' => 'Database error', 'status' => 500];
     }
 }
+
+function get_pending_expert_applications($adminId) {
+    $pdo = get_db_connection();
+    try {
+        $stmt = $pdo->prepare("SELECT is_admin FROM users WHERE id = ?");
+        $stmt->execute([$adminId]);
+        $user = $stmt->fetch();
+        if (!$user || !$user['is_admin']) return ['error' => 'Unauthorized'];
+
+        $stmt = $pdo->query("SELECT * FROM expert_applications WHERE status = 'pending' ORDER BY created_at DESC");
+        return ['success' => true, 'data' => $stmt->fetchAll()];
+    } catch (PDOException $e) {
+        return ['error' => $e->getMessage()];
+    }
+}
