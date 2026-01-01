@@ -1,6 +1,6 @@
-<?php
-$title = "Restorative Yoga for Stress Relief - ForestSoul";
-require_once $_SERVER['DOCUMENT_ROOT'] . '/components/navbar.php';
+$title = "Restorative Yoga - ForestSoul";
+include_once '../head.php';
+include_once '../components/navbar.php';
 ?>
 
 <main class="col gap-xl mt-5">

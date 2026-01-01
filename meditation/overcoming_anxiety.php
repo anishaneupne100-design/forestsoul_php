@@ -1,6 +1,6 @@
-<?php
-$title = "Overcoming Anxiety Details - ForestSoul";
-require_once $_SERVER['DOCUMENT_ROOT'] . '/components/navbar.php';
+$title = "Overcoming Anxiety - ForestSoul";
+include_once '../head.php';
+include_once '../components/navbar.php';
 ?>
 <main class="flex-1 space-y-10 py-10">
   <div class="@container">

@@ -1,223 +1,70 @@
 <?php
-$title = "Deep Sleep Journey Details - ForestSoul";
-
-
-require_once $_SERVER['DOCUMENT_ROOT'] . '/components/navbar.php';
-
+// meditation/deep_sleep.php
+$title = "Deep Sleep Journey - ForestSoul";
+include_once '../head.php';
+include_once '../components/navbar.php';
 ?>
 
-<!-- Main Content -->
-<main class="flex-1 px-4 sm:px-6 lg:px-8 py-10 sm:py-16">
-  <!-- HeroSection -->
-  <div class="@container">
-    <div class="@[480px]:p-4">
-      <div
-        class="flex min-h-[480px] flex-col gap-6 bg-cover bg-center bg-no-repeat @[480px]:gap-8 @[480px]:rounded-xl items-center justify-center p-4"
-        data-alt="A serene, dark, and abstract representation of a night sky with subtle star-like glimmers."
-        style='background-image: linear-gradient(rgba(10, 25, 47, 0.5) 0%, rgba(10, 25, 47, 0.8) 100%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuBiK8QhMa82jliQOB1ZxbJ1TTkTjaluyZfW-5FDKQisksSE8D5DvBUlNpSBYAwZSG7TF1XynSoBvrNk9DXPmW8VJSDsm9Ip3N69eRztihlgd_hl-DvNS6CiLDg6eZHVFgk2S4fNpk3muCI4PT2ilEdBZQzrPG-YjUVqeJM0rshFnzm_qmgkCgLW3AMseiHBfWKb9WwOzIxQcq9FwLC1LehcmO-2BcB_tq-45i3-pMTYMcNz1qq1YEwo96lFSV-6QKsO9Z_BsVowQGI");'>
-        <div class="flex flex-col gap-2 text-center max-w-2xl">
-          <h1
-            class="text-white text-4xl font-black leading-tight tracking-[-0.033em] @[480px]:text-5xl @[480px]:font-black @[480px]:leading-tight @[480px]:tracking-[-0.033em]">
-            Embark on a Deep Sleep Journey
-          </h1>
-          <h2
-            class="text-white/80 text-sm font-normal leading-normal @[480px]:text-base @[480px]:font-normal @[480px]:leading-normal">
-            Discover profound rest and wake up rejuvenated with our guided meditation program designed to calm
-            your mind and body.
-          </h2>
+<main class="flex-grow">
+    <!-- Hero -->
+    <section class="section @container mt-0">
+        <div class="@[480px]:p-4">
+            <div class="hero @[480px]:rounded-xl text-center"
+                style='background-image: linear-gradient(rgba(10, 25, 47, 0.4) 0%, rgba(10, 25, 47, 0.8) 100%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuBiK8QhMa82jliQOB1ZxbJ1TTkTjaluyZfW-5FDKQisksSE8D5DvBUlNpSBYAwZSG7TF1XynSoBvrNk9DXPmW8VJSDsm9Ip3N69eRztihlgd_hl-DvNS6CiLDg6eZHVFgk2S4fNpk3muCI4PT2ilEdBZQzrPG-YjUVqeJM0rshFnzm_qmgkCgLW3AMseiHBfWKb9WwOzIxQcq9FwLC1LehcmO-2BcB_tq-45i3-pMTYMcNz1qq1YEwo96lFSV-6QKsO9Z_BsVowQGI");'>
+                <div class="col gap-md max-w-2xl px-4">
+                    <h1 class="hero-title @[480px]:text-5xl">Embark on a Deep Sleep Journey</h1>
+                    <p class="hero-text @[480px]:text-lg">Discover profound rest and wake up rejuvenated with our guided meditation program designed to calm your mind and body.</p>
+                </div>
+                <button class="btn-primary btn-lg mt-6" onclick="showToast('Starting Journey...', 'success')">
+                    <span class="truncate">Start Journey</span>
+                </button>
+            </div>
         </div>
-        <button
-          class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 @[480px]:h-12 @[480px]:px-5 bg-primary hover:bg-primary/90 transition-colors text-background-dark text-sm font-bold leading-normal tracking-[0.015em] @[480px]:text-base @[480px]:font-bold @[480px]:leading-normal @[480px]:tracking-[0.015em]">
-          <span class="truncate">Start Journey</span>
-        </button>
-      </div>
-    </div>
-  </div>
-  <!-- SectionHeader -->
-  <div class="pt-16 pb-4">
-    <h2 class="text-white text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5 text-center">
-      Unlock the Benefits of Restful Sleep</h2>
-  </div>
-  <!-- TextGrid -->
-  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
-    <div class="flex flex-1 gap-4 rounded-xl border border-white/10 bg-white/5 p-5 flex-col items-start text-left">
-      <div class="text-primary"><span class="material-symbols-outlined text-3xl">nights_stay</span></div>
-      <div class="flex flex-col gap-1">
-        <h2 class="text-white text-base font-bold leading-tight">Fall Asleep Faster</h2>
-        <p class="text-white/60 text-sm font-normal leading-normal">Gentle guidance to quiet your mind and
-          ease into slumber effortlessly.</p>
-      </div>
-    </div>
-    <div class="flex flex-1 gap-4 rounded-xl border border-white/10 bg-white/5 p-5 flex-col items-start text-left">
-      <div class="text-primary"><span class="material-symbols-outlined text-3xl">self_improvement</span></div>
-      <div class="flex flex-col gap-1">
-        <h2 class="text-white text-base font-bold leading-tight">Reduce Nighttime Anxiety</h2>
-        <p class="text-white/60 text-sm font-normal leading-normal">Calming techniques to soothe your nervous
-          system for uninterrupted rest.</p>
-      </div>
-    </div>
-    <div class="flex flex-1 gap-4 rounded-xl border border-white/10 bg-white/5 p-5 flex-col items-start text-left">
-      <div class="text-primary"><span class="material-symbols-outlined text-3xl">spark</span></div>
-      <div class="flex flex-col gap-1">
-        <h2 class="text-white text-base font-bold leading-tight">Improve Sleep Quality</h2>
-        <p class="text-white/60 text-sm font-normal leading-normal">Wake up feeling refreshed, energized, and
-          ready for the day ahead.</p>
-      </div>
-    </div>
-  </div>
-  <!-- SectionHeader -->
-  <div class="pt-16 pb-4">
-    <h2 class="text-white text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5 text-center">
-      How Your Journey Unfolds</h2>
-  </div>
-  <!-- Timeline Section -->
-  <div class="p-4">
-    <div class="relative pl-8 border-l-2 border-dashed border-white/20 space-y-12">
-      <div
-        class="absolute -left-[1.35rem] top-1 h-10 w-10 bg-background-dark border-2 border-white/20 rounded-full flex items-center justify-center">
-        <span class="material-symbols-outlined text-primary text-2xl">looks_one</span>
-      </div>
-      <div>
-        <h3 class="text-lg font-bold text-white">Day 1-3: Calming the Mind</h3>
-        <p class="mt-1 text-white/60">Begin with foundational techniques to release daily stress and quiet
-          racing thoughts before bedtime.</p>
-      </div>
-      <div
-        class="absolute -left-[1.35rem] top-[10.5rem] h-10 w-10 bg-background-dark border-2 border-white/20 rounded-full flex items-center justify-center">
-        <span class="material-symbols-outlined text-primary text-2xl">looks_two</span>
-      </div>
-      <div>
-        <h3 class="text-lg font-bold text-white">Day 4-7: Body Scan for Sleep</h3>
-        <p class="mt-1 text-white/60">Learn to progressively relax every part of your body, easing physical
-          tension and preparing for deep rest.</p>
-      </div>
-      <div
-        class="absolute -left-[1.35rem] top-[20.5rem] h-10 w-10 bg-background-dark border-2 border-white/20 rounded-full flex items-center justify-center">
-        <span class="material-symbols-outlined text-primary text-2xl">looks_3</span>
-      </div>
-      <div>
-        <h3 class="text-lg font-bold text-white">Day 8-10: Sustaining Restful Habits</h3>
-        <p class="mt-1 text-white/60">Integrate these practices into your nightly routine to build a
-          long-lasting foundation for quality sleep.</p>
-      </div>
-    </div>
-  </div>
-  <!-- Audio Player Section -->
-  <div class="pt-16 pb-4">
-    <h2 class="text-white text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5 text-center">
-      Listen to a Preview</h2>
-  </div>
-  <div class="p-4">
-    <div class="bg-white/5 rounded-xl p-6 flex flex-col sm:flex-row items-center gap-6 border border-white/10">
-      <div class="flex-shrink-0">
-        <span class="material-symbols-outlined text-primary text-5xl">headphones</span>
-      </div>
-      <div class="flex-1 w-full">
-        <p class="font-semibold text-white">Intro: Your Path to Restful Sleep</p>
-        <div class="flex items-center gap-4 mt-2">
-          <button class="text-white hover:text-primary transition-colors">
-            <span class="material-symbols-outlined text-4xl">play_circle</span>
-          </button>
-          <div class="w-full h-1.5 bg-white/10 rounded-full flex items-center">
-            <div class="w-[15%] h-full bg-primary rounded-full"></div>
-            <div class="w-3.5 h-3.5 bg-white rounded-full -ml-1.5 shadow"></div>
-          </div>
-          <span class="text-sm text-white/60">0:42 / 3:15</span>
+    </section>
+
+    <!-- Benefits -->
+    <section class="section px-4 max-w-6xl mx-auto py-12">
+        <h2 class="text-center txt-2xl font-bold mb-10">Unlock the Benefits of Restful Sleep</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="card bg-surface-dark border-white/5 p-6 col gap-4">
+                <span class="material-symbols-outlined text-primary text-3xl">nights_stay</span>
+                <h3 class="font-bold">Fall Asleep Faster</h3>
+                <p class="txt-2 txt-sm">Gentle guidance to quiet your mind and ease into slumber effortlessly.</p>
+            </div>
+            <div class="card bg-surface-dark border-white/5 p-6 col gap-4">
+                <span class="material-symbols-outlined text-primary text-3xl">self_improvement</span>
+                <h3 class="font-bold">Reduce Anxiety</h3>
+                <p class="txt-2 txt-sm">Calming techniques to soothe your nervous system for uninterrupted rest.</p>
+            </div>
+            <div class="card bg-surface-dark border-white/5 p-6 col gap-4">
+                <span class="material-symbols-outlined text-primary text-3xl">spark</span>
+                <h3 class="font-bold">Wake Refreshed</h3>
+                <p class="txt-2 txt-sm">Improve sleep quality and wake up feeling energized and ready for the day.</p>
+            </div>
         </div>
-      </div>
-    </div>
-  </div>
-  <!-- Testimonials Section -->
-  <div class="pt-16 pb-4">
-    <h2 class="text-white text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5 text-center">
-      What Our Users Say</h2>
-  </div>
-  <div class="p-4 grid grid-cols-1 md:grid-cols-2 gap-6">
-    <div class="bg-white/5 rounded-xl p-6 border border-white/10">
-      <div class="flex items-center gap-4">
-        <img class="w-12 h-12 rounded-full object-cover" data-alt="Profile picture of Alex Johnson"
-          src="https://lh3.googleusercontent.com/aida-public/AB6AXuCU0uIoWUlu-YyKd607TsVDWhpweIV0KMIiOeCHcDfnuYgy86uH-pCABz_ekanVa64uexQ62QvKBa4smw0wYR2lJYIMEFeXU5usEXSay4dC4Zt06etaiITW3CHfPDYf7BhJa8GbLEae7NAgDtc5tgOqk5My-eLly6ZaNcDBMN3IVvv3lTX7u6yQZmFvK0SaGK1LGvvnqD6HZOOHTqP8R1Rv7oYwdLXmsbmTxybQO6wXZBjlFDvgBLPvDQZGDk4d2npVX3vNzCXnQoU" />
-        <div>
-          <p class="font-bold text-white">Alex Johnson</p>
-          <p class="text-sm text-white/60">Completed in May</p>
+    </section>
+
+    <!-- Timeline -->
+    <section class="section px-4 py-12 max-w-4xl mx-auto">
+        <h2 class="text-center txt-2xl font-bold mb-10">How Your Journey Unfolds</h2>
+        <div class="col gap-8 relative pl-8 border-l-2 border-primary/20">
+            <div class="col gap-2 relative">
+                <div class="absolute -left-[41px] top-0 size-10 rounded-full bg-background-dark border-2 border-primary center text-primary font-bold">1</div>
+                <h3 class="font-bold text-lg">Day 1-3: Calming the Mind</h3>
+                <p class="txt-2 txt-sm">Begin with foundational techniques to release daily stress and quiet racing thoughts.</p>
+            </div>
+            <div class="col gap-2 relative">
+                <div class="absolute -left-[41px] top-0 size-10 rounded-full bg-background-dark border-2 border-primary center text-primary font-bold">2</div>
+                <h3 class="font-bold text-lg">Day 4-7: Body Scan for Sleep</h3>
+                <p class="txt-2 txt-sm">Learn to progressively relax every part of your body, easing deep physical tension.</p>
+            </div>
+            <div class="col gap-2 relative">
+                <div class="absolute -left-[41px] top-0 size-10 rounded-full bg-background-dark border-2 border-primary center text-primary font-bold">3</div>
+                <h3 class="font-bold text-lg">Day 8-10: Sustaining Habits</h3>
+                <p class="txt-2 txt-sm">Integrate these practices into your nightly routine for long-lasting foundation.</p>
+            </div>
         </div>
-      </div>
-      <p class="mt-4 text-white/80 italic">"I haven't slept this well in years. The guided sessions are
-        incredibly calming and effective. This program was a game-changer for my sleep anxiety."</p>
-    </div>
-    <div class="bg-white/5 rounded-xl p-6 border border-white/10">
-      <div class="flex items-center gap-4">
-        <img class="w-12 h-12 rounded-full object-cover" data-alt="Profile picture of Sarah Chen"
-          src="https://lh3.googleusercontent.com/aida-public/AB6AXuBX0k04K9B7UNQZB5HDDLBiA5FzY-vq7oZNxMUfX8a_o7mZIvK11sDp89rARjgwkNDjkcREpGR8KGRKsE81HRzwktA8BJd3n74sPSHEtY-4rq2MzdOUk5VWQqKRd6VLX0-SlnP-TS73W06kQ8ozLHJ2p7OU3vwIc1KQwU7sDwHexkDiGl71qIIezmx4sNoexNx4Cbx9lleiqpuA5qXjmdarmzjqedET67bz9UzGJNaxinkD7T536tHy1VJL-5_ZFvER8TsrZDgqAHk" />
-        <div>
-          <p class="font-bold text-white">Sarah Chen</p>
-          <p class="text-sm text-white/60">Completed in June</p>
-        </div>
-      </div>
-      <p class="mt-4 text-white/80 italic">"The body scan meditations are my favorite. It's the first thing
-        that's actually helped me turn my brain off at night. Highly recommend!"</p>
-    </div>
-  </div>
-  <!-- FAQ Section -->
-  <div class="pt-16 pb-4">
-    <h2 class="text-white text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5 text-center">
-      Frequently Asked Questions</h2>
-  </div>
-  <div class="p-4 space-y-4 max-w-3xl mx-auto">
-    <details class="group bg-white/5 rounded-xl border border-white/10 p-4 cursor-pointer">
-      <summary class="flex justify-between items-center font-semibold text-white">
-        Do I need any prior meditation experience?
-        <span
-          class="material-symbols-outlined transition-transform duration-300 group-open:rotate-180">expand_more</span>
-      </summary>
-      <p class="mt-3 text-white/60">
-        Not at all! This journey is designed for all levels, including complete beginners. We guide you
-        through every step.
-      </p>
-    </details>
-    <details class="group bg-white/5 rounded-xl border border-white/10 p-4 cursor-pointer">
-      <summary class="flex justify-between items-center font-semibold text-white">
-        How long is each session?
-        <span
-          class="material-symbols-outlined transition-transform duration-300 group-open:rotate-180">expand_more</span>
-      </summary>
-      <p class="mt-3 text-white/60">
-        Each guided meditation session is approximately 10-15 minutes long, perfect for winding down before
-        bed without being too time-consuming.
-      </p>
-    </details>
-    <details class="group bg-white/5 rounded-xl border border-white/10 p-4 cursor-pointer">
-      <summary class="flex justify-between items-center font-semibold text-white">
-        What if I wake up in the middle of the night?
-        <span
-          class="material-symbols-outlined transition-transform duration-300 group-open:rotate-180">expand_more</span>
-      </summary>
-      <p class="mt-3 text-white/60">
-        The program includes bonus short meditations specifically designed to help you gently fall back asleep
-        if you wake up during the night.
-      </p>
-    </details>
-  </div>
+    </section>
 </main>
-</div>
-</div>
-</div>
-<!-- Sticky CTA Bar -->
-<div class="sticky bottom-0 w-full bg-background-dark/80 backdrop-blur-sm p-4 border-t border-white/10">
-  <div class="max-w-5xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
-    <div class="text-center sm:text-left">
-      <h3 class="font-bold text-white">Ready for a Better Night's Sleep?</h3>
-      <p class="text-sm text-white/60">Your journey to restful nights starts now.</p>
-    </div>
-    <button
-      class="flex w-full sm:w-auto min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-5 bg-primary hover:bg-primary/90 transition-colors text-background-dark text-base font-bold leading-normal tracking-[0.015em]">
-      <span class="truncate">Start Your Journey Today</span>
-    </button>
-  </div>
-</div>
-</div>
 
-
-<?php
-put_footer();
-?>
+<?php put_footer(); ?>

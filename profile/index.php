@@ -8,8 +8,7 @@ include '../head.php';
 $user = Auth::user();
 $memberSince = date('M Y', strtotime($user['created_at'] ?? 'now'));
 
-require_once $_SERVER['DOCUMENT_ROOT'] . '/components/navbar.php';
-
+include_once '../components/navbar.php';
 ?>
 
 <!-- Main Content -->

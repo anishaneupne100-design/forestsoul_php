@@ -1,190 +1,130 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'] . '/components/navbar.php';
+// therapy/index.php
+$title = "Therapy Services - ForestSoul";
+include_once '../head.php';
+include_once '../components/navbar.php';
 ?>
 
-<main class="container-main">
-    <div class="content gap-lg">
-
-        <!-- Hero Section -->
-        <div class="@container mb-12">
-            <div class="hero rounded-box"
+<main class="flex-grow">
+    <!-- Hero Section -->
+    <section class="section @container mt-0">
+        <div class="@[480px]:p-4">
+            <div class="hero @[480px]:rounded-xl text-center"
                 style='background-image: linear-gradient(rgba(16, 34, 22, 0.5) 0%, rgba(16, 34, 22, 0.8) 100%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuB_s5tMi90t9HCzU2nEN68VWxOL7zEklusUKtwdqFCuhgUgyt-yOBIyaRid6-fFMOBOqzQZrOQWleF6UfrgSBEI8lgBUhUo7lOmttnOU2-z2HScr4mTHL2UKfuho7sGG7O4NHUsLanLOJAAmm_kzLpBYuqqDos05YHLi7APMe7C7xiRx0_P51NTWGot0KuPNqPnIyCUWgKL-E-VzHxcrsQaTCItVfni4mXlvheoGYEN5asY7PdsF-rzCUipzqR4_xiw1wpbDhL8XfA");'>
                 <div class="col gap-md text-center max-w-2xl">
-                    <h1 class="hero-title md:text-5xl">Personalized Therapy for Your Journey to Wellness</h1>
-                    <p class="hero-text md:text-lg">Find peace and clarity with compassionate, professional support
-                        tailored to your unique needs. Start your path to healing with us today.</p>
+                    <h1 class="hero-title @[480px]:text-5xl">Personalized Therapy for Your Journey</h1>
+                    <p class="hero-text @[480px]:text-lg">Find peace and clarity with compassionate, professional support tailored to your unique needs.</p>
                 </div>
-                <a href="<?php echo url('login'); ?>" class="btn-primary btn-lg">
-                    <span class="truncate-text">Book a Free Consultation</span>
-                </a>
+                <button class="btn-primary btn-lg mt-6" onclick="requireAuth(() => gotoPage('<?php echo url('booking session/'); ?>'))">
+                    <span class="truncate">Book a Free Consultation</span>
+                </button>
             </div>
         </div>
+    </section>
 
-        <!-- Intro Text -->
-        <p class="txt-2 txt-md text-center max-w-3xl mx-auto px-4 pb-8">
-            At ForestSoul, we believe in a holistic approach to mental well-being, integrating evidence-based
-            therapeutic practices with the grounding presence of nature. Our goal is to provide a safe, supportive space
-            where you can explore, heal, and grow.
-        </p>
-
-        <!-- Therapy Type Cards -->
-        <div class="section">
-            <h2 class="section-title">Our Therapy Services</h2>
-            <p class="txt-2 text-center px-4 pb-10">Choose the therapy type that best fits your needs</p>
-
-            <div class="grid-3 px-4">
-                <!-- Individual Counseling Card -->
-                <a href="<?php echo url('therapy_individual'); ?>" class="card-hover group">
-                    <div class="icon-circle mx-auto">
-                        <span class="material-symbols-outlined text-2xl">person</span>
-                    </div>
-                    <h3 class="title text-center">Individual Counseling</h3>
-                    <p class="subtitle text-center">One-on-one sessions tailored to your personal journey and goals.</p>
-                    <span class="link text-center group-hover:underline">Learn More →</span>
-                </a>
-
-                <!-- Couple Therapy Card -->
-                <a href="<?php echo url('therapy_couple'); ?>" class="card-hover group">
-                    <div class="icon-circle mx-auto">
-                        <span class="material-symbols-outlined text-2xl">favorite</span>
-                    </div>
-                    <h3 class="title text-center">Couple Therapy</h3>
-                    <p class="subtitle text-center">Strengthen your relationship and improve communication together.</p>
-                    <span class="link text-center group-hover:underline">Learn More →</span>
-                </a>
-
-                <!-- Group Therapy Card -->
-                <a href="<?php echo url('therapy_group'); ?>" class="card-hover group">
-                    <div class="icon-circle mx-auto">
-                        <span class="material-symbols-outlined text-2xl">groups</span>
-                    </div>
-                    <h3 class="title text-center">Group Therapy</h3>
-                    <p class="subtitle text-center">Find strength and understanding in a supportive community setting.
-                    </p>
-                    <span class="link text-center group-hover:underline">Learn More →</span>
-                </a>
+    <!-- Services -->
+    <section class="section">
+        <div class="text-center mb-12 px-4">
+            <h2 class="txt-3xl txt">Our Therapy Services</h2>
+            <p class="txt-2 mt-3 max-w-2xl mx-auto">Choose the therapy type that best fits your needs and journey.</p>
+        </div>
+        
+        <div class="grid-3 p-4">
+            <div class="card-feature text-center group">
+                <div class="icon-circle mx-auto mb-4 group-hover:scale-110 transition-transform">
+                    <span class="material-symbols-outlined text-3xl">person</span>
+                </div>
+                <h3 class="title">Individual Counseling</h3>
+                <p class="subtitle">One-on-one sessions tailored to your personal goals and mental healing.</p>
+            </div>
+            
+            <div class="card-feature text-center group">
+                <div class="icon-circle mx-auto mb-4 group-hover:scale-110 transition-transform">
+                    <span class="material-symbols-outlined text-3xl">favorite</span>
+                </div>
+                <h3 class="title">Couple Therapy</h3>
+                <p class="subtitle">Strengthen your relationship and improve communication together in a safe space.</p>
+            </div>
+            
+            <div class="card-feature text-center group">
+                <div class="icon-circle mx-auto mb-4 group-hover:scale-110 transition-transform">
+                    <span class="material-symbols-outlined text-3xl">groups</span>
+                </div>
+                <h3 class="title">Group Therapy</h3>
+                <p class="subtitle">Find strength and understanding in a supportive community with shared experiences.</p>
             </div>
         </div>
+    </section>
 
-        <!-- Meet Our Therapists Section -->
-        <div class="section">
-            <h2 class="section-title">Meet Our Therapists</h2>
-            <p class="txt-2 text-center px-4 pb-10">Our team of licensed professionals is dedicated to your mental
-                health and well-being.</p>
-
-            <div class="grid-3 px-4">
-                <!-- Therapist Card 1 -->
-                <div class="card center-flex flex-col">
-                    <h3 class="title mt-4">Dr. Anya Sharma</h3>
-                    <p class="text-primary text-sm font-medium">PhD, LPC</p>
-                    <p class="subtitle text-center mt-2">Specializes in mindfulness-based stress reduction and cognitive
-                        behavioral therapy (CBT).</p>
+    <!-- Therapists -->
+    <section class="section py-16 surface">
+        <div class="text-center mb-12">
+            <h2 class="txt-3xl txt">Meet Our Experts</h2>
+            <p class="txt-2 mt-3">Dedicated professionals helping you reconnect with your inner self.</p>
+        </div>
+        <div class="grid-3 p-4">
+            <div class="card bg-surface-dark border-white/5 text-center">
+                <div class="w-20 h-20 rounded-full bg-primary/20 mx-auto mb-4 center overflow-hidden">
+                    <img src="https://i.pravatar.cc/150?u=anya2" alt="Anya" class="w-full h-full object-cover">
                 </div>
-
-                <!-- Therapist Card 2 -->
-                <div class="card center-flex flex-col">
-                    <h3 class="title mt-4">David Chen</h3>
-                    <p class="text-primary text-sm font-medium">LCSW</p>
-                    <p class="subtitle text-center mt-2">Focuses on trauma-informed care and relational therapy for
-                        individuals and couples.</p>
+                <h3 class="txt-lg font-bold">Dr. Anya Sharma</h3>
+                <p class="text-primary text-xs font-bold uppercase tracking-wider mb-2">PhD, LPC</p>
+                <p class="txt-2 txt-sm italic">Specializes in mindfulness-based stress reduction and CBT.</p>
+            </div>
+            
+            <div class="card bg-surface-dark border-white/5 text-center">
+                <div class="w-20 h-20 rounded-full bg-primary/20 mx-auto mb-4 center overflow-hidden">
+                    <img src="https://i.pravatar.cc/150?u=david" alt="David" class="w-full h-full object-cover">
                 </div>
-
-                <!-- Therapist Card 3 -->
-                <div class="card center-flex flex-col">
-                    <h3 class="title mt-4">Maria Garcia</h3>
-                    <p class="text-primary text-sm font-medium">LMFT</p>
-                    <p class="subtitle text-center mt-2">Expert in family systems and provides support for anxiety and
-                        life transitions.</p>
+                <h3 class="txt-lg font-bold">David Chen</h3>
+                <p class="text-primary text-xs font-bold uppercase tracking-wider mb-2">LCSW</p>
+                <p class="txt-2 txt-sm italic">Focuses on trauma-informed care and relational therapy.</p>
+            </div>
+            
+            <div class="card bg-surface-dark border-white/5 text-center">
+                <div class="w-20 h-20 rounded-full bg-primary/20 mx-auto mb-4 center overflow-hidden">
+                    <img src="https://i.pravatar.cc/150?u=maria" alt="Maria" class="w-full h-full object-cover">
                 </div>
+                <h3 class="txt-lg font-bold">Maria Garcia</h3>
+                <p class="text-primary text-xs font-bold uppercase tracking-wider mb-2">LMFT</p>
+                <p class="txt-2 txt-sm italic">Expert in family systems and anxiety support.</p>
             </div>
         </div>
+    </section>
 
-        <!-- Our Therapeutic Approaches Section -->
-        <div class="section px-4">
-            <h2 class="section-title">Our Therapeutic Approaches</h2>
-            <p class="txt-2 text-center max-w-2xl mx-auto pb-10">We utilize a range of evidence-based methods to create
-                a personalized treatment plan that best suits your needs.</p>
-
-            <div class="grid-2 max-w-4xl mx-auto">
-                <div class="card">
-                    <h3 class="title">Cognitive Behavioral Therapy (CBT)</h3>
-                    <p class="subtitle">A practical, hands-on approach to problem-solving. Its goal is to change
-                        patterns of thinking or behavior that are behind people's difficulties.</p>
+    <!-- FAQ -->
+    <section class="section py-16 px-4 max-w-4xl mx-auto">
+        <h2 class="section-title mb-10">Common Questions</h2>
+        <div class="col gap-4">
+            <details class="card bg-surface-dark/30 border-white/5 group">
+                <summary class="between cursor-pointer font-bold">
+                    <span>What can I expect in my first session?</span>
+                    <span class="material-symbols-outlined transition group-open:rotate-180">expand_more</span>
+                </summary>
+                <div class="mt-4 txt-2 txt-sm leading-relaxed">
+                    Your first session is a collaborative process to get to know each other and discuss your goals in a safe, judgment-free environment.
                 </div>
-                <div class="card">
-                    <h3 class="title">Mindfulness-Based Therapy</h3>
-                    <p class="subtitle">Integrates mindfulness practices like meditation and breathing exercises to help
-                        you better manage your thoughts and emotions.</p>
+            </details>
+            
+            <details class="card bg-surface-dark/30 border-white/5 group">
+                <summary class="between cursor-pointer font-bold">
+                    <span>Is what I share confidential?</span>
+                    <span class="material-symbols-outlined transition group-open:rotate-180">expand_more</span>
+                </summary>
+                <div class="mt-4 txt-2 txt-sm leading-relaxed">
+                    Yes, confidentiality is a legal and ethical cornerstone of therapy. Your privacy is our utmost priority.
                 </div>
-                <div class="card">
-                    <h3 class="title">Humanistic Therapy</h3>
-                    <p class="subtitle">Focuses on your unique potential and stresses the importance of growth and
-                        self-actualization, helping you recognize your strengths.</p>
-                </div>
-                <div class="card">
-                    <h3 class="title">Psychodynamic Therapy</h3>
-                    <p class="subtitle">Explores how your unconscious mind and past experiences shape your current
-                        behaviors and feelings.</p>
-                </div>
-            </div>
+            </details>
         </div>
+    </section>
 
-        <!-- FAQ Section -->
-        <div class="section px-4">
-            <h2 class="section-title">Frequently Asked Questions</h2>
-
-            <div class="max-w-3xl mx-auto col gap-md">
-                <details class="card group [&_summary::-webkit-details-marker]:hidden">
-                    <summary class="between cursor-pointer">
-                        <h3 class="title">What can I expect in my first session?</h3>
-                        <span
-                            class="material-symbols-outlined txt-2 transition group-open:rotate-180">expand_more</span>
-                    </summary>
-                    <p class="subtitle mt-4">Your first session is an opportunity for you and your therapist to get to
-                        know each other. You'll discuss what brought you to therapy, your goals, and any concerns you
-                        have. It's a collaborative process to ensure you feel comfortable and understood.</p>
-                </details>
-
-                <details class="card group [&_summary::-webkit-details-marker]:hidden">
-                    <summary class="between cursor-pointer">
-                        <h3 class="title">How long does each therapy session last?</h3>
-                        <span
-                            class="material-symbols-outlined txt-2 transition group-open:rotate-180">expand_more</span>
-                    </summary>
-                    <p class="subtitle mt-4">Individual therapy sessions typically last for 50 minutes. Group therapy
-                        sessions may range from 60 to 90 minutes, depending on the specific group's format and goals.
-                    </p>
-                </details>
-
-                <details class="card group [&_summary::-webkit-details-marker]:hidden">
-                    <summary class="between cursor-pointer">
-                        <h3 class="title">Is what I share in therapy confidential?</h3>
-                        <span
-                            class="material-symbols-outlined txt-2 transition group-open:rotate-180">expand_more</span>
-                    </summary>
-                    <p class="subtitle mt-4">Yes, confidentiality is a cornerstone of therapy. Everything you discuss
-                        with your therapist is private, with a few legal and ethical exceptions designed to protect your
-                        safety and the safety of others, which will be explained in your first session.</p>
-                </details>
-            </div>
+    <section class="section p-4 pb-20">
+        <div class="cta rounded-3xl">
+            <h2 class="cta-title">Begin Your Healing Journey</h2>
+            <p class="cta-text max-w-lg mx-auto">Our initial consultation is free and confidential. See if we're the right fit for you today.</p>
+            <button class="btn-primary btn-lg px-10 mt-4" onclick="requireAuth(() => gotoPage('<?php echo url('booking session/'); ?>'))">Schedule Your Consultation</button>
         </div>
-
-        <!-- CTA Section -->
-        <div class="section px-4">
-            <div class="card bg-primary/20 dark:bg-primary/10 border-primary/30 center-flex flex-col text-center py-12">
-                <h2 class="txt-2xl txt mb-4">Ready to Begin Your Journey?</h2>
-                <p class="txt-2 max-w-xl mb-6">Take the first step towards a healthier mind. Our initial consultation is
-                    free, confidential, and a great way to see if we're the right fit for you.</p>
-                <a href="<?php echo url('login'); ?>" class="btn-primary btn-lg">
-                    <span class="truncate-text">Schedule Your Free Consultation</span>
-                </a>
-            </div>
-        </div>
-
-    </div>
+    </section>
 </main>
 
-<?php
-put_footer();
-
-?>
+<?php put_footer(); ?>

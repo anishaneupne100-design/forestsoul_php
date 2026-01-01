@@ -1,9 +1,13 @@
 <?php
 // Redirect if already logged in
-require_once __DIR__ . '/../backend/middleware/guest.php';
+include_once '../head.php';
+
+if (Auth::check()) {
+    header('Location: ' . url('profile/'));
+    exit;
+}
 
 $title = "Sign Up - ForestSoul";
-include '../head.php';
 ?>
 
 <body class="body">
@@ -58,10 +62,10 @@ include '../head.php';
 </button>
 </div>
 <p class="text-center txt-sm text-white/60 pt-2">
-By creating an account, you agree to our <a class="link font-medium text-primary/80 hover:text-primary" href="#">Terms of Service</a> and <a class="link font-medium text-primary/80 hover:text-primary" href="#">Privacy Policy</a>.
+    By creating an account, you agree to our <a class="link font-medium text-primary/80 hover:text-primary" href="<?php echo url('terms'); ?>">Terms of Service</a> and <a class="link font-medium text-primary/80 hover:text-primary" href="<?php echo url('privacy'); ?>">Privacy Policy</a>.
 </p>
 <p class="text-center txt-sm text-white/80 pt-4">
-Already have an account? <a class="link font-bold text-primary" href="<?php echo url('login'); ?>">Log In</a>
+    Already have an account? <a class="link font-bold text-primary" href="<?php echo url('login/'); ?>">Log In</a>
 </p>
 </form>
 </div>
@@ -124,7 +128,7 @@ document.getElementById('signup-form').addEventListener('submit', async function
             
             // Redirect after success
             setTimeout(() => {
-                window.location.href = response.redirect || ROUTES.HOME;
+                window.location.href = response.redirect || ROUTES.home;
             }, 1500);
         } else {
             errorDiv.textContent = response.message || 'Registration failed. Please try again.';
