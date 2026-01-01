@@ -70,10 +70,10 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/components/navbar.php';
       </div>
     </div>
     <div>
-      <p class="text-black dark:text-white text-base font-bold leading-normal">7 Days of Mindful
-        Mornings</p>
-      <p class="text-gray-500 dark:text-gray-400 text-sm font-normal leading-normal">Start your day
-        with clarity</p>
+      <div class="text-black dark:text-white text-base font-bold leading-normal"><a href="./7_day_morning.php">7 Days of Mindful
+        Mornings</a></div>
+      <div class="text-gray-500 dark:text-gray-400 text-sm font-normal leading-normal"><a href="./7_day_morning.php">Start your day
+        with clarity</a></div>
       <p class="text-gray-500 dark:text-gray-400 text-sm font-normal leading-normal">10 min •
         Beginner</p>
     </div>
