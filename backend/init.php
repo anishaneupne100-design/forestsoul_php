@@ -19,6 +19,7 @@ require_once BACKEND_PATH . '/event_actions.php';
 require_once BACKEND_PATH . '/community_actions.php';
 require_once BACKEND_PATH . '/admin_actions.php';
 require_once BACKEND_PATH . '/notification_actions.php';
+require_once BACKEND_PATH . '/expert_actions.php';
 
 // Auth Helper Functions
 function is_logged_in() {

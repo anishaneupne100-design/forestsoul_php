@@ -147,6 +147,74 @@ try {
     $pdo->exec($sql_likes);
     echo "Community Likes table created.\n";
 
+    // 9. Activity Logs Table
+    $pdo->exec("DROP TABLE IF EXISTS activity_logs");
+    $sql_activity = "
+    CREATE TABLE activity_logs (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        user_id INT NOT NULL,
+        action VARCHAR(255) NOT NULL,
+        details TEXT,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+    ";
+    $pdo->exec($sql_activity);
+    echo "Activity Logs table created.\n";
+
+    // 10. Experts Table
+    $pdo->exec("DROP TABLE IF EXISTS experts");
+    $sql_experts = "
+    CREATE TABLE experts (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        user_id INT NOT NULL,
+        name VARCHAR(100) NOT NULL,
+        lastname VARCHAR(100),
+        email VARCHAR(150),
+        phone_1 VARCHAR(20) NOT NULL,
+        phone_2 VARCHAR(20),
+        address TEXT,
+        degree VARCHAR(255),
+        specialization VARCHAR(255),
+        experience_years INT,
+        bio TEXT,
+        profile_picture VARCHAR(255),
+        is_active BOOLEAN DEFAULT 1,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+        FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+    ";
+    $pdo->exec($sql_experts);
+    echo "Experts table created.\n";
+
+    // 11. Expert Applications Table
+    $pdo->exec("DROP TABLE IF EXISTS expert_applications");
+    $sql_expert_apps = "
+    CREATE TABLE expert_applications (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        user_id INT NOT NULL,
+        name VARCHAR(100) NOT NULL,
+        lastname VARCHAR(100),
+        email VARCHAR(150),
+        phone_1 VARCHAR(20) NOT NULL,
+        phone_2 VARCHAR(20),
+        address TEXT,
+        degree VARCHAR(255),
+        specialization VARCHAR(255),
+        experience_years INT,
+        bio TEXT,
+        profile_picture VARCHAR(255),
+        proof_url VARCHAR(255),
+        remarks TEXT,
+        status ENUM('pending', 'approved', 'rejected') DEFAULT 'pending',
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+    ";
+    $pdo->exec($sql_expert_apps);
+    echo "Expert Applications table created.\n";
+
     // Enable foreign key checks
     $pdo->exec("SET FOREIGN_KEY_CHECKS = 1");
 

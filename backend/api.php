@@ -69,6 +69,94 @@ switch ($action) {
             $response = $postResponse;
         }
         break;
+
+    case 'get_user_activity':
+        if (!is_logged_in()) {
+            $response = ['success' => false, 'message' => 'Unauthorized'];
+            break;
+        }
+        $response = get_user_activity($_SESSION['user_id']);
+        break;
+
+    case 'update_profile':
+        if (!is_logged_in()) {
+            $response = ['success' => false, 'message' => 'Unauthorized'];
+            break;
+        }
+        if ($method === 'POST') {
+            $response = update_user_profile($_SESSION['user_id'], $input);
+            // Update session data
+            if ($response['success']) {
+                $userRes = get_user_profile($_SESSION['user_id']);
+                if ($userRes['success']) {
+                    $_SESSION['user'] = $userRes['data'];
+                }
+            }
+        }
+        break;
+
+    case 'delete_account':
+        if (!is_logged_in()) {
+            $response = ['success' => false, 'message' => 'Unauthorized'];
+            break;
+        }
+        if ($method === 'POST') {
+            $response = delete_user_account($_SESSION['user_id']);
+            if ($response['success']) {
+                session_destroy();
+            }
+        }
+        break;
+
+    case 'apply_expert':
+        if (!is_logged_in()) {
+            $response = ['success' => false, 'message' => 'Unauthorized'];
+            break;
+        }
+        if ($method === 'POST') {
+            // Since this might be a multipart form, we use $_POST and $_FILES
+            $data = !empty($input) ? $input : $_POST;
+            $response = apply_to_be_expert($_SESSION['user_id'], $data, $_FILES);
+        }
+        break;
+
+    case 'get_expert_status':
+        if (!is_logged_in()) {
+            $response = ['success' => false, 'message' => 'Unauthorized'];
+            break;
+        }
+        $response = get_user_expert_status($_SESSION['user_id']);
+        break;
+
+    case 'toggle_expert_pause':
+        if (!is_logged_in()) {
+            $response = ['success' => false, 'message' => 'Unauthorized'];
+            break;
+        }
+        if ($method === 'POST') {
+            $isPaused = $input['is_paused'] ?? false;
+            $response = toggle_expert_pause($_SESSION['user_id'], $isPaused);
+        }
+        break;
+
+    case 'admin_get_expert_apps':
+        if (!is_admin_user()) {
+            $response = ['success' => false, 'message' => 'Unauthorized'];
+            break;
+        }
+        $response = get_pending_expert_applications($_SESSION['user_id']);
+        break;
+
+    case 'admin_approve_expert':
+        if (!is_admin_user()) {
+            $response = ['success' => false, 'message' => 'Unauthorized'];
+            break;
+        }
+        if ($method === 'POST') {
+            $appId = $input['app_id'] ?? null;
+            $response = approve_expert_application($appId);
+        }
+        break;
 }
 
 header('Content-Type: application/json');
