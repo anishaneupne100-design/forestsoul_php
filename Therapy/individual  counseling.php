@@ -1,133 +1,73 @@
 <?php
-$title = 'Individual Counseling - ForestSoul';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/components/navbar.php';
-
+// therapy/individual counseling.php
+$title = "Individual Counseling - ForestSoul";
+include_once '../head.php';
+include_once '../components/navbar.php';
 ?>
 
-
-
-<main class="container-main">
-    <div class="content gap-lg">
-
-        <!-- Breadcrumb -->
-        <nav class="row gap-sm txt-sm px-4">
-            <a href="<?php echo url('home'); ?>" class="txt-2 hover:text-primary">Home</a>
-            <span class="txt-2">/</span>
-            <a href="<?php echo url('therapy'); ?>" class="txt-2 hover:text-primary">Therapy</a>
-            <span class="txt-2">/</span>
-            <span class="txt">Individual Counseling</span>
-        </nav>
-
-        <!-- Hero Section -->
-        <div class="@container">
-            <div class="hero rounded-box items-start justify-end text-left px-6 pb-10 md:px-10"
-                style='background-image: linear-gradient(rgba(0, 0, 0, 0.0) 0%, rgba(16, 34, 22, 0.7) 100%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuDx9Mb_XBk7_PBt3Jc2pXxpkgkcs-pqwqcNbP_uPVsvBHg0XerPvy7F-K49Nof3Z1aB8aHRLfYxBU_uLtESMDViRsl98qOjTb8SHxfB2sPTRh8RGZM-PEhBCP3OVbgUFip9BbDcEQnSXckY5WtzXf8XO6WzaZuIFR4dO3fUL-1egyh31Bu0IYnb_e1qjmhtAsYimelJw2WlpzaXHY7xnw3bzWz-4xqJH2qGN4snqHghMoaaz87mDPimJbfTXJ8IPs4aFpNoozntnF4");'>
-                <div class="col gap-md">
-                    <h1 class="hero-title md:text-5xl">Personalized Support for Your Journey</h1>
-                    <p class="hero-text md:text-base max-w-2xl">Discover the benefits of one-on-one therapy in a safe,
-                        confidential, and supportive environment. We're here to help you navigate life's challenges.</p>
+<main class="flex-grow">
+    <!-- Hero -->
+    <section class="section @container mt-0">
+        <div class="@[480px]:p-4">
+            <div class="hero @[480px]:rounded-xl text-center"
+                style='background-image: linear-gradient(rgba(16, 34, 22, 0.4) 0%, rgba(16, 34, 22, 0.8) 100%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuDx9Mb_XBk7_PBt3Jc2pXxpkgkcs-pqwqcNbP_uPVsvBHg0XerPvy7F-K49Nof3Z1aB8aHRLfYxBU_uLtESMDViRsl98qOjTb8SHxfB2sPTRh8RGZM-PEhBCP3OVbgUFip9BbDcEQnSXckY5WtzXf8XO6WzaZuIFR4dO3fUL-1egyh31Bu0IYnb_e1qjmhtAsYimelJw2WlpzaXHY7xnw3bzWz-4xqJH2qGN4snqHghMoaaz87mDPimJbfTXJ8IPs4aFpNoozntnF4");'>
+                <div class="col gap-md max-w-3xl px-4">
+                    <h1 class="hero-title @[480px]:text-5xl">Personalized Support for Your Journey</h1>
+                    <p class="hero-text @[480px]:text-lg">Discover the benefits of one-on-one therapy in a safe, confidential, and supportive environment. We're here to help you navigate life's challenges at your own pace.</p>
                 </div>
-                <a href="<?php echo url('login'); ?>" class="btn-primary btn-lg">
-                    <span class="truncate-text">Book a Free Consultation</span>
-                </a>
+                <button class="btn-primary btn-lg mt-6" onclick="requireAuth(() => gotoPage(ROUTES.therapy))">
+                    <span class="truncate">Book a Free Consultation</span>
+                </button>
             </div>
         </div>
+    </section>
 
-        <!-- Why Choose Section -->
-        <section class="section px-4">
-            <h2 class="heading mb-6">Why Choose Individual Counseling?</h2>
+    <!-- Content -->
+    <section class="section px-4 max-w-6xl mx-auto py-12">
+        <h2 class="text-center txt-3xl font-bold mb-12">Why Choose Individual Counseling?</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="card bg-surface-dark border-white/5 p-8 col gap-4">
+                <span class="material-symbols-outlined text-primary text-4xl">lock</span>
+                <h3 class="txt-xl font-bold">Confidential Space</h3>
+                <p class="txt-2 txt-sm">A secure and private setting where you can openly share your thoughts and feelings without judgment.</p>
+            </div>
+            <div class="card bg-surface-dark border-white/5 p-8 col gap-4">
+                <span class="material-symbols-outlined text-primary text-4xl">psychology</span>
+                <h3 class="txt-xl font-bold">Personal Strategies</h3>
+                <p class="txt-2 txt-sm">Receive tailored guidance and coping mechanisms designed specifically for your unique situation and goals.</p>
+            </div>
+            <div class="card bg-surface-dark border-white/5 p-8 col gap-4">
+                <span class="material-symbols-outlined text-primary text-4xl">hub</span>
+                <h3 class="txt-xl font-bold">Self-Understanding</h3>
+                <p class="txt-2 txt-sm">Gain valuable insights into your own patterns of thought, emotion, and behavior to foster long-term growth.</p>
+            </div>
+        </div>
+    </section>
 
-            <div class="grid-auto">
-                <div class="card-feature">
-                    <span class="material-symbols-outlined text-primary text-3xl">lock</span>
-                    <div class="col gap-sm">
-                        <h3 class="title">Confidential Space</h3>
-                        <p class="subtitle">A secure and private setting where you can openly share your thoughts and
-                            feelings without judgment.</p>
-                    </div>
+    <!-- Methods -->
+    <section class="section px-4 py-20 bg-background-dark/50">
+        <div class="max-w-5xl mx-auto">
+            <h2 class="txt-3xl font-bold mb-10 text-center">Therapeutic Methods</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
+                <div class="col gap-2">
+                    <h4 class="text-primary font-bold">Cognitive Behavioral Therapy (CBT)</h4>
+                    <p class="txt-2 txt-sm">Helps you identify and change destructive thinking patterns. Practical and goal-oriented.</p>
                 </div>
-
-                <div class="card-feature">
-                    <span class="material-symbols-outlined text-primary text-3xl">psychology</span>
-                    <div class="col gap-sm">
-                        <h3 class="title">Personalized Strategies</h3>
-                        <p class="subtitle">Receive tailored guidance and coping mechanisms designed specifically for
-                            your unique situation and goals.</p>
-                    </div>
+                <div class="col gap-2">
+                    <h4 class="text-primary font-bold">Dialectical Behavior Therapy (DBT)</h4>
+                    <p class="txt-2 txt-sm">Focuses on mindfulness, distress tolerance, and emotional regulation in relationships.</p>
                 </div>
-
-                <div class="card-feature">
-                    <span class="material-symbols-outlined text-primary text-3xl">hub</span>
-                    <div class="col gap-sm">
-                        <h3 class="title">Deeper Self-Understanding</h3>
-                        <p class="subtitle">Gain valuable insights into your own patterns of thought, emotion, and
-                            behavior to foster growth.</p>
-                    </div>
+                <div class="col gap-2">
+                    <h4 class="text-primary font-bold">Mindfulness-Based Therapy</h4>
+                    <p class="txt-2 txt-sm">Integrates mindfulness with psychotherapy to reduce stress and improve self-awareness.</p>
+                </div>
+                <div class="col gap-2">
+                    <h4 class="text-primary font-bold">Person-Centered Therapy</h4>
+                    <p class="txt-2 txt-sm">A supportive environment where you explore your own feelings to find your own solutions.</p>
                 </div>
             </div>
-        </section>
-
-        <!-- Therapeutic Methods Section -->
-        <section class="section px-4">
-            <h2 class="heading mb-6">Therapeutic Methods We Use</h2>
-
-            <div class="grid-2">
-                <div class="col gap-sm">
-                    <h3 class="text-primary font-bold txt-lg">Cognitive Behavioral Therapy (CBT)</h3>
-                    <p class="subtitle">CBT helps you identify and change destructive thinking patterns and behaviors.
-                        It's a practical, goal-oriented approach effective for anxiety, depression, and more.</p>
-                </div>
-
-                <div class="col gap-sm">
-                    <h3 class="text-primary font-bold txt-lg">Dialectical Behavior Therapy (DBT)</h3>
-                    <p class="subtitle">DBT is designed to help you manage painful emotions and decrease conflict in
-                        relationships. It focuses on mindfulness, distress tolerance, and emotional regulation.</p>
-                </div>
-
-                <div class="col gap-sm">
-                    <h3 class="text-primary font-bold txt-lg">Mindfulness-Based Therapy</h3>
-                    <p class="subtitle">This approach integrates mindfulness practices with psychotherapy to help you
-                        develop a new relationship with your thoughts and feelings, reducing stress and improving
-                        well-being.</p>
-                </div>
-
-                <div class="col gap-sm">
-                    <h3 class="text-primary font-bold txt-lg">Person-Centered Therapy</h3>
-                    <p class="subtitle">Here, the focus is on you. Our therapists provide a supportive environment in
-                        which you can explore your own feelings, beliefs, and behaviors to find your own solutions.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Testimonial Section -->
-        <section class="section px-4">
-            <div
-                class="card bg-primary/10 dark:bg-primary/5 border-primary/20 center-flex flex-col text-center py-8 max-w-3xl mx-auto">
-                <p class="txt italic text-lg">"Working with my therapist at ForestSoul gave me the clarity I was
-                    missing. It's a truly safe space to grow and heal."</p>
-                <span class="txt-2 mt-4 font-semibold">— A.T.</span>
-            </div>
-        </section>
-
-        <!-- CTA Section -->
-        <section class="section px-4">
-            <div class="row flex-col md:flex-row gap-lg items-center">
-                <div class="flex-1 col gap-md text-center md:text-left">
-                    <h2 class="heading">Ready to Begin?</h2>
-                    <p class="txt-2">Taking the first step is often the hardest. We've made our process simple and
-                        transparent to help you get started on your path to wellness.</p>
-                </div>
-                <div class="flex-shrink-0">
-                    <a href="<?php echo url('therapy'); ?>" class="btn-primary btn-lg">
-                        <span class="truncate-text">Browse Our Therapists</span>
-                    </a>
-                </div>
-            </div>
-        </section>
-
-    </div>
+        </div>
+    </section>
 </main>
 
-<?php
-put_footer();
-?>
+<?php put_footer(); ?>

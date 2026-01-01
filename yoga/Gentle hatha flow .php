@@ -1,9 +1,6 @@
-<?php
-// the title of the page
 $title = "Gentle Hatha Flow - ForestSoul";
-
-// require the navbar
-require_once $_SERVER['DOCUMENT_ROOT'] . '/components/navbar.php';
+include_once '../head.php';
+include_once '../components/navbar.php';
 
 ?>
 

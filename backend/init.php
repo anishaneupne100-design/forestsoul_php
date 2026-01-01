@@ -45,21 +45,37 @@ function require_login() {
 function url($path = '') {
     // Clean path
     $path = ltrim($path, '/');
-    
-    // Check if running on localhost with subdirectory or root
-    // This simple logic assumes the script is running in a way where relative paths from root work
-    // best approach for PHP SSR often starts with / if we know the root.
-    // If user is running php -S localhost:8000, root is /.
-    // If xampp/htdocs/project, root is /project/.
-    
-    // Let's try to detect base URL dynamically for robustness
-    $scriptDir = str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME']));
-    // This is rough. For now, assuming relative to root of the project is what we want.
-    // Ideally, we define a constant manually or use relative paths.
-    
     return ROOT_URL . $path; 
 }
 
+/**
+ * Auth Class - Wrapper for session-based authentication
+ * Provides a clean interface for frontend components
+ */
+class Auth {
+    public static function check() {
+        return is_logged_in();
+    }
+
+    public static function user() {
+        return current_user();
+    }
+
+    public static function id() {
+        return $_SESSION['user_id'] ?? null;
+    }
+
+    public static function isAdmin() {
+        return is_admin_user();
+    }
+
+    public static function isStaff() {
+        if (!self::check()) return false;
+        $user = self::user();
+        return (isset($user['is_admin']) && $user['is_admin'] == 1) || (isset($user['is_staff']) && $user['is_staff'] == 1);
+    }
+}
+
 // Global Variables for Templates
-$currentUser = current_user();
-$isLoggedIn = is_logged_in();
+$currentUser = Auth::user();
+$isLoggedIn = Auth::check();

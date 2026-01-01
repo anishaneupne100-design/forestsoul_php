@@ -1,7 +1,6 @@
-<?php
-$title = "Power Vinyasa Yoga - ForestSoul";
-require_once $_SERVER['DOCUMENT_ROOT'] . '/components/navbar.php';
-
+$title = "Power Vinyasa - ForestSoul";
+include_once '../head.php';
+include_once '../components/navbar.php';
 ?>
 
 <main class="col gap-xl mt-5">

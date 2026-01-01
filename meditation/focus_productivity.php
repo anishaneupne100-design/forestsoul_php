@@ -1,6 +1,7 @@
 <?php
-$title = "Focus & Productivity Boost Details - ForestSoul";
-require_once $_SERVER['DOCUMENT_ROOT'] . '/components/navbar.php';
+$title = "Focus & Productivity - ForestSoul";
+include_once '../head.php';
+include_once '../components/navbar.php';
 ?>
 
 

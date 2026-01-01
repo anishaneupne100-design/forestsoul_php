@@ -1,132 +1,155 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'] . '/components/navbar.php';
+// community/index.php
+$title = "Community Grove - ForestSoul";
+include_once '../head.php';
+include_once '../components/navbar.php';
+
+// Fetch real community posts from backend
+$postsResponse = get_community_posts();
+$posts = $postsResponse['success'] ? $postsResponse['data'] : [];
 ?>
 
-<!-- HeroSection -->
-<main class="flex-1 mt-5">
-    <div class="@container">
+<main class="flex-grow">
+    <!-- HeroSection -->
+    <section class="section @container mt-0">
         <div class="@[480px]:p-4">
             <div class="hero @[480px]:rounded-xl text-center"
                 data-alt="A serene, soft-focus image of a sunlit forest path"
-                style='background-image: linear-gradient(rgba(0, 0, 0, 0.1) 0%, rgba(16, 34, 22, 0.6) 100%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuARkyWJWRxbGWSw9_bYsonTf40fjXNXBoN8MFW9gQG9_Zi6FRp1D1VC1-eDWFRp3x9RHOTH3S4MJzaLuR6UYRH2uM5nb92eKObyDLkSBLznmGcAcRxY6oH9qG20A_ihmB6ZgVbLbvLl_HO4x7QnQ6RTZ1aPLCkzOne-FY4vBrR8m901pbbGT-Yj8xCOdqNaue3lgJbJkpOVl6sVScsD14Wv1nshF0IK1nQ53EhIC3qbU6FY04LSGvhmsAqZdV530bOGaImGo-0LCQI");'>
-                <div class="col gap-sm">
+                style='background-image: linear-gradient(rgba(0, 0, 0, 0.2) 0%, rgba(16, 34, 22, 0.8) 100%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuARkyWJWRxbGWSw9_bYsonTf40fjXNXBoN8MFW9gQG9_Zi6FRp1D1VC1-eDWFRp3x9RHOTH3S4MJzaLuR6UYRH2uM5nb92eKObyDLkSBLznmGcAcRxY6oH9qG20A_ihmB6ZgVbLbvLl_HO4x7QnQ6RTZ1aPLCkzOne-FY4vBrR8m901pbbGT-Yj8xCOdqNaue3lgJbJkpOVl6sVScsD14Wv1nshF0IK1nQ53EhIC3qbU6FY04LSGvhmsAqZdV530bOGaImGo-0LCQI");'>
+                <div class="col gap-sm max-w-2xl">
                     <h1 class="hero-title @[480px]:text-5xl">Connect, Share, and Grow Together</h1>
-                    <h2 class="hero-text @[480px]:text-base max-w-lg mx-auto">Share your experiences and support one
-                        another in our community grove. This is a safe space to find connection and healing.</h2>
+                    <p class="hero-text @[480px]:text-base">Share your experiences and support one another in our community grove. This is a safe space to find connection and healing.</p>
                 </div>
-                <button class="btn-primary btn-lg">
-                    <span class="truncate">Share Your Story</span>
-                </button>
-            </div>
-        </div>
-    </div>
-    <!-- SectionHeader for Stories -->
-    <h2 class="heading px-4 pb-3 pt-10">Stories from the Forest</h2>
-    <!-- Carousel for Stories -->
-    <div
-        class="flex overflow-x-auto [-ms-scrollbar-style:none] [scrollbar-width:none] [&amp;::-webkit-scrollbar]:hidden">
-        <div class="row gap-md p-4">
-            <div class="col h-full w-72 flex-shrink-0 gap-md rounded-xl surface shadow-sm">
-                <div class="col flex-1 justify-between p-4 pt-0 gap-md">
-                    <div>
-                        <p class="title">My Journey with Meditation</p>
-                        <p class="subtitle mt-1">"ForestSoul helped me find a moment of calm in my chaotic life. The
-                            guided meditations are a true gift." - Alex P.</p>
-                    </div>
-                    <button class="btn-secondary w-full">
-                        <span class="truncate">Read Full Story</span>
+                <div class="mt-6 flex gap-4">
+                    <button class="btn-primary btn-lg" onclick="requireAuth(() => gotoPage('#create-post'))">
+                        <span class="truncate">Share Your Story</span>
                     </button>
-                </div>
-            </div>
-            <div class="col h-full w-72 flex-shrink-0 gap-md rounded-xl surface shadow-sm">
-                <div class="col flex-1 justify-between p-4 pt-0 gap-md">
-                    <div>
-                        <p class="title">Finding Peace in Nature</p>
-                        <p class="subtitle mt-1">"Connecting with nature has been so healing. I'm grateful for this
-                            community that understands." - Sarah K.</p>
-                    </div>
-                    <button class="btn-secondary w-full">
-                        <span class="truncate">Read Full Story</span>
-                    </button>
-                </div>
-            </div>
-            <div class="col h-full w-72 flex-shrink-0 gap-md rounded-xl surface shadow-sm">
-                <div class="col flex-1 justify-between p-4 pt-0 gap-md">
-                    <div>
-                        <p class="title">How Yoga Changed My Life</p>
-                        <p class="subtitle mt-1">"I never thought I could do yoga, but the beginner sessions here made
-                            it so accessible and welcoming." - David L.</p>
-                    </div>
-                    <button class="btn-secondary w-full">
-                        <span class="truncate">Read Full Story</span>
+                    <button class="btn-ghost btn-lg" onclick="scrollToElement('discussions')">
+                        <span class="truncate">Browse Discussions</span>
                     </button>
                 </div>
             </div>
         </div>
-    </div>
-    <!-- SectionHeader for Discussions -->
-    <h2 class="heading px-4 pb-3 pt-10">Community Discussions</h2>
-    <!-- Community Forum Section -->
-    <div class="p-4">
-        <div class="between flex-col sm:flex-row gap-md mb-4">
-            <div
-                class="row gap-sm overflow-x-auto [-ms-scrollbar-style:none] [scrollbar-width:none] [&amp;::-webkit-scrollbar]:hidden">
-                <button class="btn-primary flex-shrink-0">Recent</button>
-                <button class="flex-shrink-0 btn-ghost txt px-4 py-2">Popular</button>
-                <button class="flex-shrink-0 btn-ghost txt px-4 py-2">Meditation</button>
-                <button class="flex-shrink-0 btn-ghost txt px-4 py-2">Yoga</button>
+    </section>
+
+    <!-- Stories Carousel (Featured Posts) -->
+    <section class="section">
+        <h2 class="section-title">Stories from the Forest</h2>
+        <div class="flex overflow-x-auto pb-6 px-4 gap-6 [-ms-scrollbar-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+            <div class="card w-80 shrink-0">
+                <div class="col h-full justify-between">
+                    <div>
+                        <h3 class="title">My Journey with Meditation</h3>
+                        <p class="subtitle mt-2">"ForestSoul helped me find a moment of calm in my chaotic life. The guided meditations are a true gift."</p>
+                    </div>
+                    <div class="row items-center gap-2 mt-4">
+                        <div class="w-8 h-8 rounded-full bg-primary/20 center">
+                            <span class="material-symbols-outlined text-sm">person</span>
+                        </div>
+                        <span class="txt-sm font-medium">Alex P.</span>
+                    </div>
+                </div>
             </div>
-            <button class="btn-primary row gap-sm">
+            <div class="card w-80 shrink-0">
+                <div class="col h-full justify-between">
+                    <div>
+                        <h3 class="title">Finding Peace in Nature</h3>
+                        <p class="subtitle mt-2">"Connecting with nature has been so healing. I'm grateful for this community that understands."</p>
+                    </div>
+                    <div class="row items-center gap-2 mt-4">
+                        <div class="w-8 h-8 rounded-full bg-primary/20 center">
+                            <span class="material-symbols-outlined text-sm">person</span>
+                        </div>
+                        <span class="txt-sm font-medium">Sarah K.</span>
+                    </div>
+                </div>
+            </div>
+            <div class="card w-80 shrink-0">
+                <div class="col h-full justify-between">
+                    <div>
+                        <h3 class="title">How Yoga Changed My Life</h3>
+                        <p class="subtitle mt-2">"I never thought I could do yoga, but the beginner sessions here made it so accessible and welcoming."</p>
+                    </div>
+                    <div class="row items-center gap-2 mt-4">
+                        <div class="w-8 h-8 rounded-full bg-primary/20 center">
+                            <span class="material-symbols-outlined text-sm">person</span>
+                        </div>
+                        <span class="txt-sm font-medium">David L.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community Discussions Section -->
+    <section class="section" id="discussions">
+        <div class="between px-4 mb-6">
+            <h2 class="heading">Community Discussions</h2>
+            <button class="btn-primary gap-2" onclick="requireAuth(() => gotoPage('#create-post'))">
                 <span class="material-symbols-outlined text-base">add</span>
                 <span class="truncate">Create Post</span>
             </button>
         </div>
-        <div class="col gap-md">
-            <!-- Post Summary Card 1 -->
-            <div class="col sm:row gap-md p-4 rounded-xl surface shadow-sm w-full">
-                <div class="flex-1">
-                    <p class="title">Struggling with consistency in my meditation practice. Any tips?</p>
-                    <p class="subtitle mt-1">by Jamie_L</p>
-                    <p class="txt-2 txt-sm mt-2 line-clamp-2">Hey everyone, I've been trying to build a consistent
-                        meditation habit for a few months now, but I keep falling off the wagon. Some weeks I'm great
-                        and do it daily, but then something throws me off and I miss a week. It's frustrating! Does
-                        anyone have any advice on how to stay motivated and consistent?</p>
-                </div>
-                <div class="row sm:col center gap-md sm:gap-sm mt-2 sm:mt-0 ml-14 sm:ml-0">
-                    <div class="row gap-sm txt-2">
-                        <span class="material-symbols-outlined text-lg">thumb_up</span>
-                        <span class="txt-sm font-medium">12</span>
-                    </div>
-                    <div class="row gap-sm txt-2">
-                        <span class="material-symbols-outlined text-lg">chat_bubble</span>
-                        <span class="txt-sm font-medium">5</span>
-                    </div>
-                </div>
+
+        <div class="p-4">
+            <!-- Filter Tabs -->
+            <div class="row gap-2 overflow-x-auto mb-6 pb-2 [-ms-scrollbar-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+                <button class="chip bg-primary text-background-dark">All Posts</button>
+                <button class="chip">Meditation</button>
+                <button class="chip">Yoga</button>
+                <button class="chip">Mindfulness</button>
+                <button class="chip">Nature</button>
             </div>
-            <!-- Post Summary Card 2 -->
-            <div class="col sm:row gap-md p-4 rounded-xl surface shadow-sm w-full">
-                <div class="flex-1">
-                    <p class="title">A small win I wanted to share</p>
-                    <p class="subtitle mt-1">by Anonymous</p>
-                    <p class="txt-2 txt-sm mt-2 line-clamp-2">Today, for the first time in months, I felt a genuine
-                        sense of peace while walking through a local park. I just wanted to share this little victory
-                        with a community that would understand. It's the small steps that count.</p>
-                </div>
-                <div class="row sm:col center gap-md sm:gap-sm mt-2 sm:mt-0 ml-14 sm:ml-0">
-                    <div class="row gap-sm txt-2">
-                        <span class="material-symbols-outlined text-lg">thumb_up</span>
-                        <span class="txt-sm font-medium">38</span>
+
+            <div class="col gap-6">
+                <?php if (empty($posts)): ?>
+                    <div class="card center py-20 text-center">
+                        <span class="material-symbols-outlined text-5xl txt-2 mb-4">forum</span>
+                        <h3 class="txt-xl">No discussions yet</h3>
+                        <p class="txt-2 mt-2">Be the first to start a conversation!</p>
+                        <button class="btn-primary mt-6" onclick="requireAuth(() => gotoPage('#create-post'))">Create a Post</button>
                     </div>
-                    <div class="row gap-sm txt-2">
-                        <span class="material-symbols-outlined text-lg">chat_bubble</span>
-                        <span class="text-sm font-medium">15</span>
-                    </div>
-                </div>
+                <?php else: ?>
+                    <?php foreach ($posts as $post): ?>
+                        <div class="card-hover">
+                            <div class="col sm:row gap-md">
+                                <div class="flex-1">
+                                    <div class="row items-center gap-2 mb-2">
+                                        <div class="w-6 h-6 rounded-full bg-primary/20 center">
+                                            <span class="material-symbols-outlined text-xs">person</span>
+                                        </div>
+                                        <span class="txt-sm font-bold"><?php echo htmlspecialchars($post['user_name'] . ' ' . $post['user_lastname']); ?></span>
+                                        <span class="txt-2 txt-xs">• <?php echo date('M j, Y', strtotime($post['created_at'])); ?></span>
+                                    </div>
+                                    <h3 class="title text-xl mb-2"><?php echo htmlspecialchars($post['title']); ?></h3>
+                                    <p class="txt-2 txt-sm line-clamp-3"><?php echo htmlspecialchars($post['description']); ?></p>
+                                    
+                                    <?php if (!empty($post['images'])): ?>
+                                        <div class="row gap-2 mt-4 overflow-x-auto">
+                                            <?php foreach ($post['images'] as $img): ?>
+                                                <img src="<?php echo htmlspecialchars($img); ?>" alt="Post image" class="h-40 rounded-lg object-cover">
+                                            <?php endforeach; ?>
+                                        </div>
+                                    <?php endif; ?>
+                                </div>
+                                
+                                <div class="row sm:col center gap-6 sm:gap-4 sm:border-l border-border-light dark:border-border-dark sm:pl-6">
+                                    <button class="row gap-2 items-center txt-2 hover:text-primary transition-colors" title="Like">
+                                        <span class="material-symbols-outlined">thumb_up</span>
+                                        <span class="txt-sm font-bold"><?php echo $post['like_count']; ?></span>
+                                    </button>
+                                    <button class="row gap-2 items-center txt-2 hover:text-primary transition-colors" title="Comment">
+                                        <span class="material-symbols-outlined">chat_bubble</span>
+                                        <span class="txt-sm font-bold"><?php echo $post['comment_count']; ?></span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                <?php endif; ?>
             </div>
         </div>
-    </div>
+    </section>
 </main>
-<!-- Footer -->
-<?php
-put_footer();
-?>
+
+<?php put_footer(); ?>
