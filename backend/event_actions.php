@@ -93,3 +93,40 @@ function get_my_registrations($userId) {
         return ['error' => 'Database error: ' . $e->getMessage(), 'status' => 500];
     }
 }
+function get_admin_events() {
+    $pdo = get_db_connection();
+    $sql = "SELECT e.*, 
+            (SELECT COUNT(*) FROM event_registrations r WHERE r.event_id = e.id) as total_applicants,
+            (SELECT COUNT(*) FROM event_registrations r WHERE r.event_id = e.id AND r.is_approved = 0) as pending_applicants
+            FROM events e 
+            ORDER BY e.created_at DESC";
+    try {
+        $stmt = $pdo->query($sql);
+        return ['success' => true, 'data' => $stmt->fetchAll()];
+    } catch (PDOException $e) {
+        return ['error' => $e->getMessage()];
+    }
+}
+
+function get_event_with_registrations($eventId) {
+    $pdo = get_db_connection();
+    try {
+        // Event info
+        $stmt = $pdo->prepare("SELECT * FROM events WHERE id = ?");
+        $stmt->execute([$eventId]);
+        $event = $stmt->fetch();
+        if (!$event) return ['error' => 'Not found'];
+
+        // Registrations
+        $stmt = $pdo->prepare("SELECT r.*, u.name, u.lastname, u.email 
+                               FROM event_registrations r 
+                               JOIN users u ON r.user_id = u.id 
+                               WHERE r.event_id = ?");
+        $stmt->execute([$eventId]);
+        $event['registrations'] = $stmt->fetchAll();
+
+        return ['success' => true, 'data' => $event];
+    } catch (PDOException $e) {
+        return ['error' => $e->getMessage()];
+    }
+}

@@ -1,155 +1,122 @@
 <?php
 // community/index.php
-$title = "Community Grove - ForestSoul";
+require_once '../backend/init.php';
+
+// UI PARTS
+$title = "Community - ForestSoul Feed";
 include_once '../head.php';
 include_once '../components/navbar.php';
 
-// Fetch real community posts from backend
-$postsResponse = get_community_posts();
-$posts = $postsResponse['success'] ? $postsResponse['data'] : [];
+// Fetch stories directly
+$storiesRes = get_community_posts();
+$stories = $storiesRes['data'] ?? [];
 ?>
 
-<main class="flex-grow">
-    <!-- HeroSection -->
-    <section class="section @container mt-0">
-        <div class="@[480px]:p-4">
-            <div class="hero @[480px]:rounded-xl text-center"
-                data-alt="A serene, soft-focus image of a sunlit forest path"
-                style='background-image: linear-gradient(rgba(0, 0, 0, 0.2) 0%, rgba(16, 34, 22, 0.8) 100%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuARkyWJWRxbGWSw9_bYsonTf40fjXNXBoN8MFW9gQG9_Zi6FRp1D1VC1-eDWFRp3x9RHOTH3S4MJzaLuR6UYRH2uM5nb92eKObyDLkSBLznmGcAcRxY6oH9qG20A_ihmB6ZgVbLbvLl_HO4x7QnQ6RTZ1aPLCkzOne-FY4vBrR8m901pbbGT-Yj8xCOdqNaue3lgJbJkpOVl6sVScsD14Wv1nshF0IK1nQ53EhIC3qbU6FY04LSGvhmsAqZdV530bOGaImGo-0LCQI");'>
-                <div class="col gap-sm max-w-2xl">
-                    <h1 class="hero-title @[480px]:text-5xl">Connect, Share, and Grow Together</h1>
-                    <p class="hero-text @[480px]:text-base">Share your experiences and support one another in our community grove. This is a safe space to find connection and healing.</p>
+<main class="flex-grow bg-[#0f1115] min-h-screen">
+    <!-- Header Section -->
+    <div class="relative overflow-hidden pt-12 pb-20 px-4">
+        <div class="absolute inset-0 bg-primary/5 [mask-image:radial-gradient(ellipse_at_center,transparent_0%,black_100%)]"></div>
+        <div class="max-w-7xl mx-auto relative">
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-8 py-10">
+                <div class="col gap-4">
+                    <span class="chip bg-primary/10 text-primary w-fit uppercase font-bold tracking-widest text-[10px]">Heart of ForestSoul</span>
+                    <h1 class="txt-5xl font-black tracking-tight text-white leading-[1.1]">Community Feed</h1>
+                    <p class="txt-lg txt-2 max-w-xl">Join thousands of others in sharing wisdom and finding support.</p>
                 </div>
-                <div class="mt-6 flex gap-4">
-                    <button class="btn-primary btn-lg" onclick="requireAuth(() => gotoPage('#create-post'))">
-                        <span class="truncate">Share Your Story</span>
-                    </button>
-                    <button class="btn-ghost btn-lg" onclick="scrollToElement('discussions')">
-                        <span class="truncate">Browse Discussions</span>
-                    </button>
+                <div class="row gap-4 items-center">
+                    <a href="<?php echo url('community/create.php'); ?>" class="btn-primary h-14 px-8 rounded-2xl row gap-3 items-center group shadow-2xl shadow-primary/20">
+                        <i class="fa-solid fa-plus text-sm group-hover:rotate-90 transition-transform"></i>
+                        <span class="font-bold">Share Your Story</span>
+                    </a>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 
-    <!-- Stories Carousel (Featured Posts) -->
-    <section class="section">
-        <h2 class="section-title">Stories from the Forest</h2>
-        <div class="flex overflow-x-auto pb-6 px-4 gap-6 [-ms-scrollbar-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-            <div class="card w-80 shrink-0">
-                <div class="col h-full justify-between">
-                    <div>
-                        <h3 class="title">My Journey with Meditation</h3>
-                        <p class="subtitle mt-2">"ForestSoul helped me find a moment of calm in my chaotic life. The guided meditations are a true gift."</p>
-                    </div>
-                    <div class="row items-center gap-2 mt-4">
-                        <div class="w-8 h-8 rounded-full bg-primary/20 center">
-                            <span class="material-symbols-outlined text-sm">person</span>
-                        </div>
-                        <span class="txt-sm font-medium">Alex P.</span>
-                    </div>
+    <!-- Feed Layout -->
+    <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-12 gap-10 pb-20 -mt-10 relative z-10">
+        
+        <!-- Left Sidebar -->
+        <aside class="lg:col-span-3 hidden lg:flex flex-col gap-8">
+            <div class="card bg-surface-dark/50 backdrop-blur-xl border-white/5 p-6 rounded-3xl sticky top-24">
+                <h3 class="txt-xs font-black uppercase text-white/50 tracking-widest mb-6">Explore Topics</h3>
+                <nav class="col gap-2">
+                    <a href="#" class="row gap-3 px-4 py-3 rounded-2xl bg-primary/10 text-primary font-bold">
+                        <i class="fa-solid fa-clock"></i> Latest Stories
+                    </a>
+                    <a href="#" class="row gap-3 px-4 py-3 rounded-2xl text-white/50 hover:bg-white/5">
+                        <i class="fa-solid fa-leaf"></i> Nature & Healing
+                    </a>
+                </nav>
+            </div>
+        </aside>
+
+        <!-- Center: The Feed -->
+        <div class="lg:col-span-6 col gap-8">
+            <?php if (empty($stories)): ?>
+                <div class="card bg-surface-dark border-white/5 p-20 text-center col items-center gap-6 rounded-[2.5rem]">
+                    <i class="fa-solid fa-ghost text-5xl text-white/10"></i>
+                    <h3 class="txt-xl font-bold">Silence in the Forest</h3>
+                    <p class="txt-2">No stories have been shared yet.</p>
+                    <a href="<?php echo url('community/create.php'); ?>" class="btn-primary px-8 h-12">Create First Post</a>
                 </div>
-            </div>
-            <div class="card w-80 shrink-0">
-                <div class="col h-full justify-between">
-                    <div>
-                        <h3 class="title">Finding Peace in Nature</h3>
-                        <p class="subtitle mt-2">"Connecting with nature has been so healing. I'm grateful for this community that understands."</p>
-                    </div>
-                    <div class="row items-center gap-2 mt-4">
-                        <div class="w-8 h-8 rounded-full bg-primary/20 center">
-                            <span class="material-symbols-outlined text-sm">person</span>
-                        </div>
-                        <span class="txt-sm font-medium">Sarah K.</span>
-                    </div>
-                </div>
-            </div>
-            <div class="card w-80 shrink-0">
-                <div class="col h-full justify-between">
-                    <div>
-                        <h3 class="title">How Yoga Changed My Life</h3>
-                        <p class="subtitle mt-2">"I never thought I could do yoga, but the beginner sessions here made it so accessible and welcoming."</p>
-                    </div>
-                    <div class="row items-center gap-2 mt-4">
-                        <div class="w-8 h-8 rounded-full bg-primary/20 center">
-                            <span class="material-symbols-outlined text-sm">person</span>
-                        </div>
-                        <span class="txt-sm font-medium">David L.</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Community Discussions Section -->
-    <section class="section" id="discussions">
-        <div class="between px-4 mb-6">
-            <h2 class="heading">Community Discussions</h2>
-            <button class="btn-primary gap-2" onclick="requireAuth(() => gotoPage('#create-post'))">
-                <span class="material-symbols-outlined text-base">add</span>
-                <span class="truncate">Create Post</span>
-            </button>
-        </div>
-
-        <div class="p-4">
-            <!-- Filter Tabs -->
-            <div class="row gap-2 overflow-x-auto mb-6 pb-2 [-ms-scrollbar-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-                <button class="chip bg-primary text-background-dark">All Posts</button>
-                <button class="chip">Meditation</button>
-                <button class="chip">Yoga</button>
-                <button class="chip">Mindfulness</button>
-                <button class="chip">Nature</button>
-            </div>
-
-            <div class="col gap-6">
-                <?php if (empty($posts)): ?>
-                    <div class="card center py-20 text-center">
-                        <span class="material-symbols-outlined text-5xl txt-2 mb-4">forum</span>
-                        <h3 class="txt-xl">No discussions yet</h3>
-                        <p class="txt-2 mt-2">Be the first to start a conversation!</p>
-                        <button class="btn-primary mt-6" onclick="requireAuth(() => gotoPage('#create-post'))">Create a Post</button>
-                    </div>
-                <?php else: ?>
-                    <?php foreach ($posts as $post): ?>
-                        <div class="card-hover">
-                            <div class="col sm:row gap-md">
-                                <div class="flex-1">
-                                    <div class="row items-center gap-2 mb-2">
-                                        <div class="w-6 h-6 rounded-full bg-primary/20 center">
-                                            <span class="material-symbols-outlined text-xs">person</span>
-                                        </div>
-                                        <span class="txt-sm font-bold"><?php echo htmlspecialchars($post['user_name'] . ' ' . $post['user_lastname']); ?></span>
-                                        <span class="txt-2 txt-xs">• <?php echo date('M j, Y', strtotime($post['created_at'])); ?></span>
-                                    </div>
-                                    <h3 class="title text-xl mb-2"><?php echo htmlspecialchars($post['title']); ?></h3>
-                                    <p class="txt-2 txt-sm line-clamp-3"><?php echo htmlspecialchars($post['description']); ?></p>
-                                    
-                                    <?php if (!empty($post['images'])): ?>
-                                        <div class="row gap-2 mt-4 overflow-x-auto">
-                                            <?php foreach ($post['images'] as $img): ?>
-                                                <img src="<?php echo htmlspecialchars($img); ?>" alt="Post image" class="h-40 rounded-lg object-cover">
-                                            <?php endforeach; ?>
-                                        </div>
-                                    <?php endif; ?>
+            <?php else: foreach($stories as $post): ?>
+                <article class="card bg-surface-dark border-white/5 p-0 rounded-[2.5rem] overflow-hidden group">
+                    <div class="p-8">
+                        <div class="row items-center justify-between mb-8">
+                            <div class="row gap-4 items-center">
+                                <div class="size-11 rounded-2xl bg-primary/20 center font-bold text-primary">
+                                    <?php echo $post['user_name'][0]; ?>
                                 </div>
-                                
-                                <div class="row sm:col center gap-6 sm:gap-4 sm:border-l border-border-light dark:border-border-dark sm:pl-6">
-                                    <button class="row gap-2 items-center txt-2 hover:text-primary transition-colors" title="Like">
-                                        <span class="material-symbols-outlined">thumb_up</span>
-                                        <span class="txt-sm font-bold"><?php echo $post['like_count']; ?></span>
-                                    </button>
-                                    <button class="row gap-2 items-center txt-2 hover:text-primary transition-colors" title="Comment">
-                                        <span class="material-symbols-outlined">chat_bubble</span>
-                                        <span class="txt-sm font-bold"><?php echo $post['comment_count']; ?></span>
-                                    </button>
+                                <div class="col">
+                                    <h4 class="txt-sm font-bold text-white"><?php echo htmlspecialchars($post['user_name']); ?></h4>
+                                    <span class="text-[10px] text-white/30 uppercase font-bold"><?php echo date('M d', strtotime($post['created_at'])); ?></span>
                                 </div>
                             </div>
                         </div>
-                    <?php endforeach; ?>
-                <?php endif; ?>
-            </div>
+
+                        <h2 class="txt-2xl font-bold mb-4 leading-tight group-hover:text-primary transition-colors"><?php echo htmlspecialchars($post['title']); ?></h2>
+                        <p class="txt-base txt-2 line-clamp-4 leading-relaxed mb-8"><?php echo htmlspecialchars($post['description']); ?></p>
+                        
+                        <div class="row items-center justify-between pt-8 border-t border-white/5">
+                            <div class="row gap-2">
+                                <button onclick="handleLike(<?php echo $post['id']; ?>, this)" class="row gap-3 py-3 px-6 rounded-2xl bg-white/3 text-white/50 hover:bg-red-500/10 hover:text-red-500 transition-all font-bold">
+                                    <i class="fa-regular fa-heart"></i>
+                                    <span><?php echo $post['like_count']; ?></span>
+                                </button>
+                                <button class="row gap-3 py-3 px-6 rounded-2xl bg-white/3 text-white/50 hover:bg-blue-500/10 hover:text-blue-500 transition-all font-bold">
+                                    <i class="fa-regular fa-comment"></i>
+                                    <span><?php echo $post['comment_count']; ?></span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            <?php endforeach; endif; ?>
         </div>
-    </section>
+
+        <!-- Right Sidebar -->
+        <aside class="lg:col-span-3 col gap-8">
+            <div class="card bg-[#1a1c22] p-8 rounded-3xl border-primary/20 border text-center col gap-4">
+                <i class="fa-solid fa-shield-heart text-3xl text-primary"></i>
+                <h4 class="txt-lg font-bold">Need help?</h4>
+                <p class="txt-sm txt-2">Talk to our certified therapists for support.</p>
+                <a href="<?php echo url('therapy/'); ?>" class="btn-ghost h-11 w-full bg-primary/10 text-primary">View Experts</a>
+            </div>
+        </aside>
+    </div>
 </main>
+
+<script>
+async function handleLike(postId, btn) {
+    if (!requireAuth()) return;
+    try {
+        const res = await api('toggle_like', { post_id: postId });
+        if (res.success) {
+            window.location.reload(); // Simple reload for state update
+        }
+    } catch(e) {}
+}
+</script>
 
 <?php put_footer(); ?>

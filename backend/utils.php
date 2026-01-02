@@ -15,7 +15,24 @@ function log_activity($userId, $action, $details = null) {
         $stmt->execute([$userId, $action, $details]);
         return true;
     } catch (Exception $e) {
-        // Silently fail or log to file
         return false;
     }
+}
+
+function upload_file($file, $subDir) {
+    if (!$file || $file['error'] !== UPLOAD_ERR_OK) return null;
+    
+    $uploadDir = __DIR__ . '/../media/' . $subDir;
+    if (!is_dir($uploadDir)) {
+        mkdir($uploadDir, 0777, true);
+    }
+    
+    $extension = pathinfo($file['name'], PATHINFO_EXTENSION);
+    $filename = uniqid() . '.' . $extension;
+    $targetPath = $uploadDir . $filename;
+    
+    if (move_uploaded_file($file['tmp_name'], $targetPath)) {
+        return 'media/' . $subDir . $filename;
+    }
+    return null;
 }

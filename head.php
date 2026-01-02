@@ -22,6 +22,10 @@ $basePath = ROOT_URL;
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
     
+    <!-- Icons & Libs -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    
     <!-- Styles -->
     <link href="<?php echo url('assets/output.css'); ?>" rel="stylesheet"/>
 
@@ -103,6 +107,46 @@ $basePath = ROOT_URL;
             console.error('API Error:', error);
             return { success: false, message: 'Network error or invalid response' };
         }
+    }
+
+    // Scroll helper
+    function scrollToElement(id) {
+        const el = document.getElementById(id);
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Modern Toast Message System
+    function showToast(message, type = 'info') {
+        const id = 'toast-' + Date.now();
+        const colors = {
+            success: 'bg-green-500',
+            error: 'bg-red-500',
+            info: 'bg-primary',
+            warning: 'bg-orange-500'
+        };
+        const icons = {
+            success: 'check_circle',
+            error: 'error',
+            info: 'info',
+            warning: 'warning'
+        };
+        
+        const toast = `
+            <div id="${id}" class="fixed bottom-4 right-4 z-[200] transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none">
+                <div class="${colors[type]} text-white px-6 py-4 rounded-xl shadow-2xl flex items-center gap-4 min-w-[300px]">
+                    <span class="material-symbols-outlined">${icons[type]}</span>
+                    <span class="font-bold flex-1">${message}</span>
+                </div>
+            </div>
+        `;
+        
+        $('body').append(toast);
+        const $el = $('#' + id);
+        setTimeout(() => $el.removeClass('translate-y-20 opacity-0').addClass('translate-y-0 opacity-100'), 100);
+        setTimeout(() => {
+            $el.addClass('translate-y-20 opacity-0');
+            setTimeout(() => $el.remove(), 400);
+        }, 4000);
     }
     </script>
 

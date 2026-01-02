@@ -38,118 +38,160 @@ include_once 'components/navbar.php';
 
     <!-- Services Grid -->
     <section class="section">
-        <div class="text-center px-4 mb-12">
-            <h2 class="txt-3xl txt">Your Path to Wellness</h2>
-            <p class="txt-2 mt-3 max-w-2xl mx-auto">Explore our comprehensive suite of tools designed to nurture your mind, body, and connection to nature.</p>
+        <div class="text-center px-4 mb-16 col gap-4">
+            <span class="chip bg-primary/10 text-primary w-fit mx-auto uppercase font-black tracking-[0.2em] text-[10px]">What we offer</span>
+            <h2 class="txt-4xl font-black text-white">Your Path to Wellness</h2>
+            <p class="txt-lg txt-2 max-w-2xl mx-auto">Explore our comprehensive suite of tools designed to nurture your mind, body, and connection to nature.</p>
         </div>
-        <div class="grid-3 p-4">
-            <a class="card-feature group" href="<?php echo url('meditation/'); ?>">
-                <span class="material-symbols-outlined icon-lg group-hover:scale-110 transition-transform">self_improvement</span>
-                <div class="col gap-1">
-                    <h3 class="title">Meditation</h3>
-                    <p class="subtitle">Guided sessions to calm your mind and find focus in the present moment.</p>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 p-4 max-w-7xl mx-auto">
+            <a class="card-feature group hover:border-primary/50 hover:shadow-2xl hover:shadow-primary/5 transition-all duration-500" href="<?php echo url('meditation/'); ?>">
+                <div class="size-14 rounded-2xl bg-primary/10 center text-primary group-hover:bg-primary group-hover:text-background-dark transition-all duration-500 shadow-lg">
+                    <i class="fa-solid fa-person-praying text-2xl group-hover:scale-110 transition-transform"></i>
+                </div>
+                <div class="col gap-2">
+                    <h3 class="txt-xl font-bold group-hover:text-primary transition-colors">Meditation</h3>
+                    <p class="subtitle text-sm leading-relaxed">Guided sessions to calm your mind and find focus in the present moment.</p>
                 </div>
             </a>
-            <a class="card-feature group" href="<?php echo url('yoga/'); ?>">
-                <span class="material-symbols-outlined icon-lg group-hover:scale-110 transition-transform">fitbit_yoga</span>
-                <div class="col gap-1">
-                    <h3 class="title">Yoga</h3>
-                    <p class="subtitle">Flows for every level to connect body and soul with mindful movement.</p>
+            
+            <a class="card-feature group hover:border-primary/50 hover:shadow-2xl hover:shadow-primary/5 transition-all duration-500" href="<?php echo url('yoga/'); ?>">
+                <div class="size-14 rounded-2xl bg-secondary/10 center text-secondary group-hover:bg-secondary group-hover:text-background-dark transition-all duration-500 shadow-lg">
+                    <i class="fa-solid fa-child-reaching text-2xl group-hover:scale-110 transition-transform"></i>
+                </div>
+                <div class="col gap-2">
+                    <h3 class="txt-xl font-bold group-hover:text-secondary transition-colors">Yoga</h3>
+                    <p class="subtitle text-sm leading-relaxed">Flows for every level to connect body and soul with mindful movement.</p>
                 </div>
             </a>
-            <a class="card-feature group" href="<?php echo url('therapy/'); ?>">
-                <span class="material-symbols-outlined icon-lg group-hover:scale-110 transition-transform">spa</span>
-                <div class="col gap-1">
-                    <h3 class="title">Therapy</h3>
-                    <p class="subtitle">Professional support tailored to your journey of mental healing.</p>
+            
+            <a class="card-feature group hover:border-primary/50 hover:shadow-2xl hover:shadow-primary/5 transition-all duration-500" href="<?php echo url('therapy/'); ?>">
+                <div class="size-14 rounded-2xl bg-accent-blue/10 center text-accent-blue group-hover:bg-accent-blue group-hover:text-background-dark transition-all duration-500 shadow-lg">
+                    <i class="fa-solid fa-user-doctor text-2xl group-hover:scale-110 transition-transform"></i>
+                </div>
+                <div class="col gap-2">
+                    <h3 class="txt-xl font-bold group-hover:text-accent-blue transition-colors">Therapy</h3>
+                    <p class="subtitle text-sm leading-relaxed">Professional support tailored to your journey of mental healing.</p>
                 </div>
             </a>
-            <a class="card-feature group" href="<?php echo url('community/'); ?>">
-                <span class="material-symbols-outlined icon-lg group-hover:scale-110 transition-transform">groups</span>
-                <div class="col gap-1">
-                    <h3 class="title">Community</h3>
-                    <p class="subtitle">Join a safe space of like-minded individuals sharing their growth.</p>
+            
+            <a class="card-feature group hover:border-primary/50 hover:shadow-2xl hover:shadow-primary/5 transition-all duration-500" href="<?php echo url('community/'); ?>">
+                <div class="size-14 rounded-2xl bg-primary/10 center text-primary group-hover:bg-primary group-hover:text-background-dark transition-all duration-500 shadow-lg">
+                    <i class="fa-solid fa-people-group text-2xl group-hover:scale-110 transition-transform"></i>
+                </div>
+                <div class="col gap-2">
+                    <h3 class="txt-xl font-bold group-hover:text-primary transition-colors">Community</h3>
+                    <p class="subtitle text-sm leading-relaxed">Join a safe space of like-minded individuals sharing their growth.</p>
                 </div>
             </a>
-            <a class="card-feature group" href="<?php echo url('games/'); ?>">
-                <span class="material-symbols-outlined icon-lg group-hover:scale-110 transition-transform">psychology</span>
-                <div class="col gap-1">
-                    <h3 class="title">Mind Games</h3>
-                    <p class="subtitle">Engaging puzzles to sharpen your cognitive skills and focus.</p>
+            
+            <a class="card-feature group hover:border-primary/50 hover:shadow-2xl hover:shadow-primary/5 transition-all duration-500" href="<?php echo url('games/'); ?>">
+                <div class="size-14 rounded-2xl bg-secondary/10 center text-secondary group-hover:bg-secondary group-hover:text-background-dark transition-all duration-500 shadow-lg">
+                    <i class="fa-solid fa-brain text-2xl group-hover:scale-110 transition-transform"></i>
+                </div>
+                <div class="col gap-2">
+                    <h3 class="txt-xl font-bold group-hover:text-secondary transition-colors">Mind Games</h3>
+                    <p class="subtitle text-sm leading-relaxed">Engaging puzzles to sharpen your cognitive skills and focus.</p>
                 </div>
             </a>
-            <a class="card-feature group" href="<?php echo url('donation/'); ?>">
-                <span class="material-symbols-outlined icon-lg group-hover:scale-110 transition-transform">forest</span>
-                <div class="col gap-1">
-                    <h3 class="title">Donate to Nature</h3>
-                    <p class="subtitle">Support reforestation efforts and heal the planet as you heal yourself.</p>
+            
+            <a class="card-feature group hover:border-primary/50 hover:shadow-2xl hover:shadow-primary/5 transition-all duration-500" href="<?php echo url('donation/'); ?>">
+                <div class="size-14 rounded-2xl bg-accent-green/10 center text-accent-green group-hover:bg-accent-green group-hover:text-background-dark transition-all duration-500 shadow-lg">
+                    <i class="fa-solid fa-clover text-2xl group-hover:scale-110 transition-transform"></i>
+                </div>
+                <div class="col gap-2">
+                    <h3 class="txt-xl font-bold group-hover:text-accent-green transition-colors">Donate</h3>
+                    <p class="subtitle text-sm leading-relaxed">Support reforestation efforts and heal the planet as you heal yourself.</p>
                 </div>
             </a>
         </div>
     </section>
 
     <!-- How It Works -->
-    <section class="section py-16 surface">
-        <h2 class="section-title mb-10">How It Works</h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-xl p-4 text-center max-w-6xl mx-auto">
-            <div class="col items-center gap-md">
-                <div class="icon-circle">
-                    <span class="material-symbols-outlined text-4xl">explore</span>
+    <section class="section py-20 bg-surface-dark/40 relative overflow-hidden">
+        <div class="absolute inset-0 bg-primary/5 [mask-image:radial-gradient(ellipse_at_center,transparent_0%,black_100%)]"></div>
+        <div class="max-w-7xl mx-auto px-4 relative">
+            <h2 class="txt-3xl font-black text-center mb-16 tracking-tight">How It Works</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
+                <div class="col items-center gap-6 group">
+                    <div class="size-20 rounded-[2.5rem] bg-surface-dark border border-white/10 center shadow-xl rotate-6 group-hover:rotate-0 group-hover:scale-110 transition-all duration-500">
+                        <i class="fa-solid fa-compass text-3xl text-primary"></i>
+                    </div>
+                    <h3 class="txt-xl font-bold">1. Explore</h3>
+                    <p class="txt-base txt-2 leading-relaxed">Browse our diverse range of meditation, yoga, and therapy sessions tailored to your needs.</p>
                 </div>
-                <h3 class="txt-lg txt">1. Explore</h3>
-                <p class="txt-2">Browse our diverse range of meditation, yoga, and therapy sessions tailored to your needs.</p>
-            </div>
-            <div class="col items-center gap-md">
-                <div class="icon-circle">
-                    <span class="material-symbols-outlined text-4xl">connect_without_contact</span>
+                <div class="col items-center gap-6 group">
+                    <div class="size-20 rounded-[2.5rem] bg-surface-dark border border-white/10 center shadow-xl -rotate-6 group-hover:rotate-0 group-hover:scale-110 transition-all duration-500">
+                        <i class="fa-solid fa-link text-3xl text-secondary"></i>
+                    </div>
+                    <h3 class="txt-xl font-bold">2. Connect</h3>
+                    <p class="txt-base txt-2 leading-relaxed">Find the right guide or therapist for your journey and join our supportive community.</p>
                 </div>
-                <h3 class="txt-lg txt">2. Connect</h3>
-                <p class="txt-2">Find the right guide or therapist for your journey and join our supportive community.</p>
-            </div>
-            <div class="col items-center gap-md">
-                <div class="icon-circle">
-                    <span class="material-symbols-outlined text-4xl">psychology</span>
+                <div class="col items-center gap-6 group">
+                    <div class="size-20 rounded-[2.5rem] bg-surface-dark border border-white/10 center shadow-xl rotate-12 group-hover:rotate-0 group-hover:scale-110 transition-all duration-500">
+                        <i class="fa-solid fa-seedling text-3xl text-accent-green"></i>
+                    </div>
+                    <h3 class="txt-xl font-bold">3. Grow</h3>
+                    <p class="txt-base txt-2 leading-relaxed">Engage in practices that nurture your mind, body, and soul for lasting peace and balance.</p>
                 </div>
-                <h3 class="txt-lg txt">3. Grow</h3>
-                <p class="txt-2">Engage in practices that nurture your mind, body, and soul for lasting peace.</p>
             </div>
         </div>
     </section>
 
     <!-- Testimonials -->
-    <section class="section">
-        <h2 class="section-title pb-10">Voices of Our Community</h2>
-        <div class="grid-2 p-4 max-w-5xl mx-auto">
-            <div class="card bg-primary/5 border-primary/10">
-                <p class="txt-2 italic text-lg pb-4">"ForestSoul has been a sanctuary for me. The guided meditations helped me find calm during a stressful time. I'm so grateful for this platform."</p>
-                <div class="row items-center gap-3">
-                    <div class="w-10 h-10 rounded-full bg-primary/20 center">S</div>
-                    <p class="font-bold txt">Sarah J.</p>
+    <section class="section py-20">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="txt-3xl font-black text-center mb-16 tracking-tight">Voices of Our Community</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                <div class="card bg-surface-dark/50 border-white/5 p-10 rounded-[2rem] relative overflow-hidden group">
+                    <i class="fa-solid fa-quote-left absolute -left-4 -top-4 text-8xl text-primary/5 group-hover:text-primary/10 transition-colors"></i>
+                    <p class="txt-lg txt-2 italic leading-relaxed mb-6 font-medium relative z-10">"ForestSoul has been a sanctuary for me. The guided meditations helped me find calm during a stressful time. I'm so grateful for this platform."</p>
+                    <div class="row items-center gap-4 relative z-10">
+                        <div class="size-12 rounded-2xl bg-primary/20 center font-black text-primary">S</div>
+                        <div class="col">
+                            <p class="font-bold text-white">Sarah J.</p>
+                            <span class="text-[10px] uppercase tracking-widest text-primary font-black">Member since 2023</span>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="card bg-primary/5 border-primary/10">
-                <p class="txt-2 italic text-lg pb-4">"Connecting with a therapist through this site was seamless and comfortable. The focus on nature-based wellness really resonates with me."</p>
-                <div class="row items-center gap-3">
-                    <div class="w-10 h-10 rounded-full bg-primary/20 center">M</div>
-                    <p class="font-bold txt">Michael B.</p>
+                
+                <div class="card bg-surface-dark/50 border-white/5 p-10 rounded-[2rem] relative overflow-hidden group">
+                    <i class="fa-solid fa-quote-left absolute -left-4 -top-4 text-8xl text-secondary/5 group-hover:text-secondary/10 transition-colors"></i>
+                    <p class="txt-lg txt-2 italic leading-relaxed mb-6 font-medium relative z-10">"Connecting with a therapist through this site was seamless and comfortable. The focus on nature-based wellness really resonates with me."</p>
+                    <div class="row items-center gap-4 relative z-10">
+                        <div class="size-12 rounded-2xl bg-secondary/20 center font-black text-secondary">M</div>
+                        <div class="col">
+                            <p class="font-bold text-white">Michael B.</p>
+                            <span class="text-[10px] uppercase tracking-widest text-secondary font-black">Certified Member</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- CTA Section -->
-    <section class="section p-4">
-        <div class="col center gap-lg rounded-3xl bg-primary/20 border border-primary/30 p-12 text-center max-w-4xl mx-auto">
-            <h2 class="txt-4xl txt font-black">Begin Your Journey to a Calmer You</h2>
-            <p class="max-w-lg txt-2 text-lg">Join the ForestSoul community today and take the first step towards a more peaceful and balanced life.</p>
-            <div class="flex gap-4 mt-4">
+    <section class="section p-4 pb-20">
+        <div class="col center gap-10 rounded-[3rem] bg-gradient-to-br from-primary/20 to-primary/5 border border-primary/20 p-16 text-center max-w-5xl mx-auto shadow-3xl shadow-primary/5 relative overflow-hidden group">
+            <div class="absolute -right-20 -bottom-20 size-80 bg-primary/10 rounded-full blur-3xl group-hover:bg-primary/20 transition-all duration-700"></div>
+            
+            <div class="col gap-4 relative z-10">
+                <h2 class="txt-5xl font-black text-white leading-tight">Begin Your Journey to <br><span class="text-primary italic">a Calmer You</span></h2>
+                <p class="max-w-xl mx-auto txt-lg txt-2">Join the ForestSoul community today and take the first step towards a more peaceful and balanced life.</p>
+            </div>
+            
+            <div class="flex flex-col sm:flex-row gap-6 relative z-10 w-full max-w-md mx-auto">
                 <?php if (Auth::check()): ?>
-                    <button class="btn-primary btn-lg px-10" onclick="gotoPage(ROUTES.meditation)">
-                        <span class="truncate">Start Meditation</span>
+                    <button class="btn-primary h-14 flex-1 rounded-2xl row gap-3 items-center justify-center shadow-xl shadow-primary/20" onclick="gotoPage(ROUTES.meditation)">
+                        <i class="fa-solid fa-play text-xs text-background-dark"></i>
+                        <span class="font-bold">Start Meditation</span>
                     </button>
                 <?php else: ?>
-                    <button class="btn-primary btn-lg px-10" onclick="gotoPage(ROUTES.signup)">
-                        <span class="truncate">Join for Free</span>
+                    <button class="btn-primary h-14 flex-1 rounded-2xl shadow-xl shadow-primary/20 font-bold" onclick="gotoPage(ROUTES.signup)">
+                        Join for Free
+                    </button>
+                    <button class="btn-ghost h-14 flex-1 rounded-2xl border border-white/10 hover:bg-white/5 font-bold" onclick="gotoPage(ROUTES.login)">
+                        Log In
                     </button>
                 <?php endif; ?>
             </div>
