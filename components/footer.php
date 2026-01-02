@@ -1,63 +1,92 @@
-<footer class="footer">
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-xl px-4 text-sm">
-        <div class="col gap-md">
-            <h4 class="footer-title">Services</h4>
-            <a class="footer-link" href="<?php echo url('meditation'); ?>">Meditation</a>
-            <a class="footer-link" href="<?php echo url('yoga'); ?>">Yoga</a>
-            <a class="footer-link" href="<?php echo url('games'); ?>">Mind Games</a>
-            <a class="footer-link" href="<?php echo url('questionnaire'); ?>">Questionnaires</a>
+<footer class="bg-[#05070a] border-t border-white/5 pt-20 pb-10 px-6 relative overflow-hidden">
+    <!-- Subtle Background Graphic -->
+    <div class="absolute right-0 bottom-0 size-64 bg-primary/5 rounded-full blur-3xl pointer-events-none -mb-32 -mr-32"></div>
+
+    <div class="max-w-7xl mx-auto col gap-16 relative z-10">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-12">
+            
+            <!-- Brand Section -->
+            <div class="md:col-span-5 col gap-6">
+                <a href="<?php echo url(''); ?>" class="row gap-3 items-center group">
+                    <div class="size-10 rounded-xl bg-primary center text-background-dark shadow-lg shadow-primary/20 group-hover:rotate-12 transition-transform">
+                        <i class="fa-solid fa-leaf"></i>
+                    </div>
+                    <span class="txt-xl font-black italic tracking-tighter">ForestSoul</span>
+                </a>
+                <p class="txt-sm txt-2 max-w-sm leading-relaxed">
+                    A digital sanctuary for mental clarity and conscious living. We combine ancient wisdom with modern technology to help you find your inner balance.
+                </p>
+                <div class="row gap-4">
+                    <a href="#" class="size-10 rounded-xl bg-white/5 border border-white/5 center hover:bg-white/10 transition-all"><i class="fa-brands fa-instagram text-white/40"></i></a>
+                    <a href="#" class="size-10 rounded-xl bg-white/5 border border-white/5 center hover:bg-white/10 transition-all"><i class="fa-brands fa-x-twitter text-white/40"></i></a>
+                    <a href="#" class="size-10 rounded-xl bg-white/5 border border-white/5 center hover:bg-white/10 transition-all"><i class="fa-brands fa-discord text-white/40"></i></a>
+                </div>
+            </div>
+
+            <!-- Links Grid -->
+            <div class="md:col-span-7 grid grid-cols-2 sm:grid-cols-3 gap-8">
+                <div class="col gap-6">
+                    <h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-primary">Sanctuary</h4>
+                    <div class="col gap-3">
+                        <a href="<?php echo url('meditation'); ?>" class="txt-sm txt-2 hover:text-white transition-colors">Meditation</a>
+                        <a href="<?php echo url('yoga'); ?>" class="txt-sm txt-2 hover:text-white transition-colors">Yoga Flow</a>
+                        <a href="<?php echo url('games'); ?>" class="txt-sm txt-2 hover:text-white transition-colors">Focus Games</a>
+                        <a href="<?php echo url('therapy'); ?>" class="txt-sm txt-2 hover:text-white transition-colors">Expert Help</a>
+                    </div>
+                </div>
+
+                <div class="col gap-6">
+                    <h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-primary">Community</h4>
+                    <div class="col gap-3">
+                        <a href="<?php echo url('community'); ?>" class="txt-sm txt-2 hover:text-white transition-colors">Global Forum</a>
+                        <a href="<?php echo url('events'); ?>" class="txt-sm txt-2 hover:text-white transition-colors">Live Events</a>
+                        <a href="<?php echo url('questionnaire'); ?>" class="txt-sm txt-2 hover:text-white transition-colors">Mental Check</a>
+                    </div>
+                </div>
+
+                <div class="col gap-6">
+                    <h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-primary">Persona</h4>
+                    <div class="col gap-3">
+                        <?php if (Auth::check()): ?>
+                            <a href="<?php echo url('profile'); ?>" class="txt-sm txt-2 hover:text-white transition-colors">My Space</a>
+                            <a href="<?php echo url('user_progress'); ?>" class="txt-sm txt-2 hover:text-white transition-colors">Growth Log</a>
+                            <a href="<?php echo url('logout.php'); ?>" class="txt-sm text-red-400/60 hover:text-red-400 transition-colors">Exit Portal</a>
+                        <?php else: ?>
+                            <a href="<?php echo url('login'); ?>" class="txt-sm txt-2 hover:text-white transition-colors">Re-Enter</a>
+                            <a href="<?php echo url('signup'); ?>" class="txt-sm txt-2 hover:text-white transition-colors">New Journey</a>
+                        <?php endif; ?>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="col gap-md">
-            <h4 class="footer-title">About</h4>
-            <a class="footer-link" href="<?php echo url('home'); ?>">Our Mission</a>
-            <a class="footer-link" href="<?php echo url('donation'); ?>">Donate</a>
-            <a class="footer-link" href="<?php echo url('community'); ?>">Community</a>
-        </div>
-        <div class="col gap-md">
-            <h4 class="footer-title">Account</h4>
-            <?php if (Auth::check()): ?>
-                <a class="footer-link" href="<?php echo url('profile'); ?>">My Profile</a>
-                <a class="footer-link" href="<?php echo url('user_progress'); ?>">My Progress</a>
-                <a class="footer-link" href="<?php echo url('logout'); ?>">Logout</a>
-            <?php else: ?>
-                <a class="footer-link" href="<?php echo url('login'); ?>">Login</a>
-                <a class="footer-link" href="<?php echo url('signup'); ?>">Sign Up</a>
-            <?php endif; ?>
-        </div>
-        <div class="col gap-md">
-            <h4 class="footer-title">Legal</h4>
-            <a class="footer-link" href="#">Privacy Policy</a>
-            <a class="footer-link" href="#">Terms of Service</a>
-        </div>
-    </div>
-    <div class="mt-8 col sm:flex-row between gap-md border-t border-border-light dark:border-border-dark pt-4 px-4">
-        <p class="text-xs txt-2">© <?php echo date('Y'); ?> ForestSoul. All rights reserved.</p>
-        <div class="row gap-md txt-2">
-            <a class="footer-link" href="#">
-                <svg aria-hidden="true" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-                    <path clip-rule="evenodd"
-                        d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"
-                        fill-rule="evenodd"></path>
-                </svg>
-            </a>
-            <a class="footer-link" href="#">
-                <svg aria-hidden="true" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-                    <path
-                        d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.71v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84">
-                    </path>
-                </svg>
-            </a>
-            <a class="footer-link" href="#">
-                <svg aria-hidden="true" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-                    <path clip-rule="evenodd"
-                        d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.024.06 1.378.06 3.808s-.012 2.784-.06 3.808c-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.024.048-1.378.06-3.808.06s-2.784-.013-3.808-.06c-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.048-1.024-.06-1.378-.06-3.808s.012-2.784.06-3.808c.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 016.345 2.525c.636-.247 1.363.416 2.427.465C9.792 2.013 10.146 2 12.315 2zM12 7a5 5 0 100 10 5 5 0 000-10zm0-2a7 7 0 110 14 7 7 0 010-14zm6.406-2a1.25 1.25 0 100 2.5 1.25 1.25 0 000-2.5z"
-                        fill-rule="evenodd"></path>
-                </svg>
-            </a>
+
+        <!-- Bottom Bar -->
+        <div class="pt-10 border-t border-white/5 between flex-wrap gap-6">
+            <p class="text-[10px] font-black uppercase tracking-widest text-white/20">
+                &copy; <?php echo date('Y'); ?> ForestSoul Ecosystem &bull; Free Forever &bull; Proudly Mindful
+            </p>
+            <div class="row gap-6">
+                <span class="text-[10px] font-black uppercase tracking-widest text-white/10 row gap-2 items-center">
+                    <i class="fa-solid fa-earth-asia"></i> 
+                    Kathmandu, Nepal
+                </span>
+            </div>
         </div>
     </div>
 </footer>
 
-</body>
+<style>
+    .footer-graphic {
+        position: absolute;
+        bottom: -20px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100%;
+        height: 100px;
+        background: radial-gradient(circle, rgba(99, 102, 241, 0.05) 0%, transparent 70%);
+        pointer-events: none;
+    }
+</style>
 
+</body>
 </html>

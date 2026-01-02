@@ -3,8 +3,8 @@
 require_once __DIR__ . '/../backend/init.php';
 
 // Protect Admin Area
-if (!Auth::check() || !is_admin_user()) {
-    header('Location: ' . url(''));
+if (!Auth::adminCheck() || !Auth::isAdmin()) {
+    header('Location: ' . url('admin/login.php'));
     exit;
 }
 ?>
@@ -80,8 +80,21 @@ if (!Auth::check() || !is_admin_user()) {
         .admin-card:hover { border-color: rgba(99, 102, 241, 0.3); transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
         .input-admin { background: #0a0c10; border: 1px solid rgba(255,255,255,0.08); border-radius: 0.75rem; padding: 0.75rem 1rem; width: 100%; outline: none; transition: border 0.3s; }
         .input-admin:focus { border-color: #6366f1; }
-        .btn-admin-primary { background: #6366f1; color: white; padding: 0.75rem 1.5rem; border-radius: 1rem; font-weight: 700; transition: all 0.3s; display: flex; align-items: center; gap: 0.5rem; }
+        .btn-admin-primary { background: #6366f1; color: white; padding: 0.75rem 1.5rem; border-radius: 1rem; font-weight: 700; transition: all 0.3s; display: flex; align-items: center; justify-content: center; gap: 0.5rem; }
         .btn-admin-primary:hover { background: #4f46e5; transform: scale(1.02); box-shadow: 0 10px 20px rgba(99, 102, 241, 0.2); }
+        
+        /* Flex Utilities */
+        .center { display: flex; align-items: center; justify-content: center; }
+        .row { display: flex; flex-direction: row; }
+        .col { display: flex; flex-direction: column; }
+        .between { display: flex; align-items: center; justify-content: space-between; }
+        .items-center { align-items: center; }
+        .gap-1 { gap: 0.25rem; }
+        .gap-2 { gap: 0.5rem; }
+        .gap-3 { gap: 0.75rem; }
+        .gap-4 { gap: 1rem; }
+        .gap-6 { gap: 1.5rem; }
+        .gap-8 { gap: 2rem; }
     </style>
 </head>
 <body class="selection:bg-admin-primary selection:text-white">

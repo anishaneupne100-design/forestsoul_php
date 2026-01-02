@@ -1,13 +1,54 @@
 <?php
-// Redirect if already logged in
-include_once '../head.php';
+// signup/index.php
+require_once '../backend/init.php';
 
+// Redirect if already logged in
 if (Auth::check()) {
     header('Location: ' . url('profile/'));
     exit;
 }
 
-$title = "Sign Up - ForestSoul";
+$error_msg = '';
+$success_msg = '';
+
+// HANDLE SIGNUP AT TOP
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'signup') {
+    $name = $_POST['name'] ?? '';
+    $email = $_POST['email'] ?? '';
+    $password = $_POST['password'] ?? '';
+    $confirm_password = $_POST['password_confirmation'] ?? '';
+
+    if ($password !== $confirm_password) {
+        $error_msg = 'Passwords do not match.';
+    } elseif (strlen($password) < 8) {
+        $error_msg = 'Password must be at least 8 characters.';
+    } else {
+        $data = [
+            'name' => $name,
+            'email' => $email,
+            'password' => $password
+        ];
+        
+        $res = register_user($data);
+        if ($res['success']) {
+            // Auto login after signup
+            $login_res = login_user($email, $password);
+            if ($login_res['success']) {
+                $_SESSION['user_id'] = $login_res['user']['id'];
+                $_SESSION['user'] = $login_res['user'];
+                header('Location: ' . url('profile/'));
+                exit;
+            } else {
+                $success_msg = 'Account created! Please log in.';
+            }
+        } else {
+            $error_msg = $res['error'] ?? 'Registration failed.';
+        }
+    }
+}
+
+$title = "Join ForestSoul - Find Your Path";
+include_once '../head.php';
 ?>
 
 <body class="body">
@@ -15,139 +56,64 @@ $title = "Sign Up - ForestSoul";
 <div class="layout-container layout justify-center w-full max-w-md">
 <div class="content center">
 <div class="col center gap-sm pb-6 pt-1 text-center">
-<a href="<?php echo url('home'); ?>">
-<svg class="text-primary" fill="none" height="48" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="48" xmlns="http://www.w3.org/2000/svg"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"></path><path d="M12 12c-3 0-5 2.5-5 5"></path><path d="M12 8c1.657 0 3 1.343 3 3"></path></svg>
-</a>
-<h1 class="txt-hero text-white sm:text-4xl">Join ForestSoul</h1>
-<p class="txt-md text-white/80">Find your inner peace and connect with nature.</p>
+    <a href="<?php echo url(''); ?>" class="mb-4">
+        <svg class="text-primary" fill="none" height="48" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="48" xmlns="http://www.w3.org/2000/svg"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"></path><path d="M12 12c-3 0-5 2.5-5 5"></path><path d="M12 8c1.657 0 3 1.343 3 3"></path></svg>
+    </a>
+    <h1 class="txt-hero text-white sm:text-4xl">Join ForestSoul</h1>
+    <p class="txt-md text-white/80">Find your inner peace and connect with nature.</p>
 </div>
 
-<!-- Error Message -->
-<div id="error-message" class="hidden w-full mb-4 p-3 rounded-lg bg-red-500/10 border border-red-500/30 text-red-400 text-sm text-center"></div>
+<!-- Feedback Messages -->
+<?php if ($error_msg): ?>
+    <div class="w-full mb-4 p-4 rounded-xl bg-red-500/10 border border-red-500/20 text-red-500 text-sm font-bold text-center animate-shake">
+        <i class="fa-solid fa-circle-exclamation mr-2"></i><?php echo htmlspecialchars($error_msg); ?>
+    </div>
+<?php endif; ?>
 
-<!-- Success Message -->
-<div id="success-message" class="hidden w-full mb-4 p-3 rounded-lg bg-green-500/10 border border-green-500/30 text-green-400 text-sm text-center"></div>
+<?php if ($success_msg): ?>
+    <div class="w-full mb-4 p-4 rounded-xl bg-green-500/10 border border-green-500/20 text-green-500 text-sm font-bold text-center animate-fade-in">
+        <i class="fa-solid fa-circle-check mr-2"></i><?php echo htmlspecialchars($success_msg); ?>
+    </div>
+<?php endif; ?>
 
-<form id="signup-form" class="w-full space-y-4">
-<label class="col">
-<p class="txt-md text-white pb-2">Full Name</p>
-<input name="name" class="input h-12 bg-[#193324] border-[#326747] text-white/90 placeholder:text-[#92c9a8]/60 focus:border-primary focus:ring-primary/50" placeholder="Enter your full name" required/>
-</label>
-<label class="col">
-<p class="txt-md text-white pb-2">Email</p>
-<input name="email" class="input h-12 bg-[#193324] border-[#326747] text-white/90 placeholder:text-[#92c9a8]/60 focus:border-primary focus:ring-primary/50" placeholder="Enter your email address" type="email" required/>
-</label>
-<label class="col">
-<p class="txt-md text-white pb-2">Password</p>
-<div class="relative row flex-1 items-stretch">
-<input name="password" id="password" class="input h-12 bg-[#193324] border-[#326747] text-white/90 placeholder:text-[#92c9a8]/60 focus:border-primary focus:ring-primary/50 pr-10" placeholder="Enter your password" type="password" required minlength="8"/>
-<div class="absolute inset-y-0 right-0 center pr-3">
-<span class="material-symbols-outlined text-[#92c9a8]/60 cursor-pointer toggle-password" data-target="password">visibility_off</span>
-</div>
-</div>
-</label>
-<label class="col">
-<p class="txt-md text-white pb-2">Confirm Password</p>
-<div class="relative row flex-1 items-stretch">
-<input name="password_confirmation" id="password_confirmation" class="input h-12 bg-[#193324] border-[#326747] text-white/90 placeholder:text-[#92c9a8]/60 focus:border-primary focus:ring-primary/50 pr-10" placeholder="Confirm your password" type="password" required minlength="8"/>
-<div class="absolute inset-y-0 right-0 center pr-3">
-<span class="material-symbols-outlined text-[#92c9a8]/60 cursor-pointer toggle-password" data-target="password_confirmation">visibility_off</span>
-</div>
-</div>
-</label>
-<div class="pt-4">
-<button type="submit" id="submit-btn" class="btn-primary btn-lg w-full tracking-wide hover:bg-primary/90">
-<span id="btn-text" class="truncate">Create Account</span>
-<span id="btn-loading" class="hidden">Creating account...</span>
-</button>
-</div>
-<p class="text-center txt-sm text-white/60 pt-2">
-    By creating an account, you agree to our <a class="link font-medium text-primary/80 hover:text-primary" href="<?php echo url('terms'); ?>">Terms of Service</a> and <a class="link font-medium text-primary/80 hover:text-primary" href="<?php echo url('privacy'); ?>">Privacy Policy</a>.
-</p>
-<p class="text-center txt-sm text-white/80 pt-4">
-    Already have an account? <a class="link font-bold text-primary" href="<?php echo url('login/'); ?>">Log In</a>
-</p>
+<form action="" method="POST" class="w-full col gap-5">
+    <input type="hidden" name="action" value="signup">
+    
+    <label class="col gap-2">
+        <span class="txt-xs font-black uppercase tracking-widest text-white/40 ml-1">Full Name</span>
+        <input name="name" class="input h-14 bg-white/5 border-white/10 text-white placeholder:text-white/20 focus:border-primary px-5 rounded-2xl" placeholder="John Doe" value="<?php echo htmlspecialchars($_POST['name'] ?? ''); ?>" required/>
+    </label>
+
+    <label class="col gap-2">
+        <span class="txt-xs font-black uppercase tracking-widest text-white/40 ml-1">Email Address</span>
+        <input name="email" class="input h-14 bg-white/5 border-white/10 text-white placeholder:text-white/20 focus:border-primary px-5 rounded-2xl" placeholder="john@example.com" type="email" value="<?php echo htmlspecialchars($_POST['email'] ?? ''); ?>" required/>
+    </label>
+
+    <label class="col gap-2">
+        <span class="txt-xs font-black uppercase tracking-widest text-white/40 ml-1">Secret Key</span>
+        <input name="password" id="password" class="input h-14 bg-white/5 border-white/10 text-white placeholder:text-white/20 focus:border-primary px-5 rounded-2xl" placeholder="At least 8 characters" type="password" required minlength="8"/>
+    </label>
+
+    <label class="col gap-2">
+        <span class="txt-xs font-black uppercase tracking-widest text-white/40 ml-1">Verify Key</span>
+        <input name="password_confirmation" id="password_confirmation" class="input h-14 bg-white/5 border-white/10 text-white placeholder:text-white/20 focus:border-primary px-5 rounded-2xl" placeholder="Repeat your secret key" type="password" required minlength="8"/>
+    </label>
+
+    <button type="submit" class="btn-primary h-14 w-full rounded-2xl font-black uppercase tracking-widest text-sm shadow-xl shadow-primary/20 mt-4 group">
+        <span>Initialize Account</span>
+        <i class="fa-solid fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+    </button>
+
+    <p class="text-center txt-sm text-white/40 pt-6">
+        By continuing, you agree to our <a class="font-bold text-primary hover:underline" href="<?php echo url('terms'); ?>">Terms</a> and <a class="font-bold text-primary hover:underline" href="<?php echo url('privacy'); ?>">Privacy</a>.
+    </p>
+    
+    <div class="pt-6 border-t border-white/5 text-center col gap-2">
+        <p class="txt-sm text-white/60">Already embarked on this journey?</p>
+        <a class="txt-sm font-black text-primary uppercase tracking-widest hover:underline" href="<?php echo url('login/'); ?>">Access Account</a>
+    </div>
 </form>
 </div>
 </div>
 </div>
-
-<script>
-// Toggle password visibility
-document.querySelectorAll('.toggle-password').forEach(btn => {
-    btn.addEventListener('click', function() {
-        const targetId = this.getAttribute('data-target');
-        const input = document.getElementById(targetId);
-        const isPassword = input.type === 'password';
-        input.type = isPassword ? 'text' : 'password';
-        this.textContent = isPassword ? 'visibility' : 'visibility_off';
-    });
-});
-
-// Handle form submission
-document.getElementById('signup-form').addEventListener('submit', async function(e) {
-    e.preventDefault();
-    
-    const errorDiv = document.getElementById('error-message');
-    const successDiv = document.getElementById('success-message');
-    const submitBtn = document.getElementById('submit-btn');
-    const btnText = document.getElementById('btn-text');
-    const btnLoading = document.getElementById('btn-loading');
-    
-    // Hide messages
-    errorDiv.classList.add('hidden');
-    successDiv.classList.add('hidden');
-    
-    // Validate passwords match
-    const password = document.getElementById('password').value;
-    const confirmPassword = document.getElementById('password_confirmation').value;
-    
-    if (password !== confirmPassword) {
-        errorDiv.textContent = 'Passwords do not match.';
-        errorDiv.classList.remove('hidden');
-        return;
-    }
-    
-    if (password.length < 8) {
-        errorDiv.textContent = 'Password must be at least 8 characters.';
-        errorDiv.classList.remove('hidden');
-        return;
-    }
-    
-    // Show loading state
-    submitBtn.disabled = true;
-    btnText.classList.add('hidden');
-    btnLoading.classList.remove('hidden');
-    
-    try {
-        const response = await submitForm(this, 'signup.php');
-        
-        if (response.success) {
-            successDiv.textContent = response.message || 'Account created! Redirecting...';
-            successDiv.classList.remove('hidden');
-            
-            // Redirect after success
-            setTimeout(() => {
-                window.location.href = response.redirect || ROUTES.home;
-            }, 1500);
-        } else {
-            errorDiv.textContent = response.message || 'Registration failed. Please try again.';
-            errorDiv.classList.remove('hidden');
-            
-            // Reset button
-            submitBtn.disabled = false;
-            btnText.classList.remove('hidden');
-            btnLoading.classList.add('hidden');
-        }
-    } catch (error) {
-        errorDiv.textContent = 'Network error. Please try again.';
-        errorDiv.classList.remove('hidden');
-        
-        // Reset button
-        submitBtn.disabled = false;
-        btnText.classList.remove('hidden');
-        btnLoading.classList.add('hidden');
-    }
-});
-</script>
 </body></html>

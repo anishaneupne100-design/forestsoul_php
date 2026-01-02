@@ -1,7 +1,6 @@
 <?php
 // admin/event_details.php
-$title = "Event Intelligence - ForestSoul Admin";
-require_once 'head.php';
+require_once __DIR__ . '/../backend/init.php';
 
 $eventId = $_GET['id'] ?? null;
 if (!$eventId) {
@@ -9,11 +8,11 @@ if (!$eventId) {
     exit;
 }
 
-// HANDLE ACTIONS
+// HANDLE ACTIONS (Before output)
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $action = $_POST['action'] ?? '';
     $regId = $_POST['reg_id'] ?? null;
-    $adminId = $_SESSION['user_id'];
+    $adminId = Auth::adminId();
 
     if ($action === 'approve_reg' && $regId) {
         approve_registration($adminId, $regId);
@@ -34,6 +33,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
+$title = "Event Intelligence - ForestSoul Admin";
+require_once 'head.php';
 require_once 'navbar.php';
 
 $res = get_event_with_registrations($eventId);
@@ -47,7 +48,14 @@ if (!$event) {
 
 <main class="px-6 pb-20 max-w-7xl mx-auto">
     <!-- Header -->
-    <div class="py-10 flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
+    <div class="py-10 flex flex-col items-start gap-10">
+        <?php if ($event['thumbnail']): ?>
+            <div class="w-full h-80 rounded-[3rem] overflow-hidden border border-white/5 shadow-2xl">
+                <img src="<?php echo url($event['thumbnail']); ?>" class="w-full h-full object-cover">
+            </div>
+        <?php endif; ?>
+        
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 w-full">
         <div class="col gap-4">
             <a href="events.php" class="row gap-2 items-center text-white/30 hover:text-admin-primary transition-colors text-[10px] font-black uppercase tracking-widest">
                 <i class="fa-solid fa-arrow-left"></i> Back to Arsenal

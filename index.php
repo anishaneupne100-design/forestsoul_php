@@ -95,13 +95,13 @@ include_once 'components/navbar.php';
                 </div>
             </a>
             
-            <a class="card-feature group hover:border-primary/50 hover:shadow-2xl hover:shadow-primary/5 transition-all duration-500" href="<?php echo url('donation/'); ?>">
+            <a class="card-feature group hover:border-primary/50 hover:shadow-2xl hover:shadow-primary/5 transition-all duration-500" href="<?php echo url('events/'); ?>">
                 <div class="size-14 rounded-2xl bg-accent-green/10 center text-accent-green group-hover:bg-accent-green group-hover:text-background-dark transition-all duration-500 shadow-lg">
-                    <i class="fa-solid fa-clover text-2xl group-hover:scale-110 transition-transform"></i>
+                    <i class="fa-solid fa-calendar-star text-2xl group-hover:scale-110 transition-transform"></i>
                 </div>
                 <div class="col gap-2">
-                    <h3 class="txt-xl font-bold group-hover:text-accent-green transition-colors">Donate</h3>
-                    <p class="subtitle text-sm leading-relaxed">Support reforestation efforts and heal the planet as you heal yourself.</p>
+                    <h3 class="txt-xl font-bold group-hover:text-accent-green transition-colors">Events</h3>
+                    <p class="subtitle text-sm leading-relaxed">Join live workshops, nature walks, and community healing circles near you.</p>
                 </div>
             </a>
         </div>

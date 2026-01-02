@@ -26,14 +26,58 @@ function is_logged_in() {
     return isset($_SESSION['user_id']);
 }
 
+function is_admin_logged_in() {
+    return isset($_SESSION['admin_id']);
+}
+
 function is_admin_user() {
-    if (!is_logged_in()) return false;
-    return isset($_SESSION['user']['is_admin']) && $_SESSION['user']['is_admin'] == 1;
+    $user = current_admin();
+    return $user && isset($user['is_admin']) && $user['is_admin'] == 1;
+}
+
+function is_expert_user() {
+    $user = current_user();
+    return $user && isset($user['is_expert']) && $user['is_expert'] == 1;
 }
 
 function current_user() {
     if (!is_logged_in()) return null;
+    
+    if (!isset($_SESSION['user_lazy_verified'])) {
+        $pdo = get_db_connection();
+        $stmt = $pdo->prepare("SELECT * FROM users WHERE id = ?");
+        $stmt->execute([$_SESSION['user_id']]);
+        $user = $stmt->fetch();
+        if (!$user) {
+            unset($_SESSION['user_id']);
+            unset($_SESSION['user']);
+            return null;
+        }
+        $_SESSION['user'] = $user;
+        $_SESSION['user_lazy_verified'] = true;
+    }
+
     return $_SESSION['user'] ?? null;
+}
+
+function current_admin() {
+    if (!is_admin_logged_in()) return null;
+    
+    if (!isset($_SESSION['admin_lazy_verified'])) {
+        $pdo = get_db_connection();
+        $stmt = $pdo->prepare("SELECT * FROM users WHERE id = ? AND is_admin = 1");
+        $stmt->execute([$_SESSION['admin_id']]);
+        $user = $stmt->fetch();
+        if (!$user) {
+            unset($_SESSION['admin_id']);
+            unset($_SESSION['admin_user']);
+            return null;
+        }
+        $_SESSION['admin_user'] = $user;
+        $_SESSION['admin_lazy_verified'] = true;
+    }
+
+    return $_SESSION['admin_user'] ?? null;
 }
 
 function require_login() {
@@ -58,22 +102,36 @@ class Auth {
         return is_logged_in();
     }
 
+    public static function adminCheck() {
+        return is_admin_logged_in();
+    }
+
     public static function user() {
         return current_user();
+    }
+
+    public static function admin() {
+        return current_admin();
     }
 
     public static function id() {
         return $_SESSION['user_id'] ?? null;
     }
 
+    public static function adminId() {
+        return $_SESSION['admin_id'] ?? null;
+    }
+
     public static function isAdmin() {
         return is_admin_user();
     }
 
+    public static function isExpert() {
+        return is_expert_user();
+    }
+
     public static function isStaff() {
-        if (!self::check()) return false;
-        $user = self::user();
-        return (isset($user['is_admin']) && $user['is_admin'] == 1) || (isset($user['is_staff']) && $user['is_staff'] == 1);
+        return self::isAdmin() || self::isExpert();
     }
 }
 

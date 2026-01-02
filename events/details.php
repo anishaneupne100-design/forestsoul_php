@@ -55,6 +55,13 @@ if (Auth::check()) {
             <i class="fa-solid fa-chevron-left text-[10px]"></i> Back to Events
         </a>
 
+        <?php if ($event['thumbnail']): ?>
+            <div class="w-full h-80 md:h-[400px] mb-12 rounded-[3.5rem] overflow-hidden border border-white/5 shadow-2xl relative">
+                <img src="<?php echo url($event['thumbnail']); ?>" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-gradient-to-t from-background-dark/80 to-transparent"></div>
+            </div>
+        <?php endif; ?>
+
         <div class="grid grid-cols-1 md:grid-cols-12 gap-12">
             <!-- Event Info -->
             <div class="md:col-span-8 col gap-8">

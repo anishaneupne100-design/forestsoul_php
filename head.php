@@ -38,8 +38,6 @@ $basePath = ROOT_URL;
         routes: {
             home: '<?php echo url(''); ?>',
             community: '<?php echo url('community/'); ?>',
-            donation: '<?php echo url('donation/'); ?>',
-            admin_donation: '<?php echo url('admin_donation/'); ?>',
             games: '<?php echo url('games/'); ?>',
             meditation: '<?php echo url('meditation/'); ?>',
             yoga: '<?php echo url('yoga/'); ?>',

@@ -6,7 +6,7 @@ function create_event($userId, $data) {
     $pdo = get_db_connection();
 
     try {
-        $stmt = $pdo->prepare("INSERT INTO events (title, description, start_date, deadline, location, latitude, longitude, created_by, needs_approval) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        $stmt = $pdo->prepare("INSERT INTO events (title, description, start_date, deadline, location, latitude, longitude, created_by, needs_approval, thumbnail) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
         $stmt->execute([
             $data['title'],
             $data['description'] ?? '',
@@ -16,7 +16,8 @@ function create_event($userId, $data) {
             $data['latitude'] ?? null,
             $data['longitude'] ?? null,
             $userId,
-            isset($data['needs_approval']) ? 1 : 0
+            isset($data['needs_approval']) ? 1 : 0,
+            $data['thumbnail'] ?? null
         ]);
 
         return ['success' => true, 'message' => 'Event created successfully', 'event_id' => $pdo->lastInsertId()];
@@ -28,10 +29,29 @@ function create_event($userId, $data) {
 
 function get_events($filters = []) {
     $pdo = get_db_connection();
-    $sql = "SELECT e.*, u.name as creator_name FROM events e LEFT JOIN users u ON e.created_by = u.id ORDER BY e.start_date ASC";
+    
+    $where = ["1=1"];
+    $params = [];
+
+    if (!empty($filters['date_from'])) {
+        $where[] = "e.start_date >= ?";
+        $params[] = $filters['date_from'];
+    }
+    if (!empty($filters['date_to'])) {
+        $where[] = "e.start_date <= ?";
+        $params[] = $filters['date_to'];
+    }
+
+    $whereSql = implode(" AND ", $where);
+    $sql = "SELECT e.*, u.name as creator_name 
+            FROM events e 
+            LEFT JOIN users u ON e.created_by = u.id 
+            WHERE $whereSql
+            ORDER BY e.start_date ASC";
     
     try {
-        $stmt = $pdo->query($sql);
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute($params);
         return ['success' => true, 'data' => $stmt->fetchAll()];
     } catch (PDOException $e) {
         return ['error' => 'Database error: ' . $e->getMessage(), 'status' => 500];

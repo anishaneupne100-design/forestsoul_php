@@ -80,9 +80,9 @@ include_once '../components/navbar.php';
                     <p class="text-primary text-xs font-bold uppercase tracking-wider mb-2"><?php echo htmlspecialchars($expert['degree']); ?></p>
                     <p class="text-secondary text-[10px] font-bold uppercase tracking-widest mb-3"><?php echo htmlspecialchars($expert['specialization']); ?></p>
                     <p class="txt-2 txt-sm italic line-clamp-3 flex-grow mb-4 px-2">"<?php echo htmlspecialchars($expert['bio']); ?>"</p>
-                    <button class="btn-ghost btn-sm w-full mt-auto group-hover:bg-primary group-hover:text-background-dark transition-all" onclick="requireAuth(() => gotoPage('<?php echo url('booking session/'); ?>'))">
-                        Book Consultation
-                    </button>
+                    <a class="btn-ghost btn-sm w-full mt-auto group-hover:bg-primary group-hover:text-background-dark transition-all font-bold center" href="<?php echo url('therapy/expert_details.php?id=' . $expert['id']); ?>">
+                        View Profile & Book
+                    </a>
                 </div>
             <?php 
                 endforeach;

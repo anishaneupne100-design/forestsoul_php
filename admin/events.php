@@ -1,5 +1,25 @@
 <?php
 // admin/events.php
+require_once __DIR__ . '/../backend/init.php';
+
+// Handle Event Creation (Before any output to avoid 'headers already sent')
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['title'])) {
+    $data = $_POST;
+    
+    // Handle Thumbnail Upload
+    if (isset($_FILES['thumbnail']) && $_FILES['thumbnail']['error'] === UPLOAD_ERR_OK) {
+        $data['thumbnail'] = upload_file($_FILES['thumbnail'], 'events/');
+    }
+
+    $res = create_event(Auth::adminId(), $data);
+    if ($res['success']) {
+        header("Location: " . url('admin/events.php?success=1'));
+        exit;
+    } else {
+        $error = $res['error'];
+    }
+}
+
 $title = "Manage Events - ForestSoul Admin";
 require_once 'head.php';
 require_once 'navbar.php';
@@ -13,6 +33,12 @@ $events = get_admin_events()['data'] ?? [];
             <h1 class="text-4xl font-black tracking-tight text-white italic">Events Forge</h1>
             <p class="text-white/40 font-medium uppercase tracking-widest text-[10px]">Deploy and monitor community gatherings</p>
         </div>
+        <?php if (isset($_GET['success'])): ?>
+            <script>setTimeout(() => showToast('Event Forged Successfully!', 'success'), 100);</script>
+        <?php endif; ?>
+        <?php if (isset($error)): ?>
+            <script>setTimeout(() => showToast('<?php echo addslashes($error); ?>', 'error'), 100);</script>
+        <?php endif; ?>
         <button onclick="openModal('create-event-modal')" class="btn-admin-primary px-8 h-12 shadow-xl shadow-admin-primary/20">
             <i class="fa-solid fa-plus text-xs"></i>
             <span>Orchestrate New Event</span>
@@ -29,6 +55,9 @@ $events = get_admin_events()['data'] ?? [];
             <div class="admin-card overflow-hidden group cursor-pointer" onclick="location.href='event_details.php?id=<?php echo $event['id']; ?>'">
                 <!-- Preview / Header -->
                 <div class="h-48 bg-admin-bg relative overflow-hidden">
+                    <?php if ($event['thumbnail']): ?>
+                        <img src="<?php echo url($event['thumbnail']); ?>" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                    <?php endif; ?>
                     <div class="absolute inset-0 bg-gradient-to-t from-admin-surface to-transparent z-10"></div>
                     <div class="absolute top-4 right-4 z-20 flex flex-col gap-2 items-end">
                         <span class="px-3 py-1 bg-admin-bg/80 backdrop-blur rounded-full text-[10px] font-black uppercase tracking-widest text-admin-primary border border-admin-primary/20">
@@ -80,7 +109,19 @@ $events = get_admin_events()['data'] ?? [];
                 <i class="fa-solid fa-xmark text-xl"></i>
             </button>
         </div>
-        <form action="" method="POST" class="col gap-6">
+        <form action="" method="POST" enctype="multipart/form-data" class="col gap-6">
+            <label class="col gap-2">
+                <span class="text-[10px] font-black uppercase tracking-widest text-white/40 ml-1">Grand Thumbnail</span>
+                <div class="relative group">
+                    <input type="file" name="thumbnail" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10" onchange="previewThumb(this)">
+                    <div id="thumb-preview" class="h-32 w-full rounded-2xl border-2 border-dashed border-white/5 bg-admin-bg center text-white/20 group-hover:border-admin-primary/50 transition-all overflow-hidden">
+                        <div class="col center gap-2">
+                            <i class="fa-solid fa-cloud-arrow-up text-2xl"></i>
+                            <span class="text-[10px] uppercase font-black tracking-widest">Upload Key Visual</span>
+                        </div>
+                    </div>
+                </div>
+            </label>
             <label class="col gap-2">
                 <span class="text-[10px] font-black uppercase tracking-widest text-white/40 ml-1">Event Title</span>
                 <input type="text" name="title" class="input-admin text-lg font-bold" placeholder="Atmospheric Yoga Session..." required>
@@ -98,6 +139,10 @@ $events = get_admin_events()['data'] ?? [];
             <label class="col gap-2">
                 <span class="text-[10px] font-black uppercase tracking-widest text-white/40 ml-1">Location / Link</span>
                 <input type="text" name="location" class="input-admin" placeholder="Forest Soul Sanctuary / Zoom Link">
+            </label>
+            <label class="col gap-2">
+                <span class="text-[10px] font-black uppercase tracking-widest text-white/40 ml-1">Epic Narrative</span>
+                <textarea name="description" class="input-admin min-h-[100px] resize-none" placeholder="Describe the soul-healing journey..."></textarea>
             </label>
             <label class="row gap-3 items-center p-4 bg-white/2 rounded-xl border border-white/5 cursor-pointer">
                 <input type="checkbox" name="needs_approval" class="size-4 accent-admin-primary">
@@ -117,6 +162,22 @@ function closeModal(id) {
     $('#' + id).addClass('hidden').removeClass('flex');
     $('body').removeClass('overflow-hidden');
 }
+
+function previewThumb(input) {
+    if (input.files && input.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            $('#thumb-preview').html(`<img src="${e.target.result}" class="w-full h-full object-cover">`);
+        }
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
+$(document).ready(function() {
+    <?php if (isset($_GET['open']) && $_GET['open'] === 'modal'): ?>
+        openModal('create-event-modal');
+    <?php endif; ?>
+});
 </script>
 </body>
 </html>

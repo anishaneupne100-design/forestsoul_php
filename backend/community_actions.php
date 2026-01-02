@@ -68,7 +68,7 @@ function get_community_posts($filters = []) {
         (SELECT COUNT(*) FROM community_likes l WHERE l.post_id = p.id) as like_count,
         (SELECT COUNT(*) FROM community_comments c WHERE c.post_id = p.id) as comment_count,
         (
-            SELECT GROUP_CONCAT(i.image_url SEPARATOR '||') 
+            SELECT GROUP_CONCAT(i.image_url, '||') 
             FROM community_images i 
             WHERE i.post_id = p.id
         ) as image_urls

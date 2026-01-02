@@ -19,7 +19,6 @@
             <a class="nav-link" href="<?php echo url('therapy/'); ?>">Therapy</a>
             <a class="nav-link" href="<?php echo url('games/'); ?>">Games</a>
             <a class="nav-link" href="<?php echo url('events/'); ?>">Events</a>
-            <a class="nav-link" href="<?php echo url('donation/'); ?>">Donate</a>
             <a class="nav-link" href="<?php echo url('community/'); ?>">Community</a>
         </nav>
         
@@ -58,9 +57,9 @@
                                 </a>
                             <?php endif; ?>
                             <hr class="my-2 border-border-light dark:border-border-dark">
-                            <button onclick="handleLogout()" class="w-full text-left row gap-3 px-4 py-2 txt-sm text-red-500 rounded-lg hover:bg-red-500/10 transition-colors">
+                            <a href="<?php echo url('logout.php'); ?>" class="w-full text-left row gap-3 px-4 py-2 txt-sm text-red-500 rounded-lg hover:bg-red-500/10 transition-colors">
                                 <span class="material-symbols-outlined text-sm">logout</span> Log Out
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -94,7 +93,6 @@
                 <a class="p-3 rounded-lg hover:bg-primary/10 transition-colors" href="<?php echo url('therapy/'); ?>">Therapy</a>
                 <a class="p-3 rounded-lg hover:bg-primary/10 transition-colors" href="<?php echo url('games/'); ?>">Games</a>
                 <a class="p-3 rounded-lg hover:bg-primary/10 transition-colors" href="<?php echo url('events/'); ?>">Events</a>
-                <a class="p-3 rounded-lg hover:bg-primary/10 transition-colors" href="<?php echo url('donation/'); ?>">Donate</a>
                 <a class="p-3 rounded-lg hover:bg-primary/10 transition-colors" href="<?php echo url('community/'); ?>">Community</a>
             </nav>
 
@@ -109,9 +107,9 @@
                             <span class="txt-xs txt-2"><?php echo htmlspecialchars($user['email']); ?></span>
                         </div>
                     </a>
-                    <button onclick="handleLogout()" class="btn-secondary w-full justify-start gap-3 text-red-500">
+                    <a href="<?php echo url('logout.php'); ?>" class="btn-secondary w-full justify-start gap-3 text-red-500">
                         <span class="material-symbols-outlined">logout</span> Log Out
-                    </button>
+                    </a>
                 <?php else: ?>
                     <div class="flex flex-col gap-2">
                         <a href="<?php echo url('login/'); ?>" class="btn-secondary w-full">Log In</a>
@@ -168,12 +166,4 @@
         });
     });
 
-    async function handleLogout() {
-        if (confirm('Are you sure you want to log out?')) {
-            const res = await api('logout');
-            if (res.success) {
-                window.location.href = ROUTES.home;
-            }
-        }
-    }
 </script>
