@@ -2,7 +2,7 @@
 // components/navbar.php
 // Reusable navbar component. Included in pages after head.php
 ?>
-<header class="header sticky top-0 z-50 bg-surface-light/80 dark:bg-surface-dark/80 backdrop-blur-md border-b border-border-light dark:border-border-dark">
+<header class="header sticky top-0 z-40 bg-surface-light/80 dark:bg-surface-dark/80 backdrop-blur-md border-b border-border-light dark:border-border-dark">
     <div class="row gap-md txt px-6 py-3 max-w-7xl mx-auto flex items-center justify-between">
         <!-- Logo -->
         <a href="<?php echo url(''); ?>" class="row gap-md items-center group">
@@ -18,6 +18,7 @@
             <a class="nav-link" href="<?php echo url('yoga/'); ?>">Yoga</a>
             <a class="nav-link" href="<?php echo url('therapy/'); ?>">Therapy</a>
             <a class="nav-link" href="<?php echo url('games/'); ?>">Games</a>
+            <a class="nav-link" href="<?php echo url('events/'); ?>">Events</a>
             <a class="nav-link" href="<?php echo url('donation/'); ?>">Donate</a>
             <a class="nav-link" href="<?php echo url('community/'); ?>">Community</a>
         </nav>
@@ -25,9 +26,9 @@
         <!-- User Actions -->
         <div class="flex items-center gap-4">
             <?php if (Auth::check()): $user = Auth::user(); ?>
-                <div class="relative group" id="user-menu-container">
+                <div class="relative" id="user-menu-container">
                     <button class="row gap-2 items-center px-3 py-2 rounded-full hover:bg-primary/10 transition-colors" id="user-menu-btn">
-                        <div class="w-8 h-8 rounded-full bg-primary/20 center overflow-hidden">
+                        <div class="w-8 h-8 rounded-full bg-primary/20 center overflow-hidden border-2 border-transparent hover:border-primary">
                             <?php if (!empty($user['avatar'])): ?>
                                 <img src="<?php echo htmlspecialchars($user['avatar']); ?>" alt="Avatar" class="w-full h-full object-cover">
                             <?php else: ?>
@@ -39,10 +40,10 @@
                     </button>
                     
                     <!-- Dropdown -->
-                    <div class="absolute right-0 top-full mt-2 w-56 rounded-xl surface shadow-xl border border-border-light dark:border-border-dark hidden group-hover:block p-2 z-50">
+                    <div id="user-dropdown" class="absolute right-0 top-full mt-2 w-56 rounded-xl surface shadow-2xl border border-border-light dark:border-border-dark hidden p-2 z-[100] transform scale-95 opacity-0 transition-all duration-200">
                         <div class="flex flex-col">
                             <a href="<?php echo url('profile/'); ?>" class="row gap-3 px-4 py-2 txt-sm rounded-lg hover:bg-primary/10 transition-colors">
-                                <span class="material-symbols-outlined text-sm">person</span> Profile
+                                <span class="material-symbols-outlined text-sm">account_circle</span> Profile
                             </a>
                             <a href="<?php echo url('user_progress/'); ?>" class="row gap-3 px-4 py-2 txt-sm rounded-lg hover:bg-primary/10 transition-colors">
                                 <span class="material-symbols-outlined text-sm">trending_up</span> My Progress
@@ -56,15 +57,10 @@
                                     <span class="material-symbols-outlined text-sm">admin_panel_settings</span> Staff Panel
                                 </a>
                             <?php endif; ?>
-                            <?php if (Auth::isAdmin()): ?>
-                                <a href="<?php echo url('admin_donation/'); ?>" class="row gap-3 px-4 py-2 txt-sm rounded-lg hover:bg-primary/10 transition-colors">
-                                    <span class="material-symbols-outlined text-sm">volunteer_activism</span> Manage Donations
-                                </a>
-                            <?php endif; ?>
                             <hr class="my-2 border-border-light dark:border-border-dark">
-                            <a href="<?php echo url('login/?action=logout'); ?>" class="row gap-3 px-4 py-2 txt-sm text-red-500 rounded-lg hover:bg-red-500/10 transition-colors">
+                            <button onclick="handleLogout()" class="w-full text-left row gap-3 px-4 py-2 txt-sm text-red-500 rounded-lg hover:bg-red-500/10 transition-colors">
                                 <span class="material-symbols-outlined text-sm">logout</span> Log Out
-                            </a>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -83,7 +79,7 @@
     </div>
 
     <!-- Mobile Menu Overlay -->
-    <div id="mobile-menu-overlay" class="hidden md:hidden fixed inset-0 bg-black/50 z-[60]">
+    <div id="mobile-menu-overlay" class="hidden md:hidden fixed inset-0 bg-black/50 z-[100]">
         <div id="mobile-menu" class="absolute right-0 top-0 h-full w-72 surface shadow-xl p-4 flex flex-col gap-4">
             <div class="row items-center justify-between border-b border-border-light dark:border-border-dark pb-4">
                 <h2 class="txt-lg font-bold">Menu</h2>
@@ -97,13 +93,14 @@
                 <a class="p-3 rounded-lg hover:bg-primary/10 transition-colors" href="<?php echo url('yoga/'); ?>">Yoga</a>
                 <a class="p-3 rounded-lg hover:bg-primary/10 transition-colors" href="<?php echo url('therapy/'); ?>">Therapy</a>
                 <a class="p-3 rounded-lg hover:bg-primary/10 transition-colors" href="<?php echo url('games/'); ?>">Games</a>
+                <a class="p-3 rounded-lg hover:bg-primary/10 transition-colors" href="<?php echo url('events/'); ?>">Events</a>
                 <a class="p-3 rounded-lg hover:bg-primary/10 transition-colors" href="<?php echo url('donation/'); ?>">Donate</a>
                 <a class="p-3 rounded-lg hover:bg-primary/10 transition-colors" href="<?php echo url('community/'); ?>">Community</a>
             </nav>
 
             <div class="mt-auto border-t border-border-light dark:border-border-dark pt-4 mb-4">
                 <?php if (Auth::check()): $user = Auth::user(); ?>
-                    <div class="row gap-3 px-2 py-3 mb-4">
+                    <a href="<?php echo url('profile/'); ?>" class="row gap-3 px-2 py-3 mb-4 rounded-xl hover:bg-primary/10 transition-colors">
                         <div class="w-10 h-10 rounded-full bg-primary/20 center overflow-hidden">
                             <span class="material-symbols-outlined text-primary text-lg">person</span>
                         </div>
@@ -111,10 +108,10 @@
                             <span class="txt-sm font-bold"><?php echo htmlspecialchars($user['name']); ?></span>
                             <span class="txt-xs txt-2"><?php echo htmlspecialchars($user['email']); ?></span>
                         </div>
-                    </div>
-                    <a href="<?php echo url('login/?action=logout'); ?>" class="btn-secondary w-full justify-start gap-3">
-                        <span class="material-symbols-outlined">logout</span> Log Out
                     </a>
+                    <button onclick="handleLogout()" class="btn-secondary w-full justify-start gap-3 text-red-500">
+                        <span class="material-symbols-outlined">logout</span> Log Out
+                    </button>
                 <?php else: ?>
                     <div class="flex flex-col gap-2">
                         <a href="<?php echo url('login/'); ?>" class="btn-secondary w-full">Log In</a>
@@ -127,14 +124,56 @@
 </header>
 
 <script>
-    // Simple mobile menu toggle
-    const btnOpen = document.getElementById('mobile-menu-btn');
-    const btnClose = document.getElementById('mobile-menu-close');
-    const overlay = document.getElementById('mobile-menu-overlay');
+    $(document).ready(function() {
+        // User Dropdown Logic
+        const $userBtn = $('#user-menu-btn');
+        const $userDropdown = $('#user-dropdown');
 
-    if (btnOpen && overlay) {
-        btnOpen.onclick = () => overlay.classList.remove('hidden');
-        btnClose.onclick = () => overlay.classList.add('hidden');
-        overlay.onclick = (e) => { if (e.target === overlay) overlay.classList.add('hidden'); };
+        $userBtn.on('click', function(e) {
+            e.stopPropagation();
+            const isHidden = $userDropdown.hasClass('hidden');
+            
+            if (isHidden) {
+                $userDropdown.removeClass('hidden').addClass('flex');
+                setTimeout(() => {
+                    $userDropdown.removeClass('scale-95 opacity-0').addClass('scale-100 opacity-100');
+                }, 10);
+            } else {
+                closeUserMenu();
+            }
+        });
+
+        function closeUserMenu() {
+            $userDropdown.removeClass('scale-100 opacity-100').addClass('scale-95 opacity-0');
+            setTimeout(() => {
+                $userDropdown.addClass('hidden').removeClass('flex');
+            }, 200);
+        }
+
+        $(document).on('click', function(e) {
+            if (!$(e.target).closest('#user-menu-container').length) {
+                closeUserMenu();
+            }
+        });
+
+        // Mobile Menu Logic
+        const $btnOpen = $('#mobile-menu-btn');
+        const $btnClose = $('#mobile-menu-close');
+        const $overlay = $('#mobile-menu-overlay');
+
+        $btnOpen.on('click', () => $overlay.removeClass('hidden').fadeIn(200));
+        $btnClose.on('click', () => $overlay.fadeOut(200, () => $overlay.addClass('hidden')));
+        $overlay.on('click', (e) => {
+            if (e.target === $overlay[0]) $btnClose.trigger('click');
+        });
+    });
+
+    async function handleLogout() {
+        if (confirm('Are you sure you want to log out?')) {
+            const res = await api('logout');
+            if (res.success) {
+                window.location.href = ROUTES.home;
+            }
+        }
     }
 </script>

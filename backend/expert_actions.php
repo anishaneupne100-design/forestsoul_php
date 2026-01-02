@@ -61,23 +61,6 @@ function apply_to_be_expert($userId, $data, $files) {
     }
 }
 
-function upload_file($file, $subDir) {
-    if ($file['error'] !== UPLOAD_ERR_OK) return null;
-    
-    $uploadDir = __DIR__ . '/../media/' . $subDir;
-    if (!is_dir($uploadDir)) {
-        mkdir($uploadDir, 0777, true);
-    }
-    
-    $extension = pathinfo($file['name'], PATHINFO_EXTENSION);
-    $filename = uniqid() . '.' . $extension;
-    $targetPath = $uploadDir . $filename;
-    
-    if (move_uploaded_file($file['tmp_name'], $targetPath)) {
-        return 'media/' . $subDir . $filename;
-    }
-    return null;
-}
 
 function get_active_experts() {
     $pdo = get_db_connection();

@@ -22,12 +22,23 @@ function create_community_post($userId, $data) {
         ]);
         $postId = $pdo->lastInsertId();
 
-        // Insert Images if any
-        if (!empty($data['images']) && is_array($data['images'])) {
+        // Insert Images if any (Physical files from $_FILES)
+        if (!empty($data['files']) && is_array($data['files']['name'])) {
             $stmtImg = $pdo->prepare("INSERT INTO community_images (post_id, image_url) VALUES (?, ?)");
-            foreach ($data['images'] as $url) {
-                // Here you might validate URL or process it
-                $stmtImg->execute([$postId, $url]);
+            for ($i = 0; $i < count($data['files']['name']); $i++) {
+                if ($data['files']['error'][$i] === UPLOAD_ERR_OK) {
+                    $file = [
+                        'name' => $data['files']['name'][$i],
+                        'type' => $data['files']['type'][$i],
+                        'tmp_name' => $data['files']['tmp_name'][$i],
+                        'error' => $data['files']['error'][$i],
+                        'size' => $data['files']['size'][$i]
+                    ];
+                    $url = upload_file($file, 'community/');
+                    if ($url) {
+                        $stmtImg->execute([$postId, $url]);
+                    }
+                }
             }
         }
 
