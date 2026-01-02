@@ -41,8 +41,6 @@ const APP_CONFIG = {
     routes: {
         home: '{$basePath}',
         community: '{$basePath}community/',
-        donation: '{$basePath}donation/',
-        admin_donation: '{$basePath}admin%20donation/',
         games: '{$basePath}games/',
         meditation: '{$basePath}meditation/',
         yoga: '{$basePath}yoga/',
@@ -70,8 +68,6 @@ const CURRENT_USER = APP_CONFIG.user;
 const ROUTES = {
     HOME: APP_CONFIG.routes.home,
     COMMUNITY: APP_CONFIG.routes.community,
-    DONATION: APP_CONFIG.routes.donation,
-    ADMIN_DONATION: APP_CONFIG.routes.admin_donation,
     GAMES: APP_CONFIG.routes.games,
     MEDITATION: APP_CONFIG.routes.meditation,
     YOGA: APP_CONFIG.routes.yoga,

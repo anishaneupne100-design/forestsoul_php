@@ -55,7 +55,15 @@ switch ($action) {
         break;
 
     case 'logout':
-        session_destroy();
+        if (isset($_GET['context']) && $_GET['context'] === 'admin') {
+            unset($_SESSION['admin_id']);
+            unset($_SESSION['admin_user']);
+            unset($_SESSION['admin_lazy_verified']);
+        } else {
+            unset($_SESSION['user_id']);
+            unset($_SESSION['user']);
+            unset($_SESSION['user_lazy_verified']);
+        }
         $response = ['success' => true, 'message' => 'Logged out'];
         break;
 
@@ -75,7 +83,7 @@ switch ($action) {
             $response = ['success' => false, 'message' => 'Unauthorized'];
             break;
         }
-        $response = get_pending_expert_applications($_SESSION['user_id']);
+        $response = get_pending_expert_applications(Auth::adminId());
         break;
 
     case 'admin_approve_expert':

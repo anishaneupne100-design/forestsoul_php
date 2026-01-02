@@ -106,9 +106,9 @@ $recentActivity = get_recent_admin_activity(8)['data'] ?? [];
             <div class="admin-card p-8 bg-gradient-to-br from-admin-primary/20 to-transparent">
                 <h3 class="text-lg font-black mb-6 uppercase tracking-tight">Rapid Response</h3>
                 <div class="col gap-3">
-                    <button class="btn-admin-primary w-full shadow-lg">
+                    <a href="<?php echo url('admin/events.php?open=modal'); ?>" class="btn-admin-primary w-full shadow-lg">
                         <i class="fa-solid fa-plus"></i> New Event
-                    </button>
+                    </a>
                     <button class="w-full p-4 rounded-xl border border-white/10 text-white/50 text-sm font-bold hover:bg-white/5 transition-all text-left row gap-3 items-center">
                         <i class="fa-solid fa-envelope-open-text text-admin-primary"></i>
                         Blast Notification

@@ -1,6 +1,6 @@
 <?php
 // admin/navbar.php
-$admin_user = Auth::user();
+$admin_user = Auth::admin();
 ?>
 <nav class="h-20 bg-admin-surface/80 backdrop-blur-xl border-b border-white/5 sticky top-0 z-[1000] px-6 flex items-center justify-between">
     <div class="flex items-center gap-8">
@@ -30,10 +30,22 @@ $admin_user = Auth::user();
         <div class="size-11 rounded-xl bg-white/5 border border-white/10 center">
             <i class="fa-solid fa-user-shield text-admin-primary"></i>
         </div>
-        <a href="<?php echo url(''); ?>" class="size-11 rounded-xl border border-white/5 center hover:bg-white/5 transition-colors text-white/50" title="Back to Site">
-            <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
         </a>
+        <button onclick="adminLogout()" class="size-11 rounded-xl border border-red-500/20 text-red-500 center hover:bg-red-500/10 transition-all" title="Secure Logout">
+            <i class="fa-solid fa-power-off text-xs"></i>
+        </button>
     </div>
 </nav>
+
+<script>
+async function adminLogout() {
+    if (confirm('Terminate Session?')) {
+        const res = await api('logout&context=admin');
+        if (res.success) {
+            window.location.href = ROUTES.home;
+        }
+    }
+}
+</script>
 
 <div class="pt-4"></div>

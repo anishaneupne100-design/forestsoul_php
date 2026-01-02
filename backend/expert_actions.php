@@ -137,6 +137,10 @@ function approve_expert_application($appId) {
         $stmt = $pdo->prepare("DELETE FROM expert_applications WHERE id = ?");
         $stmt->execute([$appId]);
 
+        // Update User table
+        $stmt = $pdo->prepare("UPDATE users SET is_expert = 1 WHERE id = ?");
+        $stmt->execute([$app['user_id']]);
+
         create_notification($app['user_id'], "Congratulations! Your expert application has been approved.");
         log_activity($app['user_id'], 'expert_app_approved');
 
@@ -146,4 +150,91 @@ function approve_expert_application($appId) {
         $pdo->rollBack();
         return ['error' => $e->getMessage()];
     }
+}
+
+function book_therapy_session($userId, $expertId, $data) {
+    $pdo = get_db_connection();
+    try {
+        $stmt = $pdo->prepare("INSERT INTO therapy_sessions (user_id, expert_id, desired_date, desired_time, remarks) VALUES (?, ?, ?, ?, ?)");
+        $stmt->execute([
+            $userId, 
+            $expertId, 
+            $data['date'], 
+            $data['time'], 
+            $data['remarks'] ?? null
+        ]);
+        
+        $sessionId = $pdo->lastInsertId();
+        
+        // Notify Expert
+        $stmt = $pdo->prepare("SELECT user_id FROM experts WHERE id = ?");
+        $stmt->execute([$expertId]);
+        $expertUserId = $stmt->fetchColumn();
+        
+        create_notification($expertUserId, "You have a new therapy session request for {$data['date']} at {$data['time']}.");
+        log_activity($userId, 'booked_therapy_session', "With expert ID: $expertId");
+
+        return ['success' => true, 'message' => 'Session request sent! Wait for expert approval.', 'session_id' => $sessionId];
+    } catch (PDOException $e) {
+        return ['error' => $e->getMessage()];
+    }
+}
+
+function get_expert_sessions($expertUserId, $status = null) {
+    $pdo = get_db_connection();
+    
+    // Get expert id first
+    $stmt = $pdo->prepare("SELECT id FROM experts WHERE user_id = ?");
+    $stmt->execute([$expertUserId]);
+    $expert = $stmt->fetch();
+    if (!$expert) return ['error' => 'Expert not found'];
+    $expertId = $expert['id'];
+
+    $sql = "SELECT s.*, u.name, u.lastname, u.email FROM therapy_sessions s 
+            JOIN users u ON s.user_id = u.id 
+            WHERE s.expert_id = ?";
+    $params = [$expertId];
+    if ($status) {
+        $sql .= " AND s.status = ?";
+        $params[] = $status;
+    }
+    $sql .= " ORDER BY s.desired_date ASC, s.desired_time ASC";
+    
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute($params);
+    return ['success' => true, 'data' => $stmt->fetchAll()];
+}
+
+function update_session_status($sessionId, $status, $remarks = null, $meetingLink = null) {
+    $pdo = get_db_connection();
+    try {
+        $stmt = $pdo->prepare("UPDATE therapy_sessions SET status = ?, remarks = ?, meeting_link = ? WHERE id = ?");
+        $stmt->execute([$status, $remarks, $meetingLink, $sessionId]);
+        
+        // Notify User
+        $stmt = $pdo->prepare("SELECT user_id, desired_date FROM therapy_sessions WHERE id = ?");
+        $stmt->execute([$sessionId]);
+        $session = $stmt->fetch();
+        
+        $msg = "Your therapy session request for {$session['desired_date']} has been " . strtoupper($status) . ".";
+        if ($remarks) $msg .= " Remarks: $remarks";
+        if ($meetingLink) $msg .= " Link: $meetingLink";
+        
+        create_notification($session['user_id'], $msg);
+        
+        return ['success' => true];
+    } catch (PDOException $e) {
+        return ['error' => $e->getMessage()];
+    }
+}
+
+function get_my_therapy_sessions($userId) {
+    $pdo = get_db_connection();
+    $stmt = $pdo->prepare("SELECT s.*, e.name as expert_name, e.lastname as expert_lastname 
+                           FROM therapy_sessions s 
+                           JOIN experts e ON s.expert_id = e.id 
+                           WHERE s.user_id = ? 
+                           ORDER BY s.created_at DESC");
+    $stmt->execute([$userId]);
+    return ['success' => true, 'data' => $stmt->fetchAll()];
 }

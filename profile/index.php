@@ -115,6 +115,15 @@ $activityData = $activityRes['data'] ?? ['posts' => [], 'comments' => [], 'likes
                                     <span class="txt-sm"><?php echo $expertData['is_active'] ? 'Pause Expert Profile' : 'Resume Expert Profile'; ?></span>
                                 </button>
                             </form>
+                            <a href="<?php echo url('expert_dashboard.php'); ?>" class="btn-primary w-full justify-center gap-3 h-11 px-4 bg-indigo-600 hover:bg-indigo-700 shadow-indigo-500/20">
+                                <i class="fa-solid fa-gauge-high"></i>
+                                <span class="txt-sm font-bold">Expert Dashboard</span>
+                                <?php 
+                                $pendingCount = count(get_expert_sessions($user['id'], 'pending')['data'] ?? []);
+                                if ($pendingCount > 0): ?>
+                                    <span class="size-5 rounded-full bg-white text-indigo-600 text-[10px] center font-black ml-auto"><?php echo $pendingCount; ?></span>
+                                <?php endif; ?>
+                            </a>
                         <?php elseif ($hasPendingApp): ?>
                             <div class="card bg-orange-500/10 border border-orange-500/20 p-3 text-left">
                                 <p class="text-orange-400 text-xs font-bold mb-1">Expert Application Pending</p>
@@ -173,6 +182,9 @@ $activityData = $activityRes['data'] ?? ['posts' => [], 'comments' => [], 'likes
                         <button onclick="switchTab('tab-notif')" class="profile-tab px-6 py-4 txt-sm font-bold row gap-2 border-b-2 border-transparent text-white/50" data-tab="tab-notif">
                             <i class="fa-solid fa-bell text-xs"></i> Notifications
                         </button>
+                        <button onclick="switchTab('tab-sessions')" class="profile-tab px-6 py-4 txt-sm font-bold row gap-2 border-b-2 border-transparent text-white/50" data-tab="tab-sessions">
+                            <i class="fa-solid fa-calendar-check text-xs"></i> Sessions
+                        </button>
                     </div>
 
                     <div class="p-6">
@@ -223,6 +235,38 @@ $activityData = $activityRes['data'] ?? ['posts' => [], 'comments' => [], 'likes
                                     <div class="p-4 border-l-4 <?php echo $n['is_read'] ? 'border-white/10' : 'border-primary bg-primary/5'; ?> rounded-r-xl">
                                         <p class="txt-sm"><?php echo htmlspecialchars($n['message']); ?></p>
                                         <span class="text-[10px] text-white/30"><?php echo date('M d, Y', strtotime($n['created_at'])); ?></span>
+                                    </div>
+                                <?php endforeach; endif; ?>
+                            </div>
+                        </div>
+
+                        <div id="tab-sessions" class="tab-pane hidden">
+                            <div class="col gap-4">
+                                <?php 
+                                $sessions = get_my_therapy_sessions($user['id'])['data'] ?? [];
+                                if (empty($sessions)): ?>
+                                    <p class="text-center py-10 txt-2 italic">You haven't booked any therapy sessions.</p>
+                                    <div class="center">
+                                        <a href="<?php echo url('therapy/'); ?>" class="btn-primary px-6 h-10 rounded-xl center text-xs">Book a Session</a>
+                                    </div>
+                                <?php else: foreach($sessions as $s): ?>
+                                    <div class="p-6 rounded-2xl bg-white/5 border border-white/5 between items-center">
+                                        <div class="col gap-1">
+                                            <p class="font-bold">With <?php echo htmlspecialchars($s['expert_name']); ?></p>
+                                            <p class="text-[10px] text-white/40 uppercase font-black tracking-widest"><?php echo $s['desired_date']; ?> @ <?php echo $s['desired_time']; ?></p>
+                                        </div>
+                                        <div class="row gap-4 items-center">
+                                            <?php if ($s['status'] === 'approved'): ?>
+                                                <span class="px-3 py-1 bg-green-500/20 text-green-500 text-[10px] font-black rounded-lg uppercase">Confirmed</span>
+                                                <?php if ($s['meeting_link']): ?>
+                                                    <a href="<?php echo $s['meeting_link']; ?>" target="_blank" class="size-10 rounded-xl bg-primary center text-background-dark shadow-lg shadow-primary/20 hover:scale-105 transition-transform"><i class="fa-solid fa-video"></i></a>
+                                                <?php endif; ?>
+                                            <?php elseif ($s['status'] === 'rejected'): ?>
+                                                <span class="px-3 py-1 bg-red-500/20 text-red-500 text-[10px] font-black rounded-lg uppercase">Rejected</span>
+                                            <?php else: ?>
+                                                <span class="px-3 py-1 bg-amber-500/20 text-amber-500 text-[10px] font-black rounded-lg uppercase">Pending</span>
+                                            <?php endif; ?>
+                                        </div>
                                     </div>
                                 <?php endforeach; endif; ?>
                             </div>
