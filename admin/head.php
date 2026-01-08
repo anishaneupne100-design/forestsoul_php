@@ -30,7 +30,8 @@ if (!Auth::adminCheck() || !Auth::isAdmin()) {
                         admin: {
                             bg: '#0a0c10',
                             surface: '#12151c',
-                            primary: '#6366f1', // Indigo for admin
+                           // primary: '#6366f1', // Indigo for admin
+                            primary: '#63f18eff', // Indigo for admin
                             secondary: '#8b5cf6',
                             border: 'rgba(255,255,255,0.08)'
                         }
