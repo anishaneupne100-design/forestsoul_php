@@ -12,6 +12,16 @@ if (-not (Test-Path ".git")) {
     exit 1
 }
 
+# =====================================
+# CHECK git-filter-repo
+# =====================================
+$filterRepoExists = git filter-repo --help 2>$null
+if ($LASTEXITCODE -ne 0) {
+    Write-Host "ERROR: git-filter-repo not installed."
+    Write-Host "Install it using: pip install git-filter-repo"
+    exit 1
+}
+
 Write-Host "WARNING: This will rewrite ALL commits and force push."
 Write-Host "Press ENTER to continue or CTRL+C to cancel..."
 Read-Host
@@ -26,14 +36,14 @@ git config --global user.name "$NEW_NAME"
 git config --global user.email "$NEW_EMAIL"
 
 # =====================================
-# REWRITE ALL COMMITS
+# REWRITE ALL COMMITS (SAFE WAY)
 # =====================================
-git filter-branch --force --env-filter '
-export GIT_AUTHOR_NAME="'"$NEW_NAME"'"
-export GIT_AUTHOR_EMAIL="'"$NEW_EMAIL"'"
-export GIT_COMMITTER_NAME="'"$NEW_NAME"'"
-export GIT_COMMITTER_EMAIL="'"$NEW_EMAIL"'"
-' -- --all
+git filter-repo --force --commit-callback "
+commit.author_name  = b'$NEW_NAME'
+commit.author_email = b'$NEW_EMAIL'
+commit.committer_name  = b'$NEW_NAME'
+commit.committer_email = b'$NEW_EMAIL'
+"
 
 # =====================================
 # FORCE PUSH TO GITHUB
@@ -41,5 +51,5 @@ export GIT_COMMITTER_EMAIL="'"$NEW_EMAIL"'"
 git push --force --all
 git push --force --tags
 
-Write-Host "SUCCESS: All commits updated."
+Write-Host "SUCCESS: All commits rewritten correctly."
 Write-Host "GitHub will now show the new name and email."
