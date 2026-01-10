@@ -5,6 +5,12 @@
  */
 
 function get_db_connection() {
+    static $pdo = null;
+    
+    if ($pdo !== null) {
+        return $pdo;
+    }
+
     // Database file will be created in the backend directory
     $dbPath = __DIR__ . '/forestsoul.sqlite';
     $dsn = "sqlite:$dbPath";

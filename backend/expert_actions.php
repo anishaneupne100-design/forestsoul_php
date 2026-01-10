@@ -176,7 +176,7 @@ function book_therapy_session($userId, $expertId, $data) {
 
         return ['success' => true, 'message' => 'Session request sent! Wait for expert approval.', 'session_id' => $sessionId];
     } catch (PDOException $e) {
-        return ['error' => $e->getMessage()];
+        return ['error' => "Booking failed: " . $e->getMessage() . " (User: $userId, Expert: $expertId)"];
     }
 }
 
@@ -237,4 +237,64 @@ function get_my_therapy_sessions($userId) {
                            ORDER BY s.created_at DESC");
     $stmt->execute([$userId]);
     return ['success' => true, 'data' => $stmt->fetchAll()];
+}
+
+function submit_questionnaire($userId, $answersJson) {
+    $pdo = get_db_connection();
+    try {
+        $stmt = $pdo->prepare("INSERT INTO user_questionnaires (user_id, answers) VALUES (?, ?)");
+        $stmt->execute([$userId, $answersJson]);
+        return ['success' => true];
+    } catch (PDOException $e) {
+        return ['error' => "Submission failed: " . $e->getMessage() . " (User ID: $userId)"];
+    }
+}
+
+function get_user_questionnaire($userId) {
+    $pdo = get_db_connection();
+    $stmt = $pdo->prepare("SELECT * FROM user_questionnaires WHERE user_id = ? ORDER BY created_at DESC LIMIT 1");
+    $stmt->execute([$userId]);
+    return $stmt->fetch();
+}
+
+function add_expert_rating($userId, $expertId, $rating, $feedback) {
+    $pdo = get_db_connection();
+    try {
+        $stmt = $pdo->prepare("INSERT INTO expert_ratings (user_id, expert_id, rating, feedback) VALUES (?, ?, ?, ?)");
+        $stmt->execute([$userId, $expertId, $rating, $feedback]);
+        return ['success' => true];
+    } catch (PDOException $e) {
+        return ['error' => $e->getMessage()];
+    }
+}
+
+function get_expert_ratings($expertId) {
+    $pdo = get_db_connection();
+    $stmt = $pdo->prepare("SELECT r.*, u.name, u.lastname FROM expert_ratings r JOIN users u ON r.user_id = u.id WHERE expert_id = ? ORDER BY r.created_at DESC");
+    $stmt->execute([$expertId]);
+    return $stmt->fetchAll();
+}
+
+function get_expert_analytics($expertId) {
+    $pdo = get_db_connection();
+    // Avg Rating
+    $stmt = $pdo->prepare("SELECT AVG(rating) as avg_rating, COUNT(*) as total_ratings FROM expert_ratings WHERE expert_id = ?");
+    $stmt->execute([$expertId]);
+    $ratingStats = $stmt->fetch();
+
+    // Session stats
+    $stmt = $pdo->prepare("SELECT 
+        COUNT(*) as total_sessions,
+        SUM(CASE WHEN status = 'approved' THEN 1 ELSE 0 END) as approved_sessions,
+        SUM(CASE WHEN status = 'pending' THEN 1 ELSE 0 END) as pending_sessions,
+        SUM(CASE WHEN status = 'completed' THEN 1 ELSE 0 END) as completed_sessions
+        FROM therapy_sessions WHERE expert_id = ?");
+    $stmt->execute([$expertId]);
+    $sessionStats = $stmt->fetch();
+
+    return [
+        'avg_rating' => round($ratingStats['avg_rating'] ?? 0, 1),
+        'total_ratings' => $ratingStats['total_ratings'] ?? 0,
+        'sessions' => $sessionStats
+    ];
 }

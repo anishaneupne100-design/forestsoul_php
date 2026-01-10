@@ -18,7 +18,7 @@ $recentActivity = get_recent_admin_activity(8)['data'] ?? [];
     <!-- Quick Stats Grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
         <!-- Experts -->
-        <div class="admin-card p-6 col gap-4 shadow-xl">
+        <div class="admin-card p-6 col gap-4 shadow-xl cursor-pointer hover:border-admin-primary/50 transition-all" onclick="location.href='<?php echo url('admin/experts.php'); ?>'">
             <div class="between">
                 <div class="size-12 rounded-2xl bg-admin-primary/10 center text-admin-primary">
                     <i class="fa-solid fa-user-doctor text-xl"></i>
@@ -32,7 +32,7 @@ $recentActivity = get_recent_admin_activity(8)['data'] ?? [];
         </div>
 
         <!-- Registrations -->
-        <div class="admin-card p-6 col gap-4 shadow-xl">
+        <div class="admin-card p-6 col gap-4 shadow-xl cursor-pointer hover:border-amber-500/50 transition-all" onclick="location.href='<?php echo url('admin/events.php'); ?>'">
             <div class="between">
                 <div class="size-12 rounded-2xl bg-amber-500/10 center text-amber-500">
                     <i class="fa-solid fa-calendar-check text-xl"></i>
@@ -57,7 +57,7 @@ $recentActivity = get_recent_admin_activity(8)['data'] ?? [];
         </div>
 
         <!-- Posts -->
-        <div class="admin-card p-6 col gap-4 shadow-xl">
+        <div class="admin-card p-6 col gap-4 shadow-xl cursor-pointer hover:border-admin-primary/50 transition-all" onclick="location.href='<?php echo url('admin/community.php'); ?>'">
             <div class="size-12 rounded-2xl bg-white/5 center text-white/40">
                 <i class="fa-solid fa-quote-left text-xl"></i>
             </div>
@@ -79,8 +79,13 @@ $recentActivity = get_recent_admin_activity(8)['data'] ?? [];
                 <div class="col gap-4">
                     <?php if (empty($recentActivity)): ?>
                         <p class="text-center py-20 text-white/20 italic font-medium">The forest is quiet...</p>
-                    <?php else: foreach($recentActivity as $log): ?>
-                        <div class="row gap-6 p-5 rounded-2xl bg-white/2 border border-white/5 items-center group transition-all hover:bg-white/5">
+                    <?php else: foreach($recentActivity as $log): 
+                        $targetPage = url('admin/index.php');
+                        if (str_contains($log['action'], 'expert')) $targetPage = url('admin/experts.php');
+                        elseif (str_contains($log['action'], 'event') || str_contains($log['action'], 'registration')) $targetPage = url('admin/events.php');
+                        elseif (str_contains($log['action'], 'post') || str_contains($log['action'], 'comment')) $targetPage = url('admin/community.php');
+                    ?>
+                        <div class="row gap-6 p-5 rounded-2xl bg-white/2 border border-white/5 items-center group transition-all hover:bg-white/5 cursor-pointer" onclick="location.href='<?php echo $targetPage; ?>'">
                             <div class="size-12 rounded-xl bg-admin-bg center text-admin-primary font-black uppercase shadow-inner">
                                 <?php echo $log['name'][0]; ?>
                             </div>
@@ -106,7 +111,7 @@ $recentActivity = get_recent_admin_activity(8)['data'] ?? [];
             <div class="admin-card p-8 bg-gradient-to-br from-admin-primary/20 to-transparent">
                 <h3 class="text-lg font-black mb-6 uppercase tracking-tight">Rapid Response</h3>
                 <div class="col gap-3">
-                    <a href="<?php echo url('admin/events.php?open=modal'); ?>" class="btn-admin-primary w-full shadow-lg">
+                    <a href="<?php echo url('admin/events.php?open=modal'); ?>" class="btn-admin-primary w-full shadow-lg center">
                         <i class="fa-solid fa-plus"></i> New Event
                     </a>
                     <button class="w-full p-4 rounded-xl border border-white/10 text-white/50 text-sm font-bold hover:bg-white/5 transition-all text-left row gap-3 items-center">

@@ -246,7 +246,36 @@ try {
     ");
     echo "Therapy Sessions table created.\n";
 
-    // 13. Default Admin User (admin@admin.com / password123)
+    // 13. Expert Ratings Table
+    $pdo->exec("DROP TABLE IF EXISTS expert_ratings");
+    $pdo->exec("
+    CREATE TABLE expert_ratings (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        user_id INTEGER NOT NULL,
+        expert_id INTEGER NOT NULL,
+        rating INTEGER NOT NULL CHECK(rating >= 1 AND rating <= 5),
+        feedback TEXT,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+        FOREIGN KEY (expert_id) REFERENCES experts(id) ON DELETE CASCADE
+    );
+    ");
+    echo "Expert Ratings table created.\n";
+
+    // 14. User Questionnaires Table
+    $pdo->exec("DROP TABLE IF EXISTS user_questionnaires");
+    $pdo->exec("
+    CREATE TABLE user_questionnaires (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        user_id INTEGER NOT NULL,
+        answers TEXT NOT NULL,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+    );
+    ");
+    echo "User Questionnaires table created.\n";
+
+    // 15. Default Admin User (admin@admin.com / password123)
     $stmt = $pdo->prepare("INSERT INTO users (name, lastname, email, password, is_admin) VALUES (?, ?, ?, ?, ?)");
     $stmt->execute(['Master', 'Admin', 'admin@admin.com', password_hash('password123', PASSWORD_DEFAULT), 1]);
     echo "Default admin user created.\n";

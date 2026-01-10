@@ -34,9 +34,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
 
 $pendingSessions = get_expert_sessions($user['id'], 'pending')['data'] ?? [];
 $approvedSessions = get_expert_sessions($user['id'], 'approved')['data'] ?? [];
+$analytics = get_expert_analytics($expert['id']);
 
 $title = "Expert Control Panel - ForestSoul";
 include_once 'head.php';
+?>
+<!-- Additional CDN for Expert Dashboard -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<?php
 include_once 'components/navbar.php';
 ?>
 
@@ -105,6 +110,47 @@ include_once 'components/navbar.php';
                                             "<?php echo htmlspecialchars($session['remarks']); ?>"
                                         </p>
                                     <?php endif; ?>
+
+                                    <!-- Patient Assessment Integration -->
+                                    <?php 
+                                    $assessment = get_user_questionnaire($session['user_id']);
+                                    if ($assessment): 
+                                        $answers = json_decode($assessment['answers'], true);
+                                    ?>
+                                        <div class="mt-6">
+                                            <button onclick="$(this).next().slideToggle()" class="row gap-2 items-center text-[10px] font-black uppercase text-primary tracking-widest hover:opacity-80 transition-opacity">
+                                                <i class="fa-solid fa-file-medical"></i> View Patient Assessment
+                                            </button>
+                                            <div class="hidden mt-4 p-6 rounded-[2rem] bg-background-dark/50 border border-primary/10 col gap-4 shadow-inner animate-fade-in">
+                                                <div class="grid grid-cols-2 gap-4">
+                                                    <div class="col gap-1">
+                                                        <span class="text-[9px] uppercase text-white/30 font-bold">Mood Baseline</span>
+                                                        <span class="text-xs font-black text-white"><?php echo $answers['mood_level'] ?? 'N/A'; ?> / 10</span>
+                                                    </div>
+                                                    <div class="col gap-1">
+                                                        <span class="text-[9px] uppercase text-white/30 font-bold">Energy Level</span>
+                                                        <span class="text-xs font-black text-white capitalize"><?php echo $answers['energy'] ?? 'N/A'; ?></span>
+                                                    </div>
+                                                </div>
+                                                <div class="col gap-1">
+                                                    <span class="text-[9px] uppercase text-white/30 font-bold">Cognitive Patterns</span>
+                                                    <div class="row gap-2 flex-wrap">
+                                                        <?php foreach(($answers['patterns'] ?? []) as $p): ?>
+                                                            <span class="px-2 py-0.5 rounded bg-primary/10 text-primary text-[9px] font-bold"><?php echo $p; ?></span>
+                                                        <?php endforeach; ?>
+                                                    </div>
+                                                </div>
+                                                <div class="col gap-1">
+                                                    <span class="text-[9px] uppercase text-white/30 font-bold">Sleep Quality</span>
+                                                    <span class="text-xs text-white/80 italic">"<?php echo $answers['sleep_quality'] ?? 'N/A'; ?>"</span>
+                                                </div>
+                                                <div class="col gap-1">
+                                                    <span class="text-[9px] uppercase text-white/30 font-bold">Healing Goals</span>
+                                                    <p class="text-[11px] text-white/60 leading-relaxed">"<?php echo nl2br(htmlspecialchars($answers['goals'] ?? 'None specified')); ?>"</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <?php endif; ?>
                                 </div>
                                 <div class="col gap-3">
                                     <button onclick="openActionModal(<?php echo $session['id']; ?>, 'approved')" class="btn-primary h-12 px-6 rounded-xl font-bold">Approve</button>
@@ -150,12 +196,24 @@ include_once 'components/navbar.php';
                     <h3 class="txt-lg font-bold mb-6">Expertise Overview</h3>
                     <div class="col gap-6">
                         <div class="row items-center justify-between p-4 rounded-2xl bg-white/5">
-                            <span class="txt-sm txt-2">Total Patients</span>
-                            <span class="txt-2xl font-black text-white"><?php echo count($approvedSessions) + count($pendingSessions); ?></span>
+                            <div class="col">
+                                <span class="txt-sm txt-2">Avg Rating</span>
+                                <div class="row gap-1 text-[10px] text-amber-500 mt-1">
+                                    <?php for($i=1; $i<=5; $i++): ?>
+                                        <i class="fa-<?php echo $i <= $analytics['avg_rating'] ? 'solid' : 'regular'; ?> fa-star"></i>
+                                    <?php endfor; ?>
+                                </div>
+                            </div>
+                            <span class="txt-2xl font-black text-white"><?php echo $analytics['avg_rating']; ?></span>
                         </div>
                         <div class="row items-center justify-between p-4 rounded-2xl bg-white/5">
-                            <span class="txt-sm txt-2">Yrs Experience</span>
-                            <span class="txt-2xl font-black text-white"><?php echo $expert['experience_years']; ?></span>
+                            <span class="txt-sm txt-2">Total Patients</span>
+                            <span class="txt-2xl font-black text-white"><?php echo $analytics['sessions']['total_sessions']; ?></span>
+                        </div>
+                        
+                        <!-- Chart Container -->
+                        <div class="mt-4">
+                            <canvas id="performanceChart" height="200"></canvas>
                         </div>
                     </div>
                 </div>
@@ -222,6 +280,39 @@ function closeModal() {
         $(this).addClass('hidden').css('display', '');
     });
 }
+
+// Chart Initialization
+const ctx = document.getElementById('performanceChart').getContext('2d');
+new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+        labels: ['Pending', 'Approved', 'Completed'],
+        datasets: [{
+            data: [
+                <?php echo $analytics['sessions']['pending_sessions']; ?>, 
+                <?php echo $analytics['sessions']['approved_sessions']; ?>, 
+                <?php echo $analytics['sessions']['completed_sessions']; ?>
+            ],
+            backgroundColor: ['#f59e0b', '#10b981', '#6366f1'],
+            borderWidth: 0,
+            hoverOffset: 10
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            legend: {
+                position: 'bottom',
+                labels: {
+                    color: 'rgba(255,255,255,0.5)',
+                    padding: 20,
+                    font: { size: 10, weight: 'bold' }
+                }
+            }
+        },
+        cutout: '70%'
+    }
+});
 </script>
 
 <?php put_footer(); ?>
