@@ -1,3 +1,4 @@
+<?php
 $title = "Restorative Yoga - ForestSoul";
 include_once '../head.php';
 include_once '../components/navbar.php';
