@@ -185,6 +185,9 @@ $activityData = $activityRes['data'] ?? ['posts' => [], 'comments' => [], 'likes
                         <button onclick="switchTab('tab-sessions')" class="profile-tab px-6 py-4 txt-sm font-bold row gap-2 border-b-2 border-transparent text-white/50" data-tab="tab-sessions">
                             <i class="fa-solid fa-calendar-check text-xs"></i> Sessions
                         </button>
+                        <button onclick="switchTab('tab-apps')" class="profile-tab px-6 py-4 txt-sm font-bold row gap-2 border-b-2 border-transparent text-white/50" data-tab="tab-apps">
+                            <i class="fa-solid fa-award text-xs"></i> Applications
+                        </button>
                     </div>
 
                     <div class="p-6">
@@ -267,6 +270,33 @@ $activityData = $activityRes['data'] ?? ['posts' => [], 'comments' => [], 'likes
                                                 <span class="px-3 py-1 bg-amber-500/20 text-amber-500 text-[10px] font-black rounded-lg uppercase">Pending</span>
                                             <?php endif; ?>
                                         </div>
+                                    </div>
+                                <?php endforeach; endif; ?>
+                            </div>
+                        </div>
+
+                        <div id="tab-apps" class="tab-pane hidden">
+                            <div class="col gap-4">
+                                <?php 
+                                $stmt = $pdo->prepare("SELECT * FROM expert_applications WHERE user_id = ? ORDER BY created_at DESC");
+                                $stmt->execute([$user['id']]);
+                                $apps = $stmt->fetchAll();
+                                
+                                if (empty($apps)): ?>
+                                    <p class="text-center py-10 txt-2 italic">No expert applications found.</p>
+                                <?php else: foreach($apps as $app): 
+                                    $appStatusColor = 'text-amber-500 bg-amber-500/10';
+                                    if ($app['status'] === 'approved') $appStatusColor = 'text-green-500 bg-green-500/10';
+                                    if ($app['status'] === 'rejected') $appStatusColor = 'text-red-500 bg-red-500/10';
+                                ?>
+                                    <div class="p-6 rounded-2xl bg-white/5 border border-white/5 between items-center">
+                                        <div class="col gap-1">
+                                            <p class="font-bold">Expert Guardian Application</p>
+                                            <p class="text-[10px] text-white/40 uppercase font-black tracking-widest">Specialization: <?php echo htmlspecialchars($app['specialization']); ?></p>
+                                        </div>
+                                        <span class="px-3 py-1 rounded-lg <?php echo $appStatusColor ?> text-[10px] font-black uppercase tracking-widest border border-current/10">
+                                            <?php echo $app['status']; ?>
+                                        </span>
                                     </div>
                                 <?php endforeach; endif; ?>
                             </div>

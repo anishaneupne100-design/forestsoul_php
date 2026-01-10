@@ -36,6 +36,55 @@ include_once 'components/navbar.php';
         </div>
     </section>
 
+    <!-- Featured Experts (Dynamic Sync) -->
+    <section class="section py-20 bg-surface-dark/20">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="between items-end mb-16">
+                <div class="col gap-2">
+                    <span class="text-[10px] font-black uppercase tracking-[0.3em] text-primary">Healing Guides</span>
+                    <h2 class="txt-3xl font-black text-white italic">Meet Our Specialists</h2>
+                </div>
+                <a href="<?php echo url('therapy/'); ?>" class="text-xs font-bold uppercase tracking-widest text-primary hover:opacity-80 transition-opacity row gap-2 items-center">
+                    See All Experts <i class="fa-solid fa-arrow-right-long"></i>
+                </a>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <?php 
+                $expertsRes = get_active_experts();
+                $hpExperts = array_slice($expertsRes['data'] ?? [], 0, 4);
+                if (empty($hpExperts)):
+                ?>
+                    <div class="col-span-full admin-card p-12 center border-dashed">
+                        <p class="txt-2 italic opacity-40">Our guardians are currently preparing their spaces. Check back soon.</p>
+                    </div>
+                <?php else: foreach($hpExperts as $ex): ?>
+                    <a href="<?php echo url('Therapy/expert_details.php?id=' . $ex['id']); ?>" class="card bg-surface-dark border-white/5 p-8 rounded-[2.5rem] group hover:border-primary/30 transition-all duration-500 hover:-translate-y-2">
+                        <div class="size-20 rounded-2xl overflow-hidden mb-6 mx-auto border-2 border-white/5 group-hover:border-primary transition-colors shadow-2xl">
+                            <?php if ($ex['profile_picture']): ?>
+                                <img src="<?php echo url($ex['profile_picture']); ?>" class="size-full object-cover group-hover:scale-110 transition-transform duration-500">
+                            <?php else: ?>
+                                <div class="size-full center bg-white/5 text-primary"><i class="fa-solid fa-user-doctor text-2xl"></i></div>
+                            <?php endif; ?>
+                        </div>
+                        <div class="text-center col gap-1">
+                            <h3 class="font-bold text-white group-hover:text-primary transition-colors"><?php echo htmlspecialchars($ex['name'] . ' ' . $ex['lastname']); ?></h3>
+                            <p class="text-[9px] font-black uppercase tracking-widest text-primary opacity-60"><?php echo htmlspecialchars($ex['specialization']); ?></p>
+                            <div class="row gap-1 text-[8px] text-amber-500 center mt-2">
+                                <?php 
+                                $exAnalytics = get_expert_analytics($ex['id']);
+                                for($i=1; $i<=5; $i++): 
+                                ?>
+                                    <i class="fa-<?php echo $i <= $exAnalytics['avg_rating'] ? 'solid' : 'regular'; ?> fa-star"></i>
+                                <?php endfor; ?>
+                            </div>
+                        </div>
+                    </a>
+                <?php endforeach; endif; ?>
+            </div>
+        </div>
+    </section>
+
     <!-- Services Grid -->
     <section class="section">
         <div class="text-center px-4 mb-16 col gap-4">

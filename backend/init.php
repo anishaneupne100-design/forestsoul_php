@@ -41,47 +41,51 @@ function is_expert_user() {
 }
 
 function current_user() {
+    static $cachedUser = null;
+    if ($cachedUser !== null) return $cachedUser;
+    
     if (!is_logged_in()) return null;
     
-    if (!isset($_SESSION['user_lazy_verified'])) {
-        $pdo = get_db_connection();
-        $stmt = $pdo->prepare("SELECT * FROM users WHERE id = ?");
-        $stmt->execute([$_SESSION['user_id']]);
-        $user = $stmt->fetch();
-        if (!$user) {
-            unset($_SESSION['user_id']);
-            unset($_SESSION['user']);
-            return null;
-        }
-        $_SESSION['user'] = $user;
-        $_SESSION['user_lazy_verified'] = true;
+    $pdo = get_db_connection();
+    $stmt = $pdo->prepare("SELECT * FROM users WHERE id = ?");
+    $stmt->execute([$_SESSION['user_id']]);
+    $user = $stmt->fetch();
+    
+    if (!$user) {
+        unset($_SESSION['user_id']);
+        unset($_SESSION['user']);
+        return null;
     }
-
-    return $_SESSION['user'] ?? null;
+    
+    $_SESSION['user'] = $user;
+    $cachedUser = $user;
+    return $user;
 }
 
 function current_admin() {
+    static $cachedAdmin = null;
+    if ($cachedAdmin !== null) return $cachedAdmin;
+
     if (!is_admin_logged_in()) return null;
     
-    if (!isset($_SESSION['admin_lazy_verified'])) {
-        $pdo = get_db_connection();
-        $stmt = $pdo->prepare("SELECT * FROM users WHERE id = ? AND is_admin = 1");
-        $stmt->execute([$_SESSION['admin_id']]);
-        $user = $stmt->fetch();
-        if (!$user) {
-            unset($_SESSION['admin_id']);
-            unset($_SESSION['admin_user']);
-            return null;
-        }
-        $_SESSION['admin_user'] = $user;
-        $_SESSION['admin_lazy_verified'] = true;
+    $pdo = get_db_connection();
+    $stmt = $pdo->prepare("SELECT * FROM users WHERE id = ? AND is_admin = 1");
+    $stmt->execute([$_SESSION['admin_id']]);
+    $user = $stmt->fetch();
+    
+    if (!$user) {
+        unset($_SESSION['admin_id']);
+        unset($_SESSION['admin_user']);
+        return null;
     }
-
-    return $_SESSION['admin_user'] ?? null;
+    
+    $_SESSION['admin_user'] = $user;
+    $cachedAdmin = $user;
+    return $user;
 }
 
 function require_login() {
-    if (!is_logged_in()) {
+    if (!Auth::user()) {
         header("Location: " . url('login/'));
         exit;
     }
@@ -99,11 +103,11 @@ function url($path = '') {
  */
 class Auth {
     public static function check() {
-        return is_logged_in();
+        return !!self::user();
     }
 
     public static function adminCheck() {
-        return is_admin_logged_in();
+        return !!self::admin();
     }
 
     public static function user() {
@@ -115,11 +119,13 @@ class Auth {
     }
 
     public static function id() {
-        return $_SESSION['user_id'] ?? null;
+        $user = self::user();
+        return $user ? $user['id'] : null;
     }
 
     public static function adminId() {
-        return $_SESSION['admin_id'] ?? null;
+        $admin = self::admin();
+        return $admin ? $admin['id'] : null;
     }
 
     public static function isAdmin() {
