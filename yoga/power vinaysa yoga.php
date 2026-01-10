@@ -1,4 +1,5 @@
-$title = "Power Vinyasa - ForestSoul";
+<?php
+$title = "Power Vinyasa Yoga - ForestSoul";
 include_once '../head.php';
 include_once '../components/navbar.php';
 ?>

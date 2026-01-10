@@ -1,4 +1,6 @@
 <?php
+$title = "Gentle Hatha Flow - ForestSoul";
+include_once '../head.php';
 include_once '../components/navbar.php';
 
 ?>

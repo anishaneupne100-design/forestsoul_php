@@ -40,7 +40,7 @@ include_once '../components/navbar.php';
                 </div>
                 <div class="col gap-1">
                     <h3 class="title group-hover:text-primary transition-colors">Sunrise Vinyasa Flow</h3>
-                    <p class="subtitle">Instructor: Anya Sharma</p>
+                    <p class="subtitle">Instructor: Nischita Sharma</p>
                     <div class="row gap-sm txt-2 txt-xs mt-2 uppercase tracking-wider font-bold">
                         <span class="bg-primary/20 text-primary px-2 py-0.5 rounded">Beginner</span>
                         <span class="bg-surface-dark px-2 py-0.5 rounded">60 MIN</span>
@@ -54,7 +54,7 @@ include_once '../components/navbar.php';
                 </div>
                 <div class="col gap-1">
                     <h3 class="title group-hover:text-primary transition-colors">Gentle Hatha & Meditation</h3>
-                    <p class="subtitle">Instructor: Leo Chen</p>
+                    <p class="subtitle">Instructor: sagar karki</p>
                     <div class="row gap-sm txt-2 txt-xs mt-2 uppercase tracking-wider font-bold">
                         <span class="bg-primary/20 text-primary px-2 py-0.5 rounded">Beginner</span>
                         <span class="bg-surface-dark px-2 py-0.5 rounded">45 MIN</span>
@@ -68,7 +68,7 @@ include_once '../components/navbar.php';
                 </div>
                 <div class="col gap-1">
                     <h3 class="title group-hover:text-primary transition-colors">Restorative Yin Yoga</h3>
-                    <p class="subtitle">Instructor: Sofia Rossi</p>
+                    <p class="subtitle">Instructor: kashish bagri</p>
                     <div class="row gap-sm txt-2 txt-xs mt-2 uppercase tracking-wider font-bold">
                         <span class="bg-primary/20 text-primary px-2 py-0.5 rounded">All Levels</span>
                         <span class="bg-surface-dark px-2 py-0.5 rounded">75 MIN</span>
@@ -82,7 +82,7 @@ include_once '../components/navbar.php';
                 </div>
                 <div class="col gap-1">
                     <h3 class="title group-hover:text-primary transition-colors">Power Yoga Burn</h3>
-                    <p class="subtitle">Instructor: Marcus Cole</p>
+                    <p class="subtitle">Instructor: sajina magar</p>
                     <div class="row gap-sm txt-2 txt-xs mt-2 uppercase tracking-wider font-bold">
                         <span class="bg-primary/20 text-primary px-2 py-0.5 rounded">Advanced</span>
                         <span class="bg-surface-dark px-2 py-0.5 rounded">60 MIN</span>
