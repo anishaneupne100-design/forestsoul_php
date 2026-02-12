@@ -68,7 +68,7 @@
             <div class="row gap-6">
                 <span class="text-[10px] font-black uppercase tracking-widest text-white/10 row gap-2 items-center">
                     <i class="fa-solid fa-earth-asia"></i> 
-                    Kathmandu, Nepal
+                    Itahari, Nepal
                 </span>
             </div>
         </div>
