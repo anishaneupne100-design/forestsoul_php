@@ -1,75 +1,59 @@
-<footer class="bg-[#05070a] border-t border-white/5 pt-20 pb-10 px-6 relative overflow-hidden">
+<footer class="bg-[#05070a] border-t border-white/5 py-16 px-6 relative overflow-hidden">
     <!-- Subtle Background Graphic -->
-    <div class="absolute right-0 bottom-0 size-64 bg-primary/5 rounded-full blur-3xl pointer-events-none -mb-32 -mr-32"></div>
+    <div class="absolute right-0 top-0 size-96 bg-primary/5 rounded-full blur-3xl pointer-events-none -mt-48 -mr-48"></div>
 
-    <div class="max-w-7xl mx-auto col gap-16 relative z-10">
-        <div class="grid grid-cols-1 md:grid-cols-12 gap-12">
+    <div class="max-w-6xl mx-auto relative z-10">
+        
+        <!-- Main Content Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mb-12">
             
-            <!-- Brand Section -->
-            <div class="md:col-span-5 col gap-6">
-                <a href="<?php echo url(''); ?>" class="row gap-3 items-center group">
-                    <div class="size-10 rounded-xl bg-primary/20 center text-background-dark shadow-lg shadow-primary/20 group-hover:rotate-12 transition-transform overflow-hidden">
-                        <img src="<?php echo url('components/logo.png'); ?>" alt="ForestSoul Logo" class="w-full h-full object-cover">
+            <!-- Brand Section - Minimal -->
+            <div class="col gap-4">
+                <a href="<?php echo url(''); ?>" class="row gap-2 items-center w-fit group">
+                    <div class="size-8 rounded-lg bg-primary/20 center overflow-hidden">
+                        <img src="<?php echo url('components/logo.png'); ?>" alt="ForestSoul" class="w-full h-full object-cover">
                     </div>
-                    <span class="txt-xl font-black italic tracking-tighter">ForestSoul</span>
+                    <span class="txt-lg font-black italic tracking-tight">ForestSoul</span>
                 </a>
-                <p class="txt-sm txt-2 max-w-sm leading-relaxed">
-                    A digital sanctuary for mental clarity and conscious living. We combine ancient wisdom with modern technology to help you find your inner balance.
+                <p class="txt-xs txt-2 max-w-xs leading-relaxed">
+                    Mental wellness redefined. Ancient wisdom, modern technology.
                 </p>
-                <div class="row gap-4">
-                    <a href="#" class="size-10 rounded-xl bg-white/5 border border-white/5 center hover:bg-white/10 transition-all"><i class="fa-brands fa-instagram text-white/40"></i></a>
-                    <a href="#" class="size-10 rounded-xl bg-white/5 border border-white/5 center hover:bg-white/10 transition-all"><i class="fa-brands fa-x-twitter text-white/40"></i></a>
-                    <a href="#" class="size-10 rounded-xl bg-white/5 border border-white/5 center hover:bg-white/10 transition-all"><i class="fa-brands fa-discord text-white/40"></i></a>
-                </div>
             </div>
 
-            <!-- Links Grid -->
-            <div class="md:col-span-7 grid grid-cols-2 sm:grid-cols-3 gap-8">
-                <div class="col gap-6">
-                    <h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-primary">Sanctuary</h4>
-                    <div class="col gap-3">
-                        <a href="<?php echo url('meditation'); ?>" class="txt-sm txt-2 hover:text-white transition-colors">Meditation</a>
-                        <a href="<?php echo url('yoga'); ?>" class="txt-sm txt-2 hover:text-white transition-colors">Yoga Flow</a>
-                        <a href="<?php echo url('games'); ?>" class="txt-sm txt-2 hover:text-white transition-colors">Focus Games</a>
-                        <a href="<?php echo url('therapy'); ?>" class="txt-sm txt-2 hover:text-white transition-colors">Expert Help</a>
-                    </div>
-                </div>
-
-                <div class="col gap-6">
-                    <h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-primary">Community</h4>
-                    <div class="col gap-3">
-                        <a href="<?php echo url('community'); ?>" class="txt-sm txt-2 hover:text-white transition-colors">Global Forum</a>
-                        <a href="<?php echo url('events'); ?>" class="txt-sm txt-2 hover:text-white transition-colors">Live Events</a>
-                        <a href="<?php echo url('questionnaire'); ?>" class="txt-sm txt-2 hover:text-white transition-colors">Mental Check</a>
-                    </div>
-                </div>
-
-                <div class="col gap-6">
-                    <h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-primary">Persona</h4>
-                    <div class="col gap-3">
-                        <?php if (Auth::check()): ?>
-                            <a href="<?php echo url('profile'); ?>" class="txt-sm txt-2 hover:text-white transition-colors">My Space</a>
-                            <a href="<?php echo url('user_progress'); ?>" class="txt-sm txt-2 hover:text-white transition-colors">Growth Log</a>
-                            <a href="<?php echo url('logout.php'); ?>" class="txt-sm text-red-400/60 hover:text-red-400 transition-colors">Exit Portal</a>
-                        <?php else: ?>
-                            <a href="<?php echo url('login'); ?>" class="txt-sm txt-2 hover:text-white transition-colors">Re-Enter</a>
-                            <a href="<?php echo url('signup'); ?>" class="txt-sm txt-2 hover:text-white transition-colors">New Journey</a>
-                        <?php endif; ?>
-                    </div>
+            <!-- Quick Links - Minimal -->
+            <div class="col gap-4">
+                <div class="txt-xs font-black uppercase tracking-wider text-white/40">Quick Access</div>
+                <div class="grid grid-cols-2 gap-3">
+                    <a href="<?php echo url('meditation'); ?>" class="txt-xs txt-2 hover:text-primary transition-colors">Meditation</a>
+                    <a href="<?php echo url('yoga'); ?>" class="txt-xs txt-2 hover:text-primary transition-colors">Yoga</a>
+                    <a href="<?php echo url('therapy'); ?>" class="txt-xs txt-2 hover:text-primary transition-colors">Therapy</a>
+                    <a href="<?php echo url('community'); ?>" class="txt-xs txt-2 hover:text-primary transition-colors">Community</a>
                 </div>
             </div>
         </div>
 
-        <!-- Bottom Bar -->
-        <div class="pt-10 border-t border-white/5 between flex-wrap gap-6">
-            <p class="text-[10px] font-black uppercase tracking-widest text-white/20">
-                &copy; <?php echo date('Y'); ?> ForestSoul Ecosystem &bull; Free Forever &bull; Proudly Mindful
-            </p>
-            <div class="row gap-6">
-                <span class="text-[10px] font-black uppercase tracking-widest text-white/10 row gap-2 items-center">
-                    <i class="fa-solid fa-earth-asia"></i> 
-                    Kathmandu, Nepal
-                </span>
+        <!-- Divider -->
+        <div class="h-px bg-gradient-to-r from-transparent via-white/10 to-transparent mb-8"></div>
+
+        <!-- Footer Bottom - Clean -->
+        <div class="flex flex-col sm:flex-row items-center justify-between gap-6">
+            <div class="text-[11px] font-medium text-white/40">
+                &copy; <?php echo date('Y'); ?> ForestSoul. Find your inner peace.
+            </div>
+            
+            <div class="flex items-center gap-6">
+                <!-- Social Links -->
+                <div class="flex gap-3">
+                    <a href="#" class="w-8 h-8 rounded-lg bg-white/5 center text-white/40 hover:text-primary hover:bg-primary/10 transition-all text-xs">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                    <a href="#" class="w-8 h-8 rounded-lg bg-white/5 center text-white/40 hover:text-primary hover:bg-primary/10 transition-all text-xs">
+                        <i class="fa-brands fa-x-twitter"></i>
+                    </a>
+                    <a href="#" class="w-8 h-8 rounded-lg bg-white/5 center text-white/40 hover:text-primary hover:bg-primary/10 transition-all text-xs">
+                        <i class="fa-brands fa-discord"></i>
+                    </a>
+                </div>
             </div>
         </div>
     </div>

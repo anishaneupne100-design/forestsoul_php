@@ -2,13 +2,15 @@
 // community/create.php
 require_once '../backend/init.php';
 
-// HANDLE REQUEST AT TOP
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'create_post') {
-    if (!Auth::check()) {
-        header('Location: ' . url('login/'));
-        exit;
-    }
+// Check auth FIRST before any output
+if (!Auth::check()) {
+    header('Location: ' . url('login/'));
+    exit;
+}
 
+// HANDLE REQUEST AT TOP
+$error_msg = '';
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'create_post') {
     $data = [
         'title' => $_POST['title'] ?? '',
         'description' => $_POST['description'] ?? '',
@@ -23,15 +25,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     $error_msg = $res['error'] ?? ($res['message'] ?? 'Failed to create post');
 }
 
-// UI PARTS
+// UI PARTS - Include after all redirects/headers
 $title = "Share Your Story - ForestSoul Community";
 include_once '../head.php';
-
-if (!Auth::check()) {
-    header('Location: ' . url('login/'));
-    exit;
-}
-
 include_once '../components/navbar.php';
 ?>
 
