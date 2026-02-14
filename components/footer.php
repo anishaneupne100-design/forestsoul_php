@@ -8,8 +8,8 @@
             <!-- Brand Section -->
             <div class="md:col-span-5 col gap-6">
                 <a href="<?php echo url(''); ?>" class="row gap-3 items-center group">
-                    <div class="size-10 rounded-xl bg-primary center text-background-dark shadow-lg shadow-primary/20 group-hover:rotate-12 transition-transform">
-                        <i class="fa-solid fa-leaf"></i>
+                    <div class="size-10 rounded-xl bg-primary/20 center text-background-dark shadow-lg shadow-primary/20 group-hover:rotate-12 transition-transform overflow-hidden">
+                        <img src="<?php echo url('components/logo.png'); ?>" alt="ForestSoul Logo" class="w-full h-full object-cover">
                     </div>
                     <span class="txt-xl font-black italic tracking-tighter">ForestSoul</span>
                 </a>

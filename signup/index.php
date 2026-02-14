@@ -57,7 +57,9 @@ include_once '../head.php';
 <div class="content center">
 <div class="col center gap-sm pb-6 pt-1 text-center">
     <a href="<?php echo url(''); ?>" class="mb-4">
-        <svg class="text-primary" fill="none" height="48" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="48" xmlns="http://www.w3.org/2000/svg"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"></path><path d="M12 12c-3 0-5 2.5-5 5"></path><path d="M12 8c1.657 0 3 1.343 3 3"></path></svg>
+        <div class="size-12 rounded-2xl bg-primary/20 center shadow-xl shadow-primary/20 overflow-hidden">
+            <img src="<?php echo url('components/logo.png'); ?>" alt="ForestSoul Logo" class="w-full h-full object-cover">
+        </div>
     </a>
     <h1 class="txt-hero text-white sm:text-4xl">Join ForestSoul</h1>
     <p class="txt-md text-white/80">Find your inner peace and connect with nature.</p>
