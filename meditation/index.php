@@ -86,31 +86,70 @@ if (!empty($filterCategory)) {
 
             <!-- Center: Breathing Guide -->
             <div class="lg:col-span-8 col gap-12 items-center text-center py-10">
-                <div class="relative center">
-                    <!-- Breathing Ring -->
-                    <div id="breathing-ring" class="size-64 md:size-80 rounded-full border-4 border-primary/20 flex items-center justify-center transition-all duration-[4s] ease-in-out relative">
-                        <div id="ring-inner" class="absolute inset-0 rounded-full bg-primary/10 blur-xl scale-50 transition-all duration-[4s] ease-in-out"></div>
-                        <div class="relative z-10 col gap-2">
-                            <h2 id="breathing-text" class="txt-3xl font-black italic l-tight">Ready?</h2>
-                            <p id="breathing-subtext" class="text-xs font-bold uppercase tracking-[0.3em] text-white/40">Press Start to Begin</p>
+                
+                <!-- Modern Breathing Exercise Container -->
+                <div class="relative w-full max-w-md mx-auto">
+                    <!-- Main Breathing Circle with Lungs Icon -->
+                    <div id="breathing-ring" class="size-72 md:size-80 rounded-full border-4 border-primary/30 flex items-center justify-center transition-all duration-[4s] ease-in-out relative bg-gradient-to-br from-primary/5 to-transparent">
+                        
+                        <!-- Animated Background Glow -->
+                        <div id="ring-inner" class="absolute inset-0 rounded-full bg-primary/15 blur-2xl scale-50 transition-all duration-[4s] ease-in-out"></div>
+                        
+                        <!-- Content -->
+                        <div class="relative z-10 col gap-6 items-center">
+                            <!-- Lungs Icon with Animation -->
+                            <div class="relative size-24 center">
+                                <i id="breathing-icon" class="fa-solid fa-lungs text-primary text-6xl transition-all duration-[4s] ease-in-out"></i>
+                                <div class="absolute inset-0 rounded-full border-2 border-primary/20 animate-pulse"></div>
+                            </div>
+                            
+                            <!-- Breathing Text -->
+                            <div class="col gap-3">
+                                <h2 id="breathing-text" class="txt-4xl font-black italic tracking-tighter text-primary">Inhale</h2>
+                                <p id="breathing-subtext" class="text-sm font-bold uppercase tracking-[0.2em] text-white/50">Fill your lungs slowly</p>
+                            </div>
+                            
+                            <!-- Progress Indicator -->
+                            <div class="w-32 h-1 bg-white/10 rounded-full overflow-hidden">
+                                <div id="breathing-progress" class="h-full bg-gradient-to-r from-primary to-secondary transition-all duration-[4s] ease-in-out w-0"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Breathing Phases Indicator -->
+                    <div class="flex gap-2 justify-center mt-8">
+                        <div id="phase-inhale" class="flex flex-col items-center gap-2 px-4 py-3 rounded-2xl bg-primary/20 border border-primary/30 transition-all duration-300">
+                            <i class="fa-solid fa-arrow-down text-primary text-lg"></i>
+                            <span class="text-[10px] font-black uppercase tracking-wider text-primary">Inhale</span>
+                        </div>
+                        <div id="phase-hold" class="flex flex-col items-center gap-2 px-4 py-3 rounded-2xl bg-white/5 border border-white/10 transition-all duration-300">
+                            <i class="fa-solid fa-pause text-white/50 text-lg"></i>
+                            <span class="text-[10px] font-black uppercase tracking-wider text-white/50">Hold</span>
+                        </div>
+                        <div id="phase-exhale" class="flex flex-col items-center gap-2 px-4 py-3 rounded-2xl bg-white/5 border border-white/10 transition-all duration-300">
+                            <i class="fa-solid fa-arrow-up text-white/50 text-lg"></i>
+                            <span class="text-[10px] font-black uppercase tracking-wider text-white/50">Exhale</span>
                         </div>
                     </div>
                 </div>
 
-                <div class="row gap-6">
-                    <button id="start-btn" onclick="toggleMeditation()" class="btn-primary h-16 px-12 rounded-2xl font-black uppercase tracking-widest text-sm shadow-2xl shadow-primary/20 group">
-                        Start Session 
-                        <i class="fa-solid fa-play ml-3 group-hover:scale-110 transition-transform"></i>
-                    </button>
-                    <button onclick="resetMeditation()" class="btn-ghost size-16 rounded-2xl border border-white/5 text-white/40 hover:text-white hover:bg-white/5 center">
-                        <i class="fa-solid fa-rotate-right"></i>
-                    </button>
-                </div>
+                <!-- Controls -->
+                <div class="col gap-6 items-center w-full mt-8">
+                    <div class="row gap-4 justify-center">
+                        <button id="start-btn" onclick="toggleMeditation()" class="btn-primary h-16 px-12 rounded-2xl font-black uppercase tracking-widest text-sm shadow-2xl shadow-primary/20 group transition-all">
+                            Start Session 
+                            <i class="fa-solid fa-play ml-3 group-hover:scale-110 transition-transform"></i>
+                        </button>
+                        <button onclick="resetMeditation()" class="btn-ghost size-16 rounded-2xl border border-white/5 text-white/40 hover:text-white hover:bg-white/5 center transition-all">
+                            <i class="fa-solid fa-rotate-right"></i>
+                        </button>
+                    </div>
 
-                <!-- Timer -->
-                <div class="col gap-2">
-                    <div id="session-timer" class="txt-5xl font-thin tracking-tighter text-white/20">05:00</div>
-                    <p class="text-[10px] font-black uppercase tracking-widest text-primary">Remaining Peace</p>
+                    <!-- Timer -->
+                    <div class="col gap-2">
+                        <div id="session-timer" class="txt-6xl font-bold tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">05:00</div>
+                        <p class="text-[10px] font-black uppercase tracking-widest text-white/40">Session Duration</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -178,17 +217,55 @@ if (!empty($filterCategory)) {
 
 <style>
     @keyframes breathe-in {
-        0% { transform: scale(1); border-color: rgba(var(--primary-rgb), 0.2); }
-        100% { transform: scale(1.4); border-color: rgba(var(--primary-rgb), 0.8); }
+        0% { transform: scale(1); border-color: rgba(var(--primary-rgb), 0.3); }
+        50% { transform: scale(1.15); border-color: rgba(var(--primary-rgb), 0.7); }
+        100% { transform: scale(1.3); border-color: rgba(var(--primary-rgb), 0.5); }
+    }
+    
+    @keyframes breathe-out {
+        0% { transform: scale(1.3); border-color: rgba(var(--primary-rgb), 0.5); }
+        100% { transform: scale(0.9); border-color: rgba(var(--primary-rgb), 0.2); }
+    }
+
+    @keyframes icon-expand {
+        0% { transform: scale(1); }
+        100% { transform: scale(1.3); }
+    }
+
+    @keyframes icon-contract {
+        0% { transform: scale(1.3); }
+        100% { transform: scale(0.85); }
     }
     
     .breathing-active-in {
-        animation: breathe-in 4s ease-in-out infinite alternate;
+        animation: breathe-in 4s ease-in-out infinite;
+    }
+    
+    .breathing-active-out {
+        animation: breathe-out 4s ease-in-out infinite;
+    }
+
+    .breathing-active-icon-expand {
+        animation: icon-expand 4s ease-in-out infinite;
+    }
+
+    .breathing-active-icon-contract {
+        animation: icon-contract 4s ease-in-out infinite;
     }
     
     .inner-active-in {
         transform: scale(1) !important;
         opacity: 0.5;
+    }
+
+    .phase-indicator {
+        transition: all 300ms ease-in-out;
+    }
+
+    .phase-active {
+        transform: scale(1.1);
+        background: rgba(99, 102, 241, 0.3) !important;
+        border-color: rgba(99, 102, 241, 0.6) !important;
     }
 
     .ambient-btn.active {
@@ -206,7 +283,37 @@ let medActive = false;
 let currentAudio = null;
 let timer = 300; // 5 mins
 let timerInterval = null;
-let breathingPhase = 'in'; // 'in', 'hold', 'out'
+let breathingPhase = 'in';
+let currentTechnique = 'box'; // box, 4-7-8, alternate
+
+// Breathing Techniques
+const breathingTechniques = {
+    box: {
+        name: 'Box Breathing',
+        phases: [
+            { text: 'Inhale', sub: 'Fill your lungs slowly', time: 4000, phase: 'in', icon: 'fa-arrow-down' },
+            { text: 'Hold', sub: 'Cherish the breath', time: 4000, phase: 'hold', icon: 'fa-pause' },
+            { text: 'Exhale', sub: 'Release gently', time: 4000, phase: 'out', icon: 'fa-arrow-up' },
+            { text: 'Hold', sub: 'Rest in stillness', time: 4000, phase: 'hold', icon: 'fa-pause' }
+        ]
+    },
+    deepRelax: {
+        name: '4-7-8 Technique',
+        phases: [
+            { text: 'Inhale', sub: 'Count to 4 slowly', time: 4000, phase: 'in', icon: 'fa-arrow-down' },
+            { text: 'Hold', sub: 'Count to 7', time: 7000, phase: 'hold', icon: 'fa-pause' },
+            { text: 'Exhale', sub: 'Count to 8 slowly', time: 8000, phase: 'out', icon: 'fa-arrow-up' }
+        ]
+    },
+    alternate: {
+        name: 'Alternate Nostril',
+        phases: [
+            { text: 'Inhale Left', sub: 'Breathe through left', time: 5000, phase: 'in', icon: 'fa-arrow-down' },
+            { text: 'Hold', sub: 'Balance your energy', time: 4000, phase: 'hold', icon: 'fa-pause' },
+            { text: 'Exhale Right', sub: 'Release smoothly', time: 5000, phase: 'out', icon: 'fa-arrow-up' }
+        ]
+    }
+};
 
 function playAmbient(type) {
     if (currentAudio) {
@@ -232,7 +339,8 @@ function toggleMeditation() {
         if (currentAudio) currentAudio.play();
     } else {
         $('#start-btn').html('Resume <i class="fa-solid fa-play ml-3"></i>');
-        $('#breathing-ring').removeClass('breathing-active-in');
+        $('#breathing-ring').removeClass('breathing-active-in breathing-active-out');
+        $('#breathing-icon').removeClass('breathing-active-icon-expand breathing-active-icon-contract');
         clearInterval(timerInterval);
         if (currentAudio) currentAudio.pause();
     }
@@ -247,35 +355,61 @@ function startTimer() {
             $('#session-timer').text(`${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`);
         } else {
             resetMeditation();
-            showToast("Deep release complete. You are centered.", "success");
+            showToast("✨ Deep release complete. You are centered.", "success");
         }
     }, 1000);
 }
 
 function startBreathingCycle() {
-    let phases = [
-        { text: 'Inhale', sub: 'Fill your lungs', time: 4000 },
-        { text: 'Hold', sub: 'Cherish the breath', time: 4000 },
-        { text: 'Exhale', sub: 'Let everything go', time: 4000 }
-    ];
+    const technique = breathingTechniques[currentTechnique];
+    const phases = technique.phases;
     let i = 0;
     
     const cycle = () => {
         if (!medActive) return;
-        let phase = phases[i % 3];
+        
+        let phase = phases[i % phases.length];
+        
+        // Update text and icon
         $('#breathing-text').text(phase.text);
         $('#breathing-subtext').text(phase.sub);
         
-        if (phase.text === 'Inhale') {
-            $('#ring-inner').css('transform', 'scale(1)').css('opacity', '0.5');
-        } else if (phase.text === 'Exhale') {
-            $('#ring-inner').css('transform', 'scale(0.5)').css('opacity', '0.1');
+        // Update phase indicators
+        updatePhaseIndicators(phase.phase);
+        
+        // Update main ring animation
+        if (phase.phase === 'in') {
+            $('#breathing-ring').removeClass('breathing-active-out').addClass('breathing-active-in');
+            $('#breathing-icon').removeClass('breathing-active-icon-contract').addClass('breathing-active-icon-expand');
+        } else if (phase.phase === 'out') {
+            $('#breathing-ring').removeClass('breathing-active-in').addClass('breathing-active-out');
+            $('#breathing-icon').removeClass('breathing-active-icon-expand').addClass('breathing-active-icon-contract');
+        } else {
+            $('#breathing-ring').removeClass('breathing-active-in breathing-active-out');
+            $('#breathing-icon').removeClass('breathing-active-icon-expand breathing-active-icon-contract');
         }
+        
+        // Update progress bar
+        const totalTime = phases.reduce((sum, p) => sum + p.time, 0);
+        const progressPercent = ((i + 1) / phases.length) * 100;
+        $('#breathing-progress').css('width', progressPercent + '%');
         
         i++;
         setTimeout(cycle, phase.time);
     };
     cycle();
+}
+
+function updatePhaseIndicators(currentPhase) {
+    $('#phase-inhale, #phase-hold, #phase-exhale').removeClass('phase-active');
+    
+    if (currentPhase === 'in') {
+        $('#phase-inhale').addClass('phase-active');
+    } else if (currentPhase === 'hold') {
+        $('#phase-hold').addClass('phase-active');
+    } else if (currentPhase === 'out') {
+        $('#phase-exhale').addClass('phase-active');
+    }
 }
 
 function resetMeditation() {
@@ -284,10 +418,13 @@ function resetMeditation() {
     clearInterval(timerInterval);
     if (currentAudio) currentAudio.pause();
     $('#start-btn').html('Start Session <i class="fa-solid fa-play ml-3"></i>');
-    $('#breathing-ring').removeClass('breathing-active-in');
+    $('#breathing-ring').removeClass('breathing-active-in breathing-active-out');
+    $('#breathing-icon').removeClass('breathing-active-icon-expand breathing-active-icon-contract');
     $('#session-timer').text("05:00");
     $('#breathing-text').text("Ready?");
     $('#breathing-subtext').text("Press Start to Begin");
+    $('#breathing-progress').css('width', '0');
+    $('#phase-inhale, #phase-hold, #phase-exhale').removeClass('phase-active');
     $('#ring-inner').css('transform', 'scale(0.5)').css('opacity', '0.1');
 }
 </script>
