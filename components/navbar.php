@@ -1,13 +1,12 @@
 <?php
-// components/navbar.php
-// Reusable navbar component. Included in pages after head.php
+// No logo variable needed - use url() helper directly
 ?>
 <header class="header sticky top-0 z-40 bg-surface-light/80 dark:bg-surface-dark/80 backdrop-blur-md border-b border-border-light dark:border-border-dark">
     <div class="row gap-md txt px-6 py-3 max-w-7xl mx-auto flex items-center justify-between">
         <!-- Logo -->
         <a href="<?php echo url(''); ?>" class="row gap-md items-center group">
             <div class="icon-md text-primary transition-transform group-hover:scale-110">
-                <span class="material-symbols-outlined" style="font-size: 32px;">forest</span>
+                <img src="<?php echo url('components/logo.png'); ?>" alt="ForestSoul Logo" srcset="">
             </div>
             <h2 class="txt-xl font-bold tracking-tight">ForestSoul</h2>
         </a>

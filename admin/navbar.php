@@ -5,8 +5,8 @@ $admin_user = Auth::admin();
 <nav class="h-20 bg-admin-surface/80 backdrop-blur-xl border-b border-white/5 sticky top-0 z-[1000] px-6 flex items-center justify-between">
     <div class="flex items-center gap-8">
         <a href="<?php echo url('admin/'); ?>" class="flex items-center gap-3 group">
-            <div class="size-10 rounded-xl bg-admin-primary center shadow-lg shadow-admin-primary/20 rotate-3 group-hover:rotate-0 transition-transform">
-                <i class="fa-solid fa-shield-halved text-white text-lg"></i>
+            <div class="size-10 rounded-xl bg-admin-primary/20 center shadow-lg shadow-admin-primary/20 rotate-3 group-hover:rotate-0 transition-transform overflow-hidden">
+                <img src="<?php echo url('components/logo.png'); ?>" alt="ForestSoul Logo" class="w-full h-full object-cover">
             </div>
             <div class="flex flex-col">
                 <span class="font-black text-lg leading-none tracking-tight">ForestSoul</span>

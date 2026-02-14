@@ -40,8 +40,8 @@ include_once '../head.php';
     <div class="card bg-surface-dark border-white/5 p-10 rounded-[3rem] shadow-2xl backdrop-blur-xl group/card">
         <div class="center col gap-4 mb-10 text-center">
             <a href="<?php echo url(''); ?>" class="group/logo">
-                <div class="size-16 rounded-3xl bg-primary center shadow-xl shadow-primary/20 group-hover/logo:scale-110 transition-transform">
-                    <i class="fa-solid fa-feather-pointed text-background-dark text-3xl"></i>
+                <div class="size-16 rounded-3xl bg-primary/20 center shadow-xl shadow-primary/20 group-hover/logo:scale-110 transition-transform overflow-hidden">
+                    <img src="<?php echo url('components/logo.png'); ?>" alt="ForestSoul Logo" class="w-full h-full object-cover">
                 </div>
             </a>
             <div class="col gap-1">
