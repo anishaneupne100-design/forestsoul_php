@@ -3,6 +3,65 @@
 $title = "Meditation Room - ForestSoul";
 include_once '../head.php';
 include_once '../components/navbar.php';
+
+// Meditation Programs Database
+$meditationPrograms = [
+    [
+        'id' => 'morning-mindfulness',
+        'title' => '7 Days of Mindful Mornings',
+        'description' => 'Start your day with clarity',
+        'duration' => '10',
+        'level' => 'Beginner',
+        'category' => 'Morning',
+        'image' => 'https://lh3.googleusercontent.com/aida-public/AB6AXuBdJGI0wg2GRYqt4evRJQK4jPjz4JHFEgFIGr40JBhesbthLnz8uQSEtxtzj8EvG3ZDV5et7urYK95ds1Os0z5s5kvL0NqCobgF0MueU4Ctq5F-MN4i7w4hZGsRRcsGvh4Iv91WEsO5E_BctApi1fpO__-2pVWIehlnuO8e5beJI1MmHD8O_59ZZ4UBsRDfrZZXZZrGRuf5VdXZEwXIN9oKr9axqTCva1Y5fmiRD514QGkLYuO3B-dC8UCz9w-85nQHX6AwCRwtXBI',
+        'link' => './7_day_ morning.php',
+        'tags' => ['Stress Relief', 'Sleep', 'Focus']
+    ],
+    [
+        'id' => 'deep-sleep',
+        'title' => 'Deep Sleep Journey',
+        'description' => 'Drift into restful slumber',
+        'duration' => '20',
+        'level' => 'All Levels',
+        'category' => 'Sleep',
+        'image' => 'https://lh3.googleusercontent.com/aida-public/AB6AXuCHfAKLcAccI5mrKbrDgmLbS0q9UueLv4lHiNTKAqJthcDsGUEfqIXnH5zJfzkjpfMd-eCVepEVBqd8fx0jRZ1fPAjqXX22atS7FMpR5IeOHbq2RdY6PcM4Jpcs_4nAKJDeR0vJ8KL3YZjrhQuzsWtwFu-xN_ctKdmO-VEeFMOMfOOhyX_qjCNT794-VSppqr3te-Vso_gI90zQZ8GxwAPe037LEz84x21WPHzEkDObA4-psFdFl_zGIwwUcxo-Jy4IZ_xabXadyyc',
+        'link' => './deep_sleep.php',
+        'tags' => ['Sleep', '<10 min']
+    ],
+    [
+        'id' => 'anxiety-relief',
+        'title' => 'Overcoming Anxiety',
+        'description' => 'Cultivate resilience and peace',
+        'duration' => '15',
+        'level' => 'Intermediate',
+        'category' => 'Stress Relief',
+        'image' => 'https://lh3.googleusercontent.com/aida-public/AB6AXuBoMzn3JLhccyzoR65tH14xS1GoxJodxT_o7-lgo5hqeTjQkBHFXty6cLKFSC9ZVcc7OddxtflZj4wq6EnE2dlU3GlGAHJLu-chq0jeXwd7rhSHFPX5M1V1VTtex-if4mduOy-tKDdYldXJ9gzU8EdeQfmbp3fchZf5mK_Qhh9g7w0xR7ugIj5X1mSWm1kOXGMn0bFeT1bqmLhr0qaN5m4rE7fi5i2iQuLxjjJeBhcOkAC-5XJ2QTsuawtBiYCWS1GwmJq_ZGNVEfg',
+        'link' => './overcoming_anxiety.php',
+        'tags' => ['Stress Relief', '10-20 min']
+    ],
+    [
+        'id' => 'productivity-focus',
+        'title' => 'Focus & Productivity Boost',
+        'description' => 'Sharpen your mental edge',
+        'duration' => '15',
+        'level' => 'All Levels',
+        'category' => 'Focus',
+        'image' => 'https://lh3.googleusercontent.com/aida-public/AB6AXuC5RJOQqsLu5F7kGBxwQNtHfyTkPkLDIv4kaua3kNFnCPfF45WQmD4UskTMeuGXQfoKo1LI9CzwX9qLDVu2mBwglW9JsEJRmpQDcjXNk5tAiQtkYq5eJAZkpMkR1pvJEA51b9E4m8y3P75gFM90aDnT84vXPHh9ebo0UVqYyKJXQmqOtAkNciiZgEA26Pdd27Md899nQX04OCdbu012YyRJo_Tpj7XsRfs-ht8ZOBOhHLpLkfqlHueWQKKW4ie4lVMvuJgsJaviBus',
+        'link' => './focus_productivity.php',
+        'tags' => ['Focus', '10-20 min']
+    ]
+];
+
+// Get filter from URL params
+$filterCategory = $_GET['category'] ?? '';
+
+// Filter programs if category is set
+$displayPrograms = $meditationPrograms;
+if (!empty($filterCategory)) {
+    $displayPrograms = array_filter($meditationPrograms, function($prog) use ($filterCategory) {
+        return strtolower($prog['category']) === strtolower($filterCategory);
+    });
+}
 ?>
 
 <main class="flex-grow bg-[#05070a] text-white min-h-screen relative overflow-hidden">
@@ -23,45 +82,7 @@ include_once '../components/navbar.php';
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-            
-            <!-- Left: Soundscapes -->
-            <div class="lg:col-span-4 col gap-8 animate-fade-in-left">
-                <h3 class="txt-xl font-bold row gap-3 items-center">
-                    <span class="material-symbols-outlined text-primary">surround_sound</span>
-                    Ambient Soundscapes
-                </h3>
-                <div class="grid grid-cols-1 gap-4">
-                    <button onclick="playAmbient('forest')" class="ambient-btn group p-6 rounded-3xl bg-white/5 border border-white/5 hover:border-primary/40 transition-all row gap-6 items-center text-left" data-sound="forest">
-                        <div class="size-16 rounded-2xl bg-primary/10 center text-primary group-hover:bg-primary group-hover:text-background-dark transition-all">
-                            <i class="fa-solid fa-tree text-2xl"></i>
-                        </div>
-                        <div class="col gap-1">
-                            <h4 class="font-bold">Forest Rain</h4>
-                            <p class="text-[10px] uppercase font-black tracking-widest text-white/20">Soothing Droplets</p>
-                        </div>
-                    </button>
-
-                    <button onclick="playAmbient('ocean')" class="ambient-btn group p-6 rounded-3xl bg-white/5 border border-white/5 hover:border-blue-500/40 transition-all row gap-6 items-center text-left" data-sound="ocean">
-                        <div class="size-16 rounded-2xl bg-blue-500/10 center text-blue-500 group-hover:bg-blue-500 group-hover:text-background-dark transition-all">
-                            <i class="fa-solid fa-water text-2xl"></i>
-                        </div>
-                        <div class="col gap-1">
-                            <h4 class="font-bold">Deep Ocean</h4>
-                            <p class="text-[10px] uppercase font-black tracking-widest text-white/20">Rhythmic Waves</p>
-                        </div>
-                    </button>
-
-                    <button onclick="playAmbient('zen')" class="ambient-btn group p-6 rounded-3xl bg-white/5 border border-white/5 hover:border-amber-500/40 transition-all row gap-6 items-center text-left" data-sound="zen">
-                        <div class="size-16 rounded-2xl bg-amber-500/10 center text-amber-500 group-hover:bg-amber-500 group-hover:text-background-dark transition-all">
-                            <i class="fa-solid fa-om text-2xl"></i>
-                        </div>
-                        <div class="col gap-1">
-                            <h4 class="font-bold">Zen Temple</h4>
-                            <p class="text-[10px] uppercase font-black tracking-widest text-white/20">Singing Bowls</p>
-                        </div>
-                    </button>
-                </div>
-            </div>
+          
 
             <!-- Center: Breathing Guide -->
             <div class="lg:col-span-8 col gap-12 items-center text-center py-10">
@@ -94,6 +115,60 @@ include_once '../components/navbar.php';
             </div>
         </div>
     </div>
+
+    <center>
+      <!-- Chips/Filters -->
+<div class="flex flex-col sm:flex-row gap-4 p-4 items-start sm:items-center">
+  <div class="flex gap-3 flex-wrap">
+    <a href="?category=" class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-xl <?php echo empty($filterCategory) ? 'bg-primary/20 text-primary' : 'bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-primary/20 hover:text-primary'; ?> px-3">
+      <p class="text-sm font-medium leading-normal">All</p>
+    </a>
+    <a href="?category=Morning" class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-xl <?php echo $filterCategory === 'Morning' ? 'bg-primary/20 text-primary' : 'bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-primary/20 hover:text-primary'; ?> px-3">
+      <p class="text-sm font-medium leading-normal">Morning</p>
+    </a>
+    <a href="?category=Sleep" class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-xl <?php echo $filterCategory === 'Sleep' ? 'bg-primary/20 text-primary' : 'bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-primary/20 hover:text-primary'; ?> px-3">
+      <p class="text-sm font-medium leading-normal">Sleep</p>
+    </a>
+    <a href="?category=Focus" class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-xl <?php echo $filterCategory === 'Focus' ? 'bg-primary/20 text-primary' : 'bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-primary/20 hover:text-primary'; ?> px-3">
+      <p class="text-sm font-medium leading-normal">Focus</p>
+    </a>
+    <a href="?category=Stress Relief" class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-xl <?php echo $filterCategory === 'Stress Relief' ? 'bg-primary/20 text-primary' : 'bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-primary/20 hover:text-primary'; ?> px-3">
+      <p class="text-sm font-medium leading-normal">Stress Relief</p>
+    </a>
+  </div>
+  <div class="relative w-full sm:w-auto sm:ml-auto">
+    <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">search</span>
+    <input
+      class="w-full sm:w-64 h-10 pl-10 pr-4 rounded-xl border-gray-300 dark:border-gray-700 bg-background-light dark:bg-background-dark text-gray-900 dark:text-gray-100 focus:ring-primary focus:border-primary"
+      placeholder="Search programs..." type="text" />
+  </div>
+</div>
+<!-- ImageGrid -->
+<div class="grid grid-cols-[repeat(auto-fill,minmax(200px,1fr))] gap-6 p-4">
+  <?php if (empty($displayPrograms)): ?>
+    <div class="col-span-full py-12 text-center">
+      <span class="material-symbols-outlined text-5xl text-white/10 mb-4 block">meditation</span>
+      <p class="txt-2 italic text-white/60">No programs found for this category.</p>
+    </div>
+  <?php else: foreach($displayPrograms as $program): ?>
+  <a href="<?php echo $program['link']; ?>" class="flex flex-col gap-3 pb-3 group cursor-pointer">
+    <div class="w-full bg-center bg-no-repeat aspect-[3/4] bg-cover rounded-xl overflow-hidden">
+      <div class="w-full h-full bg-cover bg-center transition-transform duration-300 group-hover:scale-105"
+        data-alt="<?php echo htmlspecialchars($program['title']); ?>"
+        style='background-image: url("<?php echo $program['image']; ?>");'>
+      </div>
+    </div>
+
+    <div>
+      <div class="text-black dark:text-white text-base font-bold leading-normal group-hover:text-primary transition-colors"><?php echo htmlspecialchars($program['title']); ?></div>
+      <div class="text-gray-500 dark:text-gray-400 text-sm font-normal leading-normal"><?php echo htmlspecialchars($program['description']); ?></div>
+      <p class="text-gray-500 dark:text-gray-400 text-sm font-normal leading-normal"><?php echo $program['duration']; ?> min • <?php echo $program['level']; ?></p>
+    </div>
+  </a>
+  <?php endforeach; endif; ?>
+</div>
+    </center>
+    </center>
 
     <!-- Audio Elements (Placeholder paths - would ideally use high quality loop assets) -->
     <audio id="audio-forest" loop src="https://assets.mixkit.co/sfx/preview/mixkit-crickets-and-insects-in-the-wild-2470.mp3"></audio>

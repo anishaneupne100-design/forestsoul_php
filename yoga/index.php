@@ -3,6 +3,64 @@
 $title = "Yoga Classes - ForestSoul";
 include_once '../head.php';
 include_once '../components/navbar.php';
+
+// Yoga Classes Database
+$yogaClasses = [
+    [
+        'id' => 'sunrise-vinyasa',
+        'title' => 'Sunrise Vinyasa Flow',
+        'instructor' => 'Nischita Sharma',
+        'difficulty' => 'Beginner',
+        'duration' => '60',
+        'category' => 'Vinyasa',
+        'image' => 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=800&q=80',
+        'link' => 'Gentle hatha flow .php'
+    ],
+    [
+        'id' => 'gentle-hatha',
+        'title' => 'Gentle Hatha & Meditation',
+        'instructor' => 'sagar karki',
+        'difficulty' => 'Beginner',
+        'duration' => '45',
+        'category' => 'Hatha',
+        'image' => 'https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=800&q=80',
+        'link' => 'Gentle hatha flow .php'
+    ],
+    [
+        'id' => 'restorative-yin',
+        'title' => 'Restorative Yin Yoga',
+        'instructor' => 'kashish bagri',
+        'difficulty' => 'All Levels',
+        'duration' => '75',
+        'category' => 'Yin',
+        'image' => 'https://images.unsplash.com/photo-1599447421416-3414500d18a5?auto=format&fit=crop&w=800&q=80',
+        'link' => 'Restorative  yoga .php'
+    ],
+    [
+        'id' => 'power-yoga',
+        'title' => 'Power Yoga Burn',
+        'instructor' => 'sajina magar',
+        'difficulty' => 'Advanced',
+        'duration' => '60',
+        'category' => 'Power',
+        'image' => 'https://images.unsplash.com/photo-1575052814086-f385e2e2ad1b?auto=format&fit=crop&w=800&q=80',
+        'link' => 'power vinaysa yoga.php'
+    ]
+];
+
+// Get filter from URL params
+$filterStyle = $_GET['style'] ?? '';
+$filterDifficulty = $_GET['difficulty'] ?? '';
+
+// Filter classes
+$displayClasses = $yogaClasses;
+if (!empty($filterStyle) || !empty($filterDifficulty)) {
+    $displayClasses = array_filter($yogaClasses, function($class) use ($filterStyle, $filterDifficulty) {
+        $styleMatch = empty($filterStyle) || strtolower($class['category']) === strtolower($filterStyle);
+        $diffMatch = empty($filterDifficulty) || strtolower($class['difficulty']) === strtolower($filterDifficulty);
+        return $styleMatch && $diffMatch;
+    });
+}
 ?>
 
 <main class="flex-grow">
@@ -26,69 +84,36 @@ include_once '../components/navbar.php';
     <!-- Filters -->
     <section class="section px-4" id="classes">
         <div class="row gap-3 overflow-x-auto pb-4 [-ms-scrollbar-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-            <button class="chip">Yoga Style <span class="material-symbols-outlined text-xs ml-1">expand_more</span></button>
-            <button class="chip">Difficulty <span class="material-symbols-outlined text-xs ml-1">expand_more</span></button>
-            <button class="chip">Instructor <span class="material-symbols-outlined text-xs ml-1">expand_more</span></button>
-            <button class="chip">Duration <span class="material-symbols-outlined text-xs ml-1">expand_more</span></button>
+            <a href="?" class="chip <?php echo empty($filterStyle) && empty($filterDifficulty) ? 'bg-primary/20 text-primary' : 'hover:bg-primary/10'; ?>">All Classes</a>
+            <a href="?style=Hatha" class="chip <?php echo $filterStyle === 'Hatha' ? 'bg-primary/20 text-primary' : 'hover:bg-primary/10'; ?>">Hatha <span class="material-symbols-outlined text-xs ml-1">expand_more</span></a>
+            <a href="?style=Vinyasa" class="chip <?php echo $filterStyle === 'Vinyasa' ? 'bg-primary/20 text-primary' : 'hover:bg-primary/10'; ?>">Vinyasa <span class="material-symbols-outlined text-xs ml-1">expand_more</span></a>
+            <a href="?style=Yin" class="chip <?php echo $filterStyle === 'Yin' ? 'bg-primary/20 text-primary' : 'hover:bg-primary/10'; ?>">Yin <span class="material-symbols-outlined text-xs ml-1">expand_more</span></a>
+            <a href="?difficulty=Beginner" class="chip <?php echo $filterDifficulty === 'Beginner' ? 'bg-primary/20 text-primary' : 'hover:bg-primary/10'; ?>">Beginner <span class="material-symbols-outlined text-xs ml-1">expand_more</span></a>
+            <a href="?difficulty=Advanced" class="chip <?php echo $filterDifficulty === 'Advanced' ? 'bg-primary/20 text-primary' : 'hover:bg-primary/10'; ?>">Advanced <span class="material-symbols-outlined text-xs ml-1">expand_more</span></a>
         </div>
 
         <!-- Classes Grid -->
         <div class="grid-3 mt-4">
-            <a href="<?php echo url('yoga/Gentle hatha flow .php'); ?>" class="card-feature group">
+            <?php if (empty($displayClasses)): ?>
+                <div class="col-span-full py-12 text-center">
+                    <span class="material-symbols-outlined text-5xl text-white/10 mb-4 block">yoga</span>
+                    <p class="txt-2 italic text-white/60">No classes match your filters.</p>
+                </div>
+            <?php else: foreach($displayClasses as $class): ?>
+            <a href="<?php echo url('yoga/' . $class['link']); ?>" class="card-feature group cursor-pointer">
                 <div class="img-landscape mb-2 overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=800&q=80" alt="Hatha Yoga" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <img src="<?php echo $class['image']; ?>" alt="<?php echo htmlspecialchars($class['title']); ?>" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
                 </div>
                 <div class="col gap-1">
-                    <h3 class="title group-hover:text-primary transition-colors">Sunrise Vinyasa Flow</h3>
-                    <p class="subtitle">Instructor: Nischita Sharma</p>
+                    <h3 class="title group-hover:text-primary transition-colors"><?php echo htmlspecialchars($class['title']); ?></h3>
+                    <p class="subtitle">Instructor: <?php echo htmlspecialchars($class['instructor']); ?></p>
                     <div class="row gap-sm txt-2 txt-xs mt-2 uppercase tracking-wider font-bold">
-                        <span class="bg-primary/20 text-primary px-2 py-0.5 rounded">Beginner</span>
-                        <span class="bg-surface-dark px-2 py-0.5 rounded">60 MIN</span>
+                        <span class="bg-primary/20 text-primary px-2 py-0.5 rounded"><?php echo $class['difficulty']; ?></span>
+                        <span class="bg-surface-dark px-2 py-0.5 rounded"><?php echo $class['duration']; ?> MIN</span>
                     </div>
                 </div>
             </a>
-
-            <a href="<?php echo url('yoga/Gentle hatha flow .php'); ?>" class="card-feature group">
-                <div class="img-landscape mb-2 overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=800&q=80" alt="Restorative Yoga" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
-                </div>
-                <div class="col gap-1">
-                    <h3 class="title group-hover:text-primary transition-colors">Gentle Hatha & Meditation</h3>
-                    <p class="subtitle">Instructor: sagar karki</p>
-                    <div class="row gap-sm txt-2 txt-xs mt-2 uppercase tracking-wider font-bold">
-                        <span class="bg-primary/20 text-primary px-2 py-0.5 rounded">Beginner</span>
-                        <span class="bg-surface-dark px-2 py-0.5 rounded">45 MIN</span>
-                    </div>
-                </div>
-            </a>
-
-            <a href="<?php echo url('yoga/Restorative  yoga .php'); ?>" class="card-feature group">
-                <div class="img-landscape mb-2 overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1599447421416-3414500d18a5?auto=format&fit=crop&w=800&q=80" alt="Yin Yoga" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
-                </div>
-                <div class="col gap-1">
-                    <h3 class="title group-hover:text-primary transition-colors">Restorative Yin Yoga</h3>
-                    <p class="subtitle">Instructor: kashish bagri</p>
-                    <div class="row gap-sm txt-2 txt-xs mt-2 uppercase tracking-wider font-bold">
-                        <span class="bg-primary/20 text-primary px-2 py-0.5 rounded">All Levels</span>
-                        <span class="bg-surface-dark px-2 py-0.5 rounded">75 MIN</span>
-                    </div>
-                </div>
-            </a>
-
-            <a href="<?php echo url('yoga/power vinaysa yoga.php'); ?>" class="card-feature group">
-                <div class="img-landscape mb-2 overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1575052814086-f385e2e2ad1b?auto=format&fit=crop&w=800&q=80" alt="Power Yoga" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
-                </div>
-                <div class="col gap-1">
-                    <h3 class="title group-hover:text-primary transition-colors">Power Yoga Burn</h3>
-                    <p class="subtitle">Instructor: sajina magar</p>
-                    <div class="row gap-sm txt-2 txt-xs mt-2 uppercase tracking-wider font-bold">
-                        <span class="bg-primary/20 text-primary px-2 py-0.5 rounded">Advanced</span>
-                        <span class="bg-surface-dark px-2 py-0.5 rounded">60 MIN</span>
-                    </div>
-                </div>
-            </a>
+            <?php endforeach; endif; ?>
         </div>
     </section>
 

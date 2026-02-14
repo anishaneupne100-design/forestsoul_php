@@ -3,6 +3,45 @@
 $title = "Therapy Services - ForestSoul";
 include_once '../head.php';
 include_once '../components/navbar.php';
+
+// Therapy Services Database
+$therapyServices = [
+    [
+        'id' => 'individual',
+        'title' => 'Individual Counseling',
+        'description' => 'One-on-one sessions tailored to your personal goals and mental healing.',
+        'icon' => 'person',
+        'category' => 'One-on-One',
+        'link' => 'individual  counseling.php'
+    ],
+    [
+        'id' => 'couple',
+        'title' => 'Couple Therapy',
+        'description' => 'Strengthen your relationship and improve communication together in a safe space.',
+        'icon' => 'favorite',
+        'category' => 'Relationships',
+        'link' => 'couple therapy.php'
+    ],
+    [
+        'id' => 'group',
+        'title' => 'Group Therapy',
+        'description' => 'Find strength and understanding in a supportive community with shared experiences.',
+        'icon' => 'groups',
+        'category' => 'Group',
+        'link' => 'group therapy.php'
+    ]
+];
+
+// Get filter from URL params
+$filterCategory = $_GET['category'] ?? '';
+
+// Filter services
+$displayServices = $therapyServices;
+if (!empty($filterCategory)) {
+    $displayServices = array_filter($therapyServices, function($service) use ($filterCategory) {
+        return strtolower($service['category']) === strtolower($filterCategory);
+    });
+}
 ?>
 
 <main class="flex-grow">
@@ -28,31 +67,30 @@ include_once '../components/navbar.php';
             <h2 class="txt-3xl txt">Our Therapy Services</h2>
             <p class="txt-2 mt-3 max-w-2xl mx-auto">Choose the therapy type that best fits your needs and journey.</p>
         </div>
+
+        <!-- Filter Chips -->
+        <div class="flex gap-3 justify-center mb-8 flex-wrap px-4">
+            <a href="?" class="chip <?php echo empty($filterCategory) ? 'bg-primary/20 text-primary' : 'hover:bg-primary/10'; ?>">All Services</a>
+            <a href="?category=One-on-One" class="chip <?php echo $filterCategory === 'One-on-One' ? 'bg-primary/20 text-primary' : 'hover:bg-primary/10'; ?>">One-on-One</a>
+            <a href="?category=Relationships" class="chip <?php echo $filterCategory === 'Relationships' ? 'bg-primary/20 text-primary' : 'hover:bg-primary/10'; ?>">Relationships</a>
+            <a href="?category=Group" class="chip <?php echo $filterCategory === 'Group' ? 'bg-primary/20 text-primary' : 'hover:bg-primary/10'; ?>">Group</a>
+        </div>
         
         <div class="grid-3 p-4">
-            <div class="card-feature text-center group">
-                <div class="icon-circle mx-auto mb-4 group-hover:scale-110 transition-transform">
-                    <span class="material-symbols-outlined text-3xl">person</span>
+            <?php if (empty($displayServices)): ?>
+                <div class="col-span-full py-12 text-center">
+                    <span class="material-symbols-outlined text-5xl text-white/10 mb-4 block">clinical_notes</span>
+                    <p class="txt-2 italic text-white/60">No services found for this category.</p>
                 </div>
-                <h3 class="title">Individual Counseling</h3>
-                <p class="subtitle">One-on-one sessions tailored to your personal goals and mental healing.</p>
-            </div>
-            
-            <div class="card-feature text-center group">
+            <?php else: foreach($displayServices as $service): ?>
+            <a href="<?php echo url('therapy/' . $service['link']); ?>" class="card-feature text-center group cursor-pointer hover:border-primary/30 transition-all">
                 <div class="icon-circle mx-auto mb-4 group-hover:scale-110 transition-transform">
-                    <span class="material-symbols-outlined text-3xl">favorite</span>
+                    <span class="material-symbols-outlined text-3xl"><?php echo $service['icon']; ?></span>
                 </div>
-                <h3 class="title">Couple Therapy</h3>
-                <p class="subtitle">Strengthen your relationship and improve communication together in a safe space.</p>
-            </div>
-            
-            <div class="card-feature text-center group">
-                <div class="icon-circle mx-auto mb-4 group-hover:scale-110 transition-transform">
-                    <span class="material-symbols-outlined text-3xl">groups</span>
-                </div>
-                <h3 class="title">Group Therapy</h3>
-                <p class="subtitle">Find strength and understanding in a supportive community with shared experiences.</p>
-            </div>
+                <h3 class="title group-hover:text-primary transition-colors"><?php echo htmlspecialchars($service['title']); ?></h3>
+                <p class="subtitle"><?php echo htmlspecialchars($service['description']); ?></p>
+            </a>
+            <?php endforeach; endif; ?>
         </div>
     </section>
 
