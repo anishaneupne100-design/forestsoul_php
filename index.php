@@ -194,12 +194,12 @@ include_once 'components/navbar.php';
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
                 <div class="card bg-surface-dark/50 border-white/5 p-10 rounded-[2rem] relative overflow-hidden group">
                     <i class="fa-solid fa-quote-left absolute -left-4 -top-4 text-8xl text-primary/5 group-hover:text-primary/10 transition-colors"></i>
-                    <p class="txt-lg txt-2 italic leading-relaxed mb-6 font-medium relative z-10">"ForestSoul has been a sanctuary for me. The guided meditations helped me find calm during a stressful time. I'm so grateful for this platform."</p>
+                    <p class="txt-lg txt-2 italic leading-relaxed mb-6 font-medium relative z-10">"ForestSoul has been a safe space for me. The guided meditations helped me find calm during a stressful time. I'm so grateful for this platform."</p>
                     <div class="row items-center gap-4 relative z-10">
                         <div class="size-12 rounded-2xl bg-primary/20 center font-black text-primary">S</div>
                         <div class="col">
                             <p class="font-bold text-white">Sarah J.</p>
-                            <span class="text-[10px] uppercase tracking-widest text-primary font-black">Member since 2023</span>
+                            <span class="text-[10px] uppercase tracking-widest text-primary font-black">member</span>
                         </div>
                     </div>
                 </div>
@@ -210,8 +210,8 @@ include_once 'components/navbar.php';
                     <div class="row items-center gap-4 relative z-10">
                         <div class="size-12 rounded-2xl bg-secondary/20 center font-black text-secondary">M</div>
                         <div class="col">
-                            <p class="font-bold text-white">Michael B.</p>
-                            <span class="text-[10px] uppercase tracking-widest text-secondary font-black">Certified Member</span>
+                            <p class="font-bold text-white">yogesh</p>
+                            <span class="text-[10px] uppercase tracking-widest text-secondary font-black">member</span>
                         </div>
                     </div>
                 </div>

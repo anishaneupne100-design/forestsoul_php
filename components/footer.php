@@ -14,7 +14,7 @@
                     <span class="txt-xl font-black italic tracking-tighter">ForestSoul</span>
                 </a>
                 <p class="txt-sm txt-2 max-w-sm leading-relaxed">
-                    A digital sanctuary for mental clarity and conscious living. We combine ancient wisdom with modern technology to help you find your inner balance.
+                    A digital retreat for mental clarity and conscious living. We combine ancient wisdom with modern technology to help you find your inner balance.
                 </p>
                 <div class="row gap-4">
                     <a href="#" class="size-10 rounded-xl bg-white/5 border border-white/5 center hover:bg-white/10 transition-all"><i class="fa-brands fa-instagram text-white/40"></i></a>

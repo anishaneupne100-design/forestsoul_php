@@ -158,7 +158,7 @@ include_once '../components/navbar.php';
                 <p class="text-[#92c9b7] italic mb-4">"Exactly what I needed after a stressful week.
                     The pacing was perfect for a beginner, and I felt so calm and centered
                     afterwards."</p>
-                <p class="text-white font-bold">- Riya sharma</p>
+                <p class="text-white font-bold">- ramu karki</p>
             </div>
             <div class="bg-[#1a352a] p-6 rounded-lg border border-[#326755]">
                 <div class="flex items-center gap-2 mb-2">
