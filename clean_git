@@ -1,9 +1,9 @@
 for branch in $(git branch -r | grep -v HEAD); do
   git filter-branch -f --env-filter '
   export GIT_AUTHOR_NAME="anishaneupne100-design"
-  export GIT_AUTHOR_EMAIL="anishaneupane735@gmail.com"
+  export GIT_AUTHOR_EMAIL="anisha.neupne.100@gmail.com"
   export GIT_COMMITTER_NAME="anishaneupne100-design"
-  export GIT_COMMITTER_EMAIL="anishaneupane735@gmail.com"
+  export GIT_COMMITTER_EMAIL="anisha.neupne.100@gmail.com"
   ' --tag-name-filter cat -- "$branch"
 done
 
